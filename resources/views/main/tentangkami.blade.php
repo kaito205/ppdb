@@ -11,11 +11,11 @@
             <div class="col-md-6">
                 <h3 class="font-waight-bold mb-3 mt-5">TENTANG <span class="text-success">KAMI</span></h3>
 
-                <p class="deskripsi"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit libero,
-                    veniam repellat eaque autem veritatis voluptates nulla, dolore sequi, rerum
-                    iure in fugit sunt earum. Accusamus dolores impedit nisi iure, nulla facere
-                    voluptatum ducimus saepe quia modi delectus atque ut quos ipsum corporis
-                    praesentium sequi. Quidem mollitia unde dolorum fugit.
+                <p class="deskripsi"> SMA ERHA JATINAGARA adalah sekolah berbasis pesantren dimana seluruh siswa
+                    diwajibkan mondok dan mengikuti pengajian pesantren. Ada dua program pesantren yaitu program Kitab
+                    Kuning dan Tahfiz Al-Quran. Sekolah juga membantu mengembangkan potensi siswa sesuai minat dan
+                    bakatnya melalui kegiatan Non-Akademik. Pembentukan karakter dan budi pekerti dilaksanakan melalui
+                    pembiasaan yang diaplikasikan melalui kegiatan sehari-hari. <span class="text-success text-bold">Yuk kita mondok, Mondok itu Kebutuhan.Yuk kita mondok, Mondok itu Keren.</span>
                 </p>
 
                 <h5 class="mt-5">Sosoal media kami</h5>
@@ -57,7 +57,8 @@
             Apa kata alumni?
         </h3>
         <p class="text-center mb-4">
-            Beberapa testimoni dari para alumni yangtelah merasakan manfaat dengan mondok di pesantren Riyadlul Hidayah Al-munawarah
+            Beberapa testimoni dari para alumni yangtelah merasakan manfaat dengan mondok di pesantren Riyadlul Hidayah
+            Al-munawarah
         </p>
 
         <div class="row mt-5">
@@ -67,10 +68,12 @@
                         <img src="{{ asset('img/user.jpeg') }}" alt="cobaa">
 
                         <p class="text-center">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic soluta, voluptates esse repellendus numquam rerum, tempora vitae, nesciunt laborum sapiente quaerat iusto. Veritatis enim placeat quae cumque, qui quidem esse.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic soluta, voluptates esse
+                            repellendus numquam rerum, tempora vitae, nesciunt laborum sapiente quaerat iusto. Veritatis
+                            enim placeat quae cumque, qui quidem esse.
                         </p>
 
-                        <p class="font-weight-bold text-center mb-0">Iis siti maesaroh</p>
+                        <p class="font-weight-bold text-center mb-0">Dida Nurwahidah Zakiyah</p>
                         <span>Web Developer, kaito</span>
                     </div>
                 </div>
@@ -81,10 +84,12 @@
                         <img src="{{ asset('img/user.jpeg') }}" alt="cobaa">
 
                         <p class="text-center">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic soluta, voluptates esse repellendus numquam rerum, tempora vitae, nesciunt laborum sapiente quaerat iusto. Veritatis enim placeat quae cumque, qui quidem esse.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic soluta, voluptates esse
+                            repellendus numquam rerum, tempora vitae, nesciunt laborum sapiente quaerat iusto. Veritatis
+                            enim placeat quae cumque, qui quidem esse.
                         </p>
 
-                        <p class="font-weight-bold text-center mb-0">Iis siti maesaroh</p>
+                        <p class="font-weight-bold text-center mb-0">Dida Nurwahidah Zakiyah</p>
                         <span>Web Developer, kaito</span>
                     </div>
                 </div>
@@ -95,10 +100,12 @@
                         <img src="{{ asset('img/user.jpeg') }}" alt="cobaa">
 
                         <p class="text-center">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic soluta, voluptates esse repellendus numquam rerum, tempora vitae, nesciunt laborum sapiente quaerat iusto. Veritatis enim placeat quae cumque, qui quidem esse.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic soluta, voluptates esse
+                            repellendus numquam rerum, tempora vitae, nesciunt laborum sapiente quaerat iusto. Veritatis
+                            enim placeat quae cumque, qui quidem esse.
                         </p>
 
-                        <p class="font-weight-bold text-center mb-0">Iis siti maesaroh</p>
+                        <p class="font-weight-bold text-center mb-0">Dida Nurwahidah Zakiyah</p>
                         <span>Web Developer, kaito</span>
                     </div>
                 </div>

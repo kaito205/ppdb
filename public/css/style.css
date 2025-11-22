@@ -1,8 +1,396 @@
-section {
-    margin-top: 70px;
-    margin-bottom: 90px;
+/* ==========================================================
+   1. GLOBAL STYLE
+========================================================== */
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    margin-top: 90px;
+    font-style: normal;
 }
 
+section {
+    padding-top: 100px;
+    scroll-margin-top: 100px;
+    margin-bottom: 80px;
+}
+
+/* ==========================================================
+   2. NAVBAR
+========================================================== */
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-brand img {
+    width: 80px;
+    height: auto;
+}
+
+.navbar-nav .nav-link {
+    color: #333;
+    font-weight: 500;
+    margin: 0 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: #0e2e72;
+}
+
+/* Hover garis bawah */
+.navbar .navbar-nav a::after {
+    content: "";
+    display: block;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.1rem solid #0e2e72;
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
+}
+.navbar .navbar-nav a:hover::after {
+    transform: scaleX(1);
+}
+
+/* ==========================================================
+   3. BUTTON
+========================================================== */
+.btn-blue {
+    background-color: #0e2e72;
+    border-color: #0e2e72;
+    color: white;
+    border-radius: 30px;
+    padding: 0.4rem 1rem;
+    transition: 0.3s;
+}
+
+.btn-blue:hover {
+    background-color: #ffd700;
+    border-color: #ffd700;
+    color: white;
+}
+
+.text-success {
+    color: #ffd700 !important;
+}
+
+/* ==========================================================
+   4. HERO SECTION
+========================================================== */
+#hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero-img {
+    height: 100vh;
+    object-fit: cover;
+    filter: brightness(70%);
+}
+
+.hero-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45%;
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0) 80%
+    );
+    z-index: 1;
+}
+
+.hero-content {
+    bottom: 22%;
+    z-index: 3;
+}
+
+.hero-content h3 {
+    font-size: 3rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.hero-content a.btn {
+    padding: 0.9rem 2.5rem;
+    font-size: 1.1rem;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================
+   5. PESANTREN
+========================================================== */
+.pesantren h3 {
+    font-family: "Poppins", sans-serif;
+}
+
+.pesantren p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #444;
+}
+
+/* ==========================================================
+   6. STATISTIK SECTION
+========================================================== */
+.bg-blue-statistik {
+    background-color: #0e2e72;
+    position: relative;
+    overflow: hidden;
+}
+
+.bg-blue-statistik::before,
+.bg-blue-statistik::after {
+    content: "";
+    position: absolute;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.bg-blue-statistik::before {
+    width: 500px;
+    height: 500px;
+    top: -100px;
+    left: -150px;
+}
+
+.bg-blue-statistik::after {
+    width: 600px;
+    height: 600px;
+    bottom: -150px;
+    right: -200px;
+}
+
+.bg-blue-statistik .container {
+    position: relative;
+    z-index: 2;
+}
+
+.bg-blue-statistik h3,
+.bg-blue-statistik p,
+.bg-blue-statistik i {
+    animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================
+   7. EKSTRAKURIKULER / EKSKUL
+========================================================== */
+.ekstrakurikuler .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.ekstrakurikuler .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.ekskul-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    height: 220px;
+    cursor: pointer;
+}
+
+.ekskul-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.ekskul-card:hover img {
+    transform: scale(1.15);
+}
+
+.ekskul-card .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ekskul-card .overlay span {
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+
+.ekskul-card:hover .overlay {
+    opacity: 1;
+}
+
+.ekskul-card:hover .overlay span {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================
+   8. GALERI
+========================================================== */
+.galeri-item img {
+    transition: transform 0.5s ease;
+}
+.galeri-item:hover img {
+    transform: scale(1.1);
+}
+
+.galeri-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.galeri-item:hover .overlay {
+    opacity: 1;
+}
+
+.galeri-scroll {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+}
+
+.galeri-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.galeri-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.galeri-scroll::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+}
+
+.galeri-item {
+    flex: 0 0 320px;
+    cursor: pointer;
+    height: 230px;
+    scroll-snap-align: center;
+    position: relative;
+}
+
+.galeri-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.galeri-item:hover .overlay {
+    opacity: 1;
+}
+
+/* ==========================================================
+   9. PRESTASI
+========================================================== */
+.prestasi-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.prestasi-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.prestasi-card .overlay {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 12px 15px;
+    text-align: center;
+    opacity: 0.7;
+    transform: translateY(100%);
+    transition: 0.3s ease;
+}
+
+.prestasi-card:hover .overlay {
+    opacity: 1;
+    transform: translateY(20px);
+}
+
+.prestasi-card .overlay div {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: 0.4s;
+}
+
+.prestasi-card:hover .overlay div {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================
+   10. FASILITAS
+========================================================== */
 .fasilitas {
     width: 100%;
     border-radius: 10px;
@@ -12,29 +400,8 @@ section {
     align-items: center;
 }
 
-.text-success, .bg-success {
-    color: #3674B5 !important;
-}
-
-.bg-blue {
-    background-color: #3674B5 !important;
-}
-
-.btn-blue {
-    background-color: #3674B5;
-    border-color: #3674B5;
-    color: white;
-}
-
-.btn-blue:hover {
-    background-color: #578FCA;
-    border-color: #578FCA;
-    color: white;
-}
-
-
 .fasilitas:hover {
-    background-color: #578FCA;
+    background-color: #ffd700;
     color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
@@ -53,8 +420,9 @@ section {
     height: 80px;
     width: 80px;
     border-radius: 50%;
-    background-color: #3674B5;
+    background-color: #0e2e72;
 }
+
 .fasilitas:hover .icon-des {
     background: white;
 }
@@ -65,32 +433,70 @@ section {
     width: 50%;
 }
 
-.tentang .deskripsi {
-    font-size: 18px;
-    line-height: 25px;
+/* ==========================================================
+   11. BERITA
+========================================================== */
+/* WRAPPER UTAMA SCROLL */
+.berita-scroll {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 5px 2px 15px 2px;
+    scroll-behavior: smooth;
+
+    /* hilangkan scrollbar jelek */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
-.icon-mds i {
-    margin: auto;
-    color: black;
-    padding-right: 5px;
-    font-size: 20px;
-    margin-bottom: 10px;
+.berita-scroll::-webkit-scrollbar {
+    display: none;
 }
 
-.icon-mds i:hover {
-    color: #578FCA;
+/* ITEM CARD */
+.berita-item {
+    flex: 0 0 330px; /* ukuran card ideal */
+    scroll-snap-align: center;
 }
 
-.alumni, .berita .card {
+/* CARD STYLE */
+.berita-card {
+    border-radius: 14px;
+    overflow: hidden;
+    height: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+.berita-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* GAMBAR */
+.berita-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* ==========================================================
+   12. ALUMNI
+========================================================== */
+.alumni,
+.berita .card {
     transition: 4ms;
 }
 
-.alumni, .berita .card:hover {
+.alumni,
+.berita .card:hover {
     box-shadow: -4px 4px 0px rgba(0, 0, 0, 0.6);
     transform: translateY(-10px);
 }
-.alumni, .berita .card .card-body {
+
+.alumni,
+.berita .card .card-body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -106,14 +512,36 @@ section {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
+/* ==========================================================
+   13. MAP
+========================================================== */
+.map-container {
+    width: 100%;
+    height: 500px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* ==========================================================
+   14. FOOTER
+========================================================== */
 footer {
     background-color: #464444;
     color: white;
 }
 
-footer h3 {
+footer h5 {
     font-size: 18px;
     font-weight: bold;
+    margin-top: 20px;
     margin-bottom: 16px;
 }
 
@@ -124,6 +552,16 @@ footer ul {
     color: white;
 }
 
+footer .icon-mds img {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s;
+}
+
+footer .icon-mds img:hover {
+    transform: scale(1.1);
+}
+
 footer ul li {
     margin-bottom: 8px;
 }
@@ -131,6 +569,113 @@ footer ul li {
 footer ul li i {
     margin-right: 6px;
 }
+
 footer img {
     border-radius: 50%;
+}
+
+.icon-mds i {
+    margin: auto;
+    color: black;
+    padding-right: 5px;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.icon-mds i:hover {
+    color: #ffd700;
+}
+
+/* ==========================================================
+   15. MEDIA QUERY
+========================================================== */
+/* =========================
+   Mobile Adjustments
+========================= */
+@media (max-width: 768px) {
+    /* Logo Navbar */
+    .navbar-brand img {
+        width: 60px;
+    }
+    .navbar-brand span {
+        font-size: 1rem;
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+    }
+    footer .icon-mds a {
+        margin-right: 10px;
+    }
+
+    /* =========================
+        GALERI (Horizontal Scroll)
+    ========================== */
+    .galeri-scroll {
+        gap: 12px;
+        padding: 5px 0 10px;
+    }
+
+    .galeri-item {
+        min-width: 230px; /* Ukuran pas mobile */
+        height: 150px;
+        flex: 0 0 260px;
+        border-radius: 12px;
+        flex-shrink: 0;
+        scroll-snap-align: center;
+    }
+
+    .galeri-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* =========================
+        BERITA (Mobile)
+    ========================== */
+    .berita-scroll {
+        gap: 12px;
+        padding: 5px 0 10px;
+        font-size: 15px;
+    }
+
+    .berita-scroll .berita-card {
+        min-width: 350px; /* lebih kecil dari sebelumnya */
+        border-radius: 12px;
+        flex-shrink: 0;
+    }
+
+    .berita-scroll .berita-card img {
+        height: 240px; /* kecil dan rapi di mobile */
+        object-fit: cover;
+    }
+
+    /* Hapus ukuran besar versi desktop yang masih nempel */
+    .berita-item {
+        width: 240px !important;
+        height: auto !important;
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .berita-item {
+        flex: 0 0 260px;
+    }
+
+    .berita-img {
+        height: 160px;
+    }
+}
+
+@media (max-width: 480px) {
+    .berita-item {
+        flex: 0 0 220px;
+    }
+
+    .berita-img {
+        height: 140px;
+    }
 }

@@ -88,29 +88,69 @@
             display: block;
             margin: 0 auto 20px;
         }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
     </style>
 </head>
 
 <body>
 
     <div class="login-container">
-        <h2>Login Siswa</h2>
-        <form action="/login-siswa" method="POST">
+
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
+
+        @if($errors->any())
+        <div class="alert alert-danger">
+            <ul style="margin: 0; padding-left: 20px; text-align: left;">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
+        <form action="{{ route('login') }}" method="POST">
+            @csrf
             <div class="brand">
-                <img src="{{ asset('img/logo2.png') }}" alt="logo">
+                <img src="{{ asset('img/logo.png') }}" alt="logo">
             </div>
+            <h2>Login Mahasiswa</h2>
             <div class="form-group">
-                <label for="username">Username / Email</label>
-                <input type="text" id="username" name="username" placeholder="Masukkan username atau email" required>
+                <label for="email">Username / Email</label>
+                <input type="text" id="email" name="email" placeholder="Masukkan email" required>
             </div>
             <div class="form-group">
                 <label for="password">Kata Sandi</label>
                 <input type="password" id="password" name="password" placeholder="Masukkan password" required>
             </div>
-            <a href="{{ route('dashboard.user') }}" class="btn-login">Masuk</a>
+
+            <button type="submit" class="btn-login">Masuk</button>
         </form>
         <div class="login-footer">
-            Belum punya akun? <a href="{{ route('registrasi') }}">Daftar sekarang</a>
+            Belum punya akun? <a href="{{ route('register') }}">Daftar sekarang</a>
         </div>
     </div>
 

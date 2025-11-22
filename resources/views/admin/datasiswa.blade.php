@@ -1,118 +1,79 @@
 @extends('layouts.admin')
 
-@section('title', 'Data siswa')
+@section('title', 'Data Siswa')
 
 @section('containt')
 <div class="container-fluid">
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-info-emphasis">Data siswa</h6>
-            <div class="d-flex align-items-center gap-3">
-                <input type="text" class="form-control form-control-sm w-auto" id="searchInput"
-                    placeholder="Cari nama siswa..." onkeyup="tampilkanSeleksi()">
-
-            </div>
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+            <h6 class="m-0 font-weight-bold text-primary">Data Siswa</h6>
+            <input type="text" class="form-control form-control-sm w-auto" id="searchInput"
+                placeholder="Cari nama siswa..." onkeyup="tampilkanSeleksi()">
         </div>
         <div class="card-body">
-            <div class="table-responsive mt-3">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-light">
                         <tr>
                             <th>No</th>
-                            <th>Gambar</th>
-                            <th>Nama Siswa</th>
+                            <th>Foto</th>
+                            <th>Nama</th>
                             <th>Jenis Kelamin</th>
                             <th>NISN</th>
                             <th>Alamat</th>
-                            <th>No.tlp</th>
-                            <th>Status</th>
+                            <th>No. HP</th>
+                            <th>Status Seleksi</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody id="table-body">
-                        {{-- Isi dari JavaScript --}}
+                        @forelse($data as $siswa)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>
+                                <img src="{{ $siswa->foto ? asset('storage/' . $siswa->foto) : asset('img/user.jpeg') }}"
+                                    alt="Foto" class="img-thumbnail rounded" style="max-width: 50px;">
+                            </td>
+                            <td>{{ $siswa->nama ?? '-' }}</td>
+                            <td>{{ $siswa->jenis_kelamin ?? '-' }}</td>
+                            <td>{{ $siswa->nisn ?? '-' }}</td>
+                            <td>{{ $siswa->alamat ?? '-' }}</td>
+                            <td>{{ $siswa->no_hp ?? '-' }}</td>
+                            <td>
+                                @if($siswa->status_seleksi === 'Diterima')
+                                <span class="badge bg-success">Diterima</span>
+                                @elseif($siswa->status_seleksi === 'Ditolak')
+                                <span class="badge bg-danger">Ditolak</span>
+                                @else
+                                <span class="badge bg-warning text-dark">Diproses</span>
+                                @endif
+                            </td>
+                            <td>
+                                <a href="{{ route('admin.siswa.detail', $siswa->id) }}" class="btn btn-primary btn-info">
+                                    <i class="bi bi-eye"></i> Detail
+                                </a>
+                                <form action="" method="POST" class="d-inline"
+                                    onsubmit="return confirm('Yakin ingin menghapus siswa ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Hapus</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="9" class="text-center">Tidak ada data siswa.</td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
-                <nav>
-                    <ul class="pagination justify-content-center" id="pagination">
-                        {{-- Pagination dari JavaScript --}}
-                    </ul>
-                </nav>
+
+                {{-- Pagination --}}
+                <div class="d-flex justify-content-center mt-3">
+                    {{ $data->links() }}
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    const siswa = [
-        { nama: "Iis siti maesaroh", jk: "Perempuan", nisn: "0007234", alamat: "Ciamis", telp: "081223264682", status: "Lulus" },
-        { nama: "Asep Maulana", jk: "Laki-laki", nisn: "0007235", alamat: "Tasik", telp: "081223212345", status: "Aktif" },
-        { nama: "Rina", jk: "Perempuan", nisn: "0007236", alamat: "Bandung", telp: "081212345678", status: "Lulus" },
-        { nama: "Budi", jk: "Laki-laki", nisn: "0007237", alamat: "Garut", telp: "082123456789", status: "Drop Out" },
-        { nama: "Dewi", jk: "Perempuan", nisn: "0007238", alamat: "Cirebon", telp: "081234567890", status: "Aktif" },
-        { nama: "Aulia", jk: "Perempuan", nisn: "0007239", alamat: "Bekasi", telp: "081233344455", status: "Lulus" },
-        { nama: "Zaki", jk: "Laki-laki", nisn: "0007240", alamat: "Depok", telp: "081200000001", status: "Aktif" },
-        { nama: "Mira", jk: "Perempuan", nisn: "0007241", alamat: "Jakarta", telp: "081223334455", status: "Lulus" },
-        // Tambah data lainnya sesuai kebutuhan
-    ];
-
-    const perPage = 5;
-    let currentPage = 1;
-
-    function tampilkanData() {
-        const start = (currentPage - 1) * perPage;
-        const end = start + perPage;
-        const tampil = siswa.slice(start, end);
-
-        const tbody = document.getElementById("table-body");
-        tbody.innerHTML = "";
-
-        tampil.forEach((s, index) => {
-            tbody.innerHTML += `
-                <tr>
-                    <th>${start + index + 1}</th>
-                    <td><img src="{{ asset('img/user.jpeg') }}" alt="gambar error" class="img-thumbnail" style="max-width: 90px"></td>
-                    <td>${s.nama}</td>
-                    <td>${s.jk}</td>
-                    <td>${s.nisn}</td>
-                    <td>${s.alamat}</td>
-                    <td>${s.telp}</td>
-                    <td>${s.status}</td>
-                    <td>
-                        <a href="#" class="btn btn-primary text-white">Detail</a>
-                        <a href="#" class="btn btn-primary text-white">Edit</a>
-                        <a href="#" onclick="return confirm('Yakin hapus?')" class="btn btn-danger text-white">Hapus</a>
-                    </td>
-                </tr>
-            `;
-        });
-    }
-
-    function buatPagination() {
-        const totalPages = Math.ceil(siswa.length / perPage);
-        const paginasi = document.getElementById("pagination");
-        paginasi.innerHTML = "";
-
-        for (let i = 1; i <= totalPages; i++) {
-            paginasi.innerHTML += `
-                <li class="page-item ${i === currentPage ? 'active' : ''}">
-                    <a class="page-link" href="#">${i}</a>
-                </li>
-            `;
-        }
-
-        document.querySelectorAll("#pagination .page-link").forEach((link, index) => {
-            link.addEventListener("click", (e) => {
-                e.preventDefault();
-                currentPage = index + 1;
-                tampilkanData();
-                buatPagination();
-            });
-        });
-    }
-
-    // Inisialisasi
-    tampilkanData();
-    buatPagination();
-</script>
 @endsection

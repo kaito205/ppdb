@@ -12,12 +12,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-          
+
             margin: 0;
         }
 
         .login-container {
             background: #fff;
+            margin-top: 70px;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -81,15 +82,64 @@
         .login-footer a:hover {
             text-decoration: underline;
         }
+
+        .brand img {
+            width: 200px;
+            height: auto;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
     </style>
 </head>
 
 <body>
 
     <div class="login-container">
+
+        <div class="brand">
+            <img src="{{ asset('img/logo.png') }}" alt="logo">
+        </div>
         <h2>Daftar Akun</h2>
-        <form action="/daftar" method="POST">
-            <!-- @csrf untuk Laravel -->
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
+
+        @if($errors->any())
+        <div class="alert alert-danger">
+            <ul style="margin: 0; padding-left: 20px; text-align: left;">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
+
+        <form action="{{ route('register') }}" method="POST">
+            @csrf
 
             <div class="form-group">
                 <label for="name">Nama Lengkap</label>
@@ -97,37 +147,8 @@
             </div>
 
             <div class="form-group">
-                <label for="nisn">NISN</label>
-                <input type="text" id="nisn" name="nisn" placeholder="Masukkan NISN" required>
-            </div>
-
-            <div class="form-group">
-                <label for="tempat_lahir">Tempat Lahir</label>
-                <input type="text" id="tempat_lahir" name="tempat_lahir" placeholder="Masukkan tempat lahir" required>
-            </div>
-
-            <div class="form-group">
-                <label for="tanggal_lahir">Tanggal Lahir</label>
-                <input type="date" id="tanggal_lahir" name="tanggal_lahir" required>
-            </div>
-
-            <div class="form-group">
-                <label for="jenis_kelamin">Jenis Kelamin</label>
-                <select id="jenis_kelamin" name="jenis_kelamin" required>
-                    <option value="">Pilih Jenis Kelamin</option>
-                    <option value="Laki-laki">Laki-laki</option>
-                    <option value="Perempuan">Perempuan</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="alamat">Alamat Lengkap</label>
-                <input type="text" id="alamat" name="alamat" placeholder="Masukkan alamat lengkap" required>
-            </div>
-
-            <div class="form-group">
-                <label for="username">Username / Email</label>
-                <input type="text" id="username" name="username" placeholder="Masukkan username atau email" required>
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" placeholder="Masukkan username atau email" required>
             </div>
 
             <div class="form-group">
@@ -141,7 +162,7 @@
                     placeholder="Ulangi password" required>
             </div>
 
-            <a href="{{ route('login') }}" class="btn-login">Daftar Akun</a>
+            <button type="submit" class="btn-login">Daftar Akun</button>
         </form>
 
 

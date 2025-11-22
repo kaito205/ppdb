@@ -27,7 +27,7 @@
 
         .login-container h2 {
             text-align: center;
-            margin-bottom: 100px;
+            margin-bottom: 40px;
             color: #333;
         }
 
@@ -58,40 +58,17 @@
             border-radius: 6px;
             font-size: 16px;
             cursor: pointer;
-            text-align: center;
-            display: block;
-            text-decoration: none;
         }
 
         .btn-login:hover {
             background-color: #578FCA;
         }
 
-        .login-footer {
-            margin-top: 15px;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        .login-footer a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .login-footer a:hover {
-            text-decoration: underline;
-        }
-
-        .brand img {
-            width: 200px;
-            height: auto;
-            display: block;
-            margin: 0 auto 20px;
-        }
         .footer {
-            margin: 20px ;
+            margin-top: 15px;
             color: #888;
             text-align: center;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -100,9 +77,21 @@
 
     <div class="login-container">
         <h2>Login Admin</h2>
-        <form action="/login-siswa" method="POST">
 
+        @if(session('error'))
+            <div style="color: red; text-align:center; margin-bottom: 10px;">
+                {{ session('error') }}
+            </div>
+        @endif
 
+        @if(session('success'))
+            <div style="color: green; text-align:center; margin-bottom: 10px;">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <form action="" method="POST">
+            @csrf
             <div class="form-group">
                 <label for="username">Username / Email</label>
                 <input type="text" id="username" name="username" placeholder="Masukkan username atau email" required>
@@ -111,14 +100,13 @@
                 <label for="password">Kata Sandi</label>
                 <input type="password" id="password" name="password" placeholder="Masukkan password" required>
             </div>
-            <a href="{{ route('dashboard.admin') }}" class="btn-login">Masuk</a>
+            <button type="submit" class="btn-login">Masuk</button>
         </form>
-        <div class="footer">
-        &copy; {{ date('Y') }} &mdash; Kaito Company
-    </div>
-    </div>
 
+        <div class="footer">
+            &copy; {{ date('Y') }} &mdash; Kaito Company
+        </div>
+    </div>
 
 </body>
-
 </html>

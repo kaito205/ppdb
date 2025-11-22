@@ -1,11 +1,11 @@
-<ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-primary sidebar sidebar-white accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
         <div class="sidebar-brand-icon">
-            <img src="{{ asset('img/logo2.png') }}" alt="Logo Sekolah" class="rounded-circle" style="width: 50px; height: 50px;">
+            <img src="{{ asset('img/logo.png') }}" alt="Logo Sekolah" class="rounded-circle" style="width: 80px;">
         </div>
-        <div class="sidebar-brand-text mx-2">PPDB 123</div>
+        <div class="sidebar-brand-text mx-2">SMA ERHA JATINAGARA</div>
     </a>
 
     <!-- Divider -->
@@ -20,16 +20,25 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('datasiswa') }}">
-            <i class="fas fa-user-plus"></i>
-            <span>Data Pendaftar</span>
+        <a class="nav-link" href="{{ route('admin.profil') }}">
+            <i class="fas fa-school"></i>
+            <span>Profil Sekolah</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('seleksi.admin') }}"
-            <i class="fas fa-check-circle"></i>
-            <span>Seleksi Administrasi & Akademik</span>
+        <a class="nav-link {{ request()->is('admin/ekskul*') ? 'active' : '' }}" href="{{ route('admin.ekskul') }}">
+            <i class="bi bi-collection"></i>
+            <span>Ekstrakurikuler</span>
+        </a>
+    </li>
+
+
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('datasiswa') }}">
+            <i class="fas fa-user-plus"></i>
+            <span>Data Pendaftar</span>
         </a>
     </li>
 
@@ -40,12 +49,15 @@
         </a>
     </li>
 
+
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('daftar.admin') }}">
-            <i class="fas fa-redo"></i>
-            <span>Pendaftaran Ulang</span>
+        <a class="nav-link" href="{{ route('admin.verifikasi') }}"> {{-- BARIS INI YANG DIPERBAIKI: Ditambahkan '>' --}}
+            <i class="bi bi-file-check-fill"></i>
+            <span>Verifikasi Dokumen</span>
         </a>
     </li>
+
+
 
 
     <!-- Divider -->

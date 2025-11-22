@@ -5,17 +5,17 @@
 @section('containt')
 <div class="container mt-5 mb-5">
     <div class="card shadow border-0">
-        <div class="card-header bg-primary text-white">
-            <h4><i class="bi bi-pencil-square me-2"></i> Formulir Pendaftaran</h4>
-            <p class="mb-0 small">Lengkapi atau periksa kembali formulir pendaftaranmu.</p>
+        <div class="card-header bg-blue text-white">
+            <h4><i class="bi bi-pencil-square me-2"></i> Formulir Pendaftaran Mahasiswa Baru</h4>
+            <p class="mb-0 small">Lengkapi semua data dengan benar dan lengkap ya bro.</p>
         </div>
 
         <div class="card-body">
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('formulir.simpan') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 {{-- === DATA DIRI === --}}
-                <h5 class="text-primary mb-3"><i class="bi bi-person-lines-fill me-1"></i> Data Diri</h5>
+                <h5 class="text-blue mb-3"><i class="bi bi-person-lines-fill me-1"></i> Data Diri</h5>
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="nama" class="form-label">Nama Lengkap</label>
@@ -26,7 +26,6 @@
                         <input type="text" name="nisn" class="form-control" required>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="nik" class="form-label">NIK</label>
@@ -37,7 +36,6 @@
                         <input type="text" name="tempat_lahir" class="form-control" required>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
@@ -52,11 +50,10 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="mb-3 col-md-6">
-                        <label for="agama" class="">Agama</label>
-                        <select name="agama" class="form-select" aria-label="Default select example" required>
+                        <label for="agama" class="form-label">Agama</label>
+                        <select name="agama" class="form-select" required>
                             <option value="">-- Pilih --</option>
                             <option value="Islam">Islam</option>
                             <option value="Kristen">Kristen</option>
@@ -68,62 +65,101 @@
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="no_hp" class="form-label">Nomor HP</label>
-                        <input type="text" name="no_hp" class="form-control" placeholder="08xxxxxxxxxx" required>
+                        <input type="text" name="no_hp" class="form-control" required>
                     </div>
                 </div>
-
                 <div class="mb-3">
                     <label for="alamat" class="form-label">Alamat Lengkap</label>
-                    <textarea name="alamat" class="form-control" rows="3" placeholder="Tulis alamat lengkapmu..." required></textarea>
+                    <textarea name="alamat" class="form-control" rows="3" required></textarea>
                 </div>
-
                 <div class="mb-3">
                     <label for="email" class="form-label">Email Aktif</label>
-                    <input type="email" name="email" class="form-control" placeholder="contoh@email.com" required>
+                    <input type="email" name="email" class="form-control" required>
                 </div>
-
                 <div class="mb-4">
-                    <label for="foto" class="form-label">Foto Diri</label>
+                    <label for="foto" class="form-label">Upload Foto Diri (jpg/png)</label>
                     <input type="file" name="foto" class="form-control" accept="image/*">
                 </div>
 
-                {{-- === DATA KELUARGA === --}}
-                <h5 class=" mt-4 mb-3"><i class="bi bi-people-fill me-1"></i> Detail Data Keluarga</h5>
+                {{-- === DATA PENDIDIKAN === --}}
+                <h5 class="text-blue mb-3"><i class="bi bi-journal-text me-1"></i> Riwayat Pendidikan</h5>
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label for="asal_sekolah" class="form-label">Asal Sekolah</label>
+                        <input type="text" name="asal_sekolah" class="form-control" required>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="jurusan" class="form-label">Jurusan</label>
+                        <input type="text" name="jurusan" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label for="tahun_lulus" class="form-label">Tahun Lulus</label>
+                        <input type="text" name="tahun_lulus" class="form-control" required>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="nilai_rata" class="form-label">Nilai Rata-rata</label>
+                        <input type="text" name="nilai_rata" class="form-control" required>
+                    </div>
+                </div>
 
+                {{-- === DATA KELUARGA === --}}
+                <h5 class="text-blue mb-3"><i class="bi bi-people-fill me-1"></i> Data Keluarga</h5>
                 <div class="mb-3">
                     <label for="nama_ayah" class="form-label">Nama Ayah</label>
                     <input type="text" name="nama_ayah" class="form-control" required>
                 </div>
-
                 <div class="mb-3">
                     <label for="nama_ibu" class="form-label">Nama Ibu</label>
                     <input type="text" name="nama_ibu" class="form-control" required>
                 </div>
-
                 <div class="mb-3">
                     <label for="no_kk" class="form-label">Nomor KK</label>
                     <input type="text" name="no_kk" class="form-control" required>
                 </div>
 
-                {{-- Upload Dokumen Keluarga --}}
                 <div class="row">
                     <div class="mb-3 col-md-4">
-                        <label for="file_kk" class="form-label">Upload Kartu Keluarga (PDF)</label>
+                        <label for="file_kk" class="form-label">Upload KK (PDF)</label>
                         <input type="file" name="file_kk" class="form-control" accept=".pdf" required>
                     </div>
-
                     <div class="mb-3 col-md-4">
-                        <label for="file_akte" class="form-label">Upload Akte Kelahiran (PDF)</label>
+                        <label for="file_akte" class="form-label">Upload Akte (PDF)</label>
                         <input type="file" name="file_akte" class="form-control" accept=".pdf" required>
                     </div>
-
                     <div class="mb-3 col-md-4">
-                        <label for="file_ijazah" class="form-label">Upload Ijazah Terakhir (PDF)</label>
+                        <label for="file_ijazah" class="form-label">Upload Ijazah (PDF)</label>
                         <input type="file" name="file_ijazah" class="form-control" accept=".pdf">
                     </div>
                 </div>
 
-                <div class="text-end mt-4">
+                {{-- === PROGRAM STUDI === --}}
+                <h5 class="text-blue mb-3"><i class="bi bi-mortarboard-fill me-1"></i> Program Studi</h5>
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label for="prodi" class="form-label">Pilih Program Studi</label>
+                        <select name="prodi" class="form-select" required>
+                            <option value="">-- Pilih --</option>
+                            <option value="Teknik Informatika">Teknik Informatika</option>
+                            <option value="Sistem Informasi">Sistem Informasi</option>
+                            <option value="Manajemen">Manajemen</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="tahun_pendaftaran" class="form-label">Tahun Pendaftaran</label>
+                        <input type="text" name="tahun_pendaftaran" class="form-control" value="2025/2026" readonly>
+                    </div>
+                </div>
+
+                <div class="form-check mb-4">
+                    <input type="checkbox" class="form-check-input" id="setuju" name="setuju" required>
+                    <label class="form-check-label" for="setuju">
+                        Saya menyetujui semua syarat & ketentuan pendaftaran.
+                    </label>
+                </div>
+
+                <div class="text-end mt-3">
                     <button type="submit" class="btn btn-success">
                         <i class="bi bi-check-circle me-1"></i> Kirim Formulir
                     </button>
