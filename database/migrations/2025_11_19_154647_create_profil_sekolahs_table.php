@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nama_sekolah')->nullable();
             $table->longText('deskripsi')->nullable();
+            $table->text('visi')->nullable();
+            $table->text('misi')->nullable();
             $table->string('foto')->nullable();
             $table->timestamps();
         });

@@ -27,9 +27,8 @@ return new class extends Migration
             $table->string('foto')->nullable();
 
             $table->string('asal_sekolah')->nullable();
-            $table->string('jurusan')->nullable();
             $table->string('tahun_lulus')->nullable();
-            $table->string('nilai_rata')->nullable();
+
 
             $table->string('nama_ayah');
             $table->string('nama_ibu');
@@ -48,10 +47,11 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
+    
     public function down()
     {
         Schema::table('pendaftarans', function (Blueprint $table) {
-            $table->dropColumn(['asal_sekolah', 'jurusan', 'tahun_lulus', 'nilai_rata']);
+            $table->dropColumn(['asal_sekolah',  'tahun_lulus']);
         });
     }
 };

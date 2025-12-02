@@ -16,7 +16,7 @@ class PenggunaController extends Controller
 
     public function simpanRegistrasi(Request $request)
     {
-        
+
 
         $messages = [
             'required' => ':attribute wajib diisi guys!',
@@ -35,6 +35,11 @@ class PenggunaController extends Controller
             'email'     => $request->email,
             'password'  => Hash::make($request->password),
         ]);
+
+        // Auto-login after registration
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect()->route('formulir.user')->with('success', 'Registrasi Berhasil, silahkan isi formulir pendaftaran');
+        }
 
         return redirect()->route('login')->with('success', 'Registrasi Berhasil, silahkan login');
     }
@@ -59,7 +64,10 @@ class PenggunaController extends Controller
         ], $messages);
 
         if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect()->route('dashboard.user')->with('succes', 'Selamat Anda telah berhasil login');
+            if (Auth::user()->role == 'admin') {
+                return redirect()->route('dashboard.admin');
+            }
+            return redirect()->route('formulir.user')->with('succes', 'Selamat Anda telah berhasil login');
         }
 
         return back()->withErrors(['Email atau password tidak sesuai.']);

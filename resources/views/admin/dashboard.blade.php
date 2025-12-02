@@ -5,112 +5,175 @@
 
 <div class="row mb-4">
     <div class="col-12">
-        <h4 class="font-weight-bold text-dark">Selamat Datang, Admin</h4>
+        <h4 class="fw-bold text-dark">Selamat Datang, Admin</h4>
         <p class="text-muted">Ringkasan aktivitas sistem PPDB & Website Profil SMA ERHA</p>
     </div>
 </div>
 
-<div class="row">
+<div class="row g-4">
 
-    <!-- Total Pendaftar -->
-    <div class="col-md-3 mb-3">
-        <div class="card shadow-sm border-left-primary">
-            <div class="card-body">
-                <h6 class="text-primary font-weight-bold">Total Pendaftar</h6>
-                <h3 class="font-weight-bold">150</h3>
+    <!-- Total Akun -->
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body d-flex align-items-center">
+                <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+                    <i class="bi bi-person-circle text-primary fs-3"></i>
+                </div>
+                <div>
+                    <h6 class="text-muted mb-1">Total Pendaftar</h6>
+                    <h3 class="fw-bold mb-0">{{ $totalAkun }}</h3>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Validasi Calon Siswa -->
-    <div class="col-md-3 mb-3">
-        <div class="card shadow-sm border-left-warning">
-            <div class="card-body">
-                <h6 class="text-warning font-weight-bold">Menunggu Validasi</h6>
-                <h3 class="font-weight-bold">40</h3>
+    <!-- Formulir Masuk -->
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body d-flex align-items-center">
+                <div class="bg-info bg-opacity-10 p-3 rounded-circle me-3">
+                    <i class="bi bi-file-earmark-text-fill text-info fs-3"></i>
+                </div>
+                <div>
+                    <h6 class="text-muted mb-1">Formulir Masuk</h6>
+                    <h3 class="fw-bold mb-0">{{ $formulirMasuk }}</h3>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Berkas Masuk -->
-    <div class="col-md-3 mb-3">
-        <div class="card shadow-sm border-left-info">
-            <div class="card-body">
-                <h6 class="text-info font-weight-bold">Berkas Masuk</h6>
-                <h3 class="font-weight-bold">120</h3>
-            </div>
-        </div>
-    </div>
 
     <!-- Diterima -->
-    <div class="col-md-3 mb-3">
-        <div class="card shadow-sm border-left-success">
-            <div class="card-body">
-                <h6 class="text-success font-weight-bold">Diterima</h6>
-                <h3 class="font-weight-bold">90</h3>
+    <!-- Diterima -->
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body d-flex align-items-center">
+                <div class="bg-success bg-opacity-10 p-3 rounded-circle me-3">
+                    <i class="bi bi-check-circle-fill text-success fs-3"></i>
+                </div>
+                <div>
+                    <h6 class="text-muted mb-1">Diterima</h6>
+                    <h3 class="fw-bold mb-0">{{ $diterima }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pesan Masuk -->
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body d-flex align-items-center">
+                <div class="bg-warning bg-opacity-10 p-3 rounded-circle me-3">
+                    <i class="bi bi-envelope-fill text-warning fs-3"></i>
+                </div>
+                <div>
+                    <h6 class="text-muted mb-1">Pesan Masuk</h6>
+                    <h3 class="fw-bold mb-0">{{ $pesanMasuk }}</h3>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<hr>
+<hr class="my-5">
 
 <!-- Menu Cepat -->
-<div class="row mt-4">
+<h5 class="fw-bold mb-4 text-dark">Menu Cepat</h5>
+<div class="row g-4">
 
-    <div class="col-md-4 mb-4">
-        <a href="/admin/profil" class="text-decoration-none">
-            <div class="card shadow-sm p-4">
-                <h5 class="font-weight-bold text-dark">Kelola Profil Sekolah</h5>
-                <p class="text-muted mb-0">Edit visi misi, sejarah, dan informasi sekolah</p>
+    <div class="col-md-4">
+        <a href="{{ route('admin.profil') }}" class="text-decoration-none">
+            <div class="card border-0 shadow-sm h-100 hover-shadow transition-all">
+                <div class="card-body text-center p-4">
+                    <div class="bg-light rounded-circle d-inline-flex p-3 mb-3">
+                        <i class="bi bi-building fs-2 text-dark"></i>
+                    </div>
+                    <h5 class="fw-bold text-dark">Kelola Profil Sekolah</h5>
+                    <p class="text-muted small mb-0">Edit visi misi, sejarah, dan informasi sekolah</p>
+                </div>
             </div>
         </a>
     </div>
 
-    <div class="col-md-4 mb-4">
-        <a href="/admin/ekskul" class="text-decoration-none">
-            <div class="card shadow-sm p-4">
-                <h5 class="font-weight-bold text-dark">Kelola Ekstrakurikuler</h5>
-                <p class="text-muted mb-0">Tambah atau edit data ekskul</p>
+    <div class="col-md-4">
+        <a href="{{ route('admin.ekskul') }}" class="text-decoration-none">
+            <div class="card border-0 shadow-sm h-100 hover-shadow transition-all">
+                <div class="card-body text-center p-4">
+                    <div class="bg-light rounded-circle d-inline-flex p-3 mb-3">
+                        <i class="bi bi-collection fs-2 text-dark"></i>
+                    </div>
+                    <h5 class="fw-bold text-dark">Kelola Ekstrakurikuler</h5>
+                    <p class="text-muted small mb-0">Tambah atau edit data ekskul</p>
+                </div>
             </div>
         </a>
     </div>
 
-    <div class="col-md-4 mb-4">
-        <a href="/admin/prestasi" class="text-decoration-none">
-            <div class="card shadow-sm p-4">
-                <h5 class="font-weight-bold text-dark">Kelola Prestasi</h5>
-                <p class="text-muted mb-0">Input prestasi & dokumentasi</p>
+    <div class="col-md-4">
+        <a href="{{ route('admin.prestasi') }}" class="text-decoration-none">
+            <div class="card border-0 shadow-sm h-100 hover-shadow transition-all">
+                <div class="card-body text-center p-4">
+                    <div class="bg-light rounded-circle d-inline-flex p-3 mb-3">
+                        <i class="bi bi-trophy fs-2 text-dark"></i>
+                    </div>
+                    <h5 class="fw-bold text-dark">Kelola Prestasi</h5>
+                    <p class="text-muted small mb-0">Input prestasi & dokumentasi</p>
+                </div>
             </div>
         </a>
     </div>
 
-    <div class="col-md-4 mb-4">
-        <a href="/admin/calon-siswa" class="text-decoration-none">
-            <div class="card shadow-sm p-4">
-                <h5 class="font-weight-bold text-dark">Data Calon Siswa</h5>
-                <p class="text-muted mb-0">Validasi data & download berkas</p>
+    <div class="col-md-4">
+        <a href="{{ route('datasiswa') }}" class="text-decoration-none">
+            <div class="card border-0 shadow-sm h-100 hover-shadow transition-all">
+                <div class="card-body text-center p-4">
+                    <div class="bg-light rounded-circle d-inline-flex p-3 mb-3">
+                        <i class="bi bi-people fs-2 text-dark"></i>
+                    </div>
+                    <h5 class="fw-bold text-dark">Data Calon Siswa</h5>
+                    <p class="text-muted small mb-0">Validasi data & download berkas</p>
+                </div>
             </div>
         </a>
     </div>
 
-    <div class="col-md-4 mb-4">
-        <a href="/admin/surat-diterima" class="text-decoration-none">
-            <div class="card shadow-sm p-4">
-                <h5 class="font-weight-bold text-dark">Surat Bukti Diterima</h5>
-                <p class="text-muted mb-0">Cetak surat dan hasil pengumuman</p>
+    <div class="col-md-4">
+        <a href="{{ route('admin.pesan') }}" class="text-decoration-none">
+            <div class="card border-0 shadow-sm h-100 hover-shadow transition-all">
+                <div class="card-body text-center p-4">
+                    <div class="bg-light rounded-circle d-inline-flex p-3 mb-3">
+                        <i class="bi bi-envelope-open fs-2 text-dark"></i>
+                    </div>
+                    <h5 class="fw-bold text-dark">Pesan Masuk</h5>
+                    <p class="text-muted small mb-0">Lihat pesan dari pengunjung</p>
+                </div>
             </div>
         </a>
     </div>
 
-    <div class="col-md-4 mb-4">
-        <a href="/admin/berita" class="text-decoration-none">
-            <div class="card shadow-sm p-4">
-                <h5 class="font-weight-bold text-dark">Kelola Berita</h5>
-                <p class="text-muted mb-0">Posting atau edit informasi terbaru</p>
+    <div class="col-md-4">
+        <a href="{{ route('berita.index') }}" class="text-decoration-none">
+            <div class="card border-0 shadow-sm h-100 hover-shadow transition-all">
+                <div class="card-body text-center p-4">
+                    <div class="bg-light rounded-circle d-inline-flex p-3 mb-3">
+                        <i class="bi bi-newspaper fs-2 text-dark"></i>
+                    </div>
+                    <h5 class="fw-bold text-dark">Kelola Berita</h5>
+                    <p class="text-muted small mb-0">Posting atau edit informasi terbaru</p>
+                </div>
             </div>
         </a>
     </div>
 </div>
+
+<style>
+    .hover-shadow:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    }
+    .transition-all {
+        transition: all 0.3s ease;
+    }
+</style>
 
 @endsection

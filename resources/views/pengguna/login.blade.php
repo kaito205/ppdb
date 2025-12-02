@@ -137,7 +137,7 @@
             <div class="brand">
                 <img src="{{ asset('img/logo.png') }}" alt="logo">
             </div>
-            <h2>Login Mahasiswa</h2>
+            <h2>Login</h2>
             <div class="form-group">
                 <label for="email">Username / Email</label>
                 <input type="text" id="email" name="email" placeholder="Masukkan email" required>

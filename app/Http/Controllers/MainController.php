@@ -2,27 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berita; // <-- tambahkan
+use App\Models\Ekstrakurikuler;
+use App\Models\ProfilSekolah;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    public function dashboard() {
-        return view('main.dashboard');
+
+    public function dashboard()
+    {
+        $ekskul = Ekstrakurikuler::all();
+        $profil = ProfilSekolah::first() ?? new ProfilSekolah();
+        $berita = Berita::latest()->take(10)->get(); // <-- ambil berita
+
+        return view('main.dashboard', compact('ekskul', 'profil', 'berita'));
     }
 
-    public function tentangKami() {
-        return view('main.tentangkami');
-    }
-
-    public function informasi() {
-        return view('main.informasi');
-    }
-
-    public function kontak() {
-        return view('main.kontak');
-    }
-
-    public function pendaftaran() {
-        return view('main.pendaftaran');
+    public function detailBerita($slug)
+    {
+        $berita = Berita::where('slug', $slug)->firstOrFail();
+        $beritaLain = Berita::where('slug', '!=', $slug)->latest()->take(5)->get();
+        return view('main.berita-detail', compact('berita', 'beritaLain'));
     }
 }

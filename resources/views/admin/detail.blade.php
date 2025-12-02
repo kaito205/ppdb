@@ -19,9 +19,9 @@
                         alt="Foto Siswa" class="img-thumbnail shadow" width="150">
                     <p class="mt-2 fw-bold">{{ $data->nama }}</p>
                     <span class="badge {{
-                        $data->status_seleksi === 'Diterima' ? 'bg-success' :
-                        ($data->status_seleksi === 'Ditolak' ? 'bg-danger' : 'bg-warning text-dark') }}">
-                        {{ $data->status_seleksi ?? 'Diproses' }}
+                        $data->status_seleksi === 'Lulus' ? 'bg-success' :
+                        ($data->status_seleksi === 'Tidak Lulus' ? 'bg-danger' : 'bg-warning text-dark') }}">
+                        {{ $data->status_seleksi === 'Lulus' ? 'Lengkap' : ($data->status_seleksi === 'Tidak Lulus' ? 'Tidak Lengkap' : 'Menunggu') }}
                     </span>
                 </div>
                 <div class="col-md-8">
@@ -36,11 +36,7 @@
                             <tr><th>Email</th><td>{{ $data->email ?? '-' }}</td></tr>
                             <tr><th>Alamat</th><td>{{ $data->alamat ?? '-' }}</td></tr>
                             <tr><th>Asal Sekolah</th><td>{{ $data->asal_sekolah ?? '-' }}</td></tr>
-                            <tr><th>Jurusan</th><td>{{ $data->jurusan ?? '-' }}</td></tr>
                             <tr><th>Tahun Lulus</th><td>{{ $data->tahun_lulus ?? '-' }}</td></tr>
-                            <tr><th>Nilai Rata-rata</th><td>{{ $data->nilai_rata ?? '-' }}</td></tr>
-                            <tr><th>Program Studi</th><td>{{ $data->prodi ?? '-' }}</td></tr>
-                            <tr><th>Tahun Pendaftaran</th><td>{{ $data->tahun_pendaftaran ?? '-' }}</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -82,7 +78,18 @@
                             @endif
                         </td>
                     </tr>
-                    <tr><th>Verifikasi Dokumen</th><td>{{ $data->verifikasi_dokumen ?? '-' }}</td></tr>
+                    <tr>
+                        <th>Verifikasi Dokumen</th>
+                        <td>
+                            @if($data->status_seleksi == 'Lulus')
+                                <span class="badge bg-success">Valid</span>
+                            @elseif($data->status_seleksi == 'Tidak Lulus')
+                                <span class="badge bg-danger">Invalid</span>
+                            @else
+                                <span class="badge bg-warning text-dark">Pending</span>
+                            @endif
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             @else

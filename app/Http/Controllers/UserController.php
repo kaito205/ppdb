@@ -46,9 +46,9 @@ class UserController extends Controller
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
 
             'asal_sekolah' => 'required|string|max:255',
-            'jurusan' => 'nullable|string|max:255',
             'tahun_lulus' => 'required|string|max:10',
-            'nilai_rata' => 'required|numeric|min:0|max:100',
+            // 'jurusan' => 'nullable|string|max:255', // Removed as per migration
+            // 'nilai_rata' => 'required|numeric|min:0|max:100', // Removed as per migration
 
 
             'nama_ayah' => 'required|string|max:255',
@@ -66,40 +66,64 @@ class UserController extends Controller
         $ijazah = $request->file('file_ijazah') ? $request->file('file_ijazah')->store('dokumen/ijazah', 'public') : null;
 
         // Simpan ke database
-        Pendaftaran::updateOrCreate(
-            ['user_id' => Auth::id()],
-            [
-                'nama' => $request->nama,
-                'nisn' => $request->nisn,
-                'nik' => $request->nik,
-                'tempat_lahir' => $request->tempat_lahir,
-                'tanggal_lahir' => $request->tanggal_lahir,
-                'jenis_kelamin' => $request->jenis_kelamin,
-                'agama' => $request->agama,
-                'no_hp' => $request->no_hp,
-                'alamat' => $request->alamat,
-                'email' => $request->email,
-                'foto' => $foto,
+        try {
+            Pendaftaran::updateOrCreate(
+                ['user_id' => Auth::id()],
+                [
+                    'nama' => $request->nama,
+                    'nisn' => $request->nisn,
+                    'nik' => $request->nik,
+                    'tempat_lahir' => $request->tempat_lahir,
+                    'tanggal_lahir' => $request->tanggal_lahir,
+                    'jenis_kelamin' => $request->jenis_kelamin,
+                    'agama' => $request->agama,
+                    'no_hp' => $request->no_hp,
+                    'alamat' => $request->alamat,
+                    'email' => $request->email,
+                    'foto' => $foto,
 
-                'nama_ayah' => $request->nama_ayah,
-                'nama_ibu' => $request->nama_ibu,
-                'no_kk' => $request->no_kk,
-                'file_kk' => $kk,
-                'file_akte' => $akte,
-                'file_ijazah' => $ijazah,
+                    'asal_sekolah' => $request->asal_sekolah,
+                    'tahun_lulus' => $request->tahun_lulus,
 
-                'status_seleksi' => 'Diproses',
-                'verifikasi_dokumen' => 'Pending',
-            ]
-        );
+                    'nama_ayah' => $request->nama_ayah,
+                    'nama_ibu' => $request->nama_ibu,
+                    'no_kk' => $request->no_kk,
+                    'file_kk' => $kk,
+                    'file_akte' => $akte,
+                    'file_ijazah' => $ijazah,
 
-        return redirect()->route('dashboard.user')->with('success', 'Formulir berhasil dikirim!');
+                    'status_seleksi' => 'Diproses',
+                    'verifikasi_dokumen' => 'Pending',
+                ]
+            );
+
+            // Kirim Email Notifikasi
+            try {
+                \Illuminate\Support\Facades\Mail::to($request->email)->send(new \App\Mail\NotificationMail(
+                    'Pendaftaran Berhasil - Sedang Diproses',
+                    "Halo {$request->nama},\n\nTerimakasih, data pendaftaran Anda telah kami terima.\n\nSilahkan tunggu proses verifikasi selanjutnya.\n\nUntuk informasi lebih lanjut, jangan lupa pantau terus media sosial kami."
+                ));
+            } catch (\Exception $e) {
+                // Ignore email error, but log it
+                logger('Gagal kirim email: ' . $e->getMessage());
+            }
+
+            return redirect()->route('status.user')->with('success', 'Formulir berhasil dikirim!');
+
+        } catch (\Exception $e) {
+            return back()->with('error', 'Gagal menyimpan data: ' . $e->getMessage())->withInput();
+        }
+    }
+
+    public function status()
+    {
+        $data = Pendaftaran::where('user_id', Auth::id())->first();
+        return view('pengguna.status', compact('data'));
     }
 
     public function seleksi()
     {
-        $data = Pendaftaran::where('user_id', Auth::id())->first();
-        return view('pengguna.seleksi', compact('data'));
+        return redirect()->route('status.user');
     }
 
     public function daftar()
