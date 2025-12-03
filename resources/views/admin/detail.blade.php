@@ -27,6 +27,7 @@
                 <div class="col-md-8">
                     <table class="table table-striped">
                         <tbody>
+                            <tr><th>Nama</th><td>{{ $data->nama ?? '-' }}</td></tr>
                             <tr><th>NISN</th><td>{{ $data->nisn ?? '-' }}</td></tr>
                             <tr><th>NIK</th><td>{{ $data->nik ?? '-' }}</td></tr>
                             <tr><th>Tempat, Tanggal Lahir</th><td>{{ $data->tempat_lahir ?? '-' }}, {{ $data->tanggal_lahir ?? '-' }}</td></tr>

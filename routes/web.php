@@ -86,9 +86,6 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
 
     Route::get('/ekskul/hapus/{id}', [AdminController::class, 'ekskulDelete'])->name('admin.ekskul.hapus');
 
-    // ============================
-    // PRESTASI
-    // ============================
     Route::get('/prestasi', [AdminController::class, 'prestasiIndex'])->name('admin.prestasi');
     Route::get('/prestasi/tambah', [AdminController::class, 'prestasiCreate'])->name('admin.prestasi.tambah');
     Route::post('/prestasi/store', [AdminController::class, 'prestasiStore'])->name('admin.prestasi.store');

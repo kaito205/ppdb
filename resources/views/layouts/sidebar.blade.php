@@ -29,28 +29,28 @@
     <li class="nav-item">
         <a class="nav-link {{ request()->is('admin/ekskul*') ? 'active' : '' }}" href="{{ route('admin.ekskul') }}">
             <i class="bi bi-collection"></i>
-            <span>Ekstrakurikuler</span>
+            <span>Kelola Ekstrakurikuler</span>
         </a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link {{ request()->is('admin/prestasi*') ? 'active' : '' }}" href="{{ route('admin.prestasi') }}">
             <i class="bi bi-trophy"></i>
-            <span>Prestasi</span>
+            <span>Kelola Prestasi</span>
         </a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('datasiswa') }}">
             <i class="fas fa-fw fa-users"></i>
-            <span>Data Pendaftar</span>
+            <span>Kelola Data Pendaftar</span>
         </a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link {{ request()->is('admin/berita*') ? 'active' : '' }}" href="{{ route('berita.index') }}">
             <i class="bi bi-newspaper"></i>
-            <span>Berita</span>
+            <span>Kelola Berita</span>
         </a>
     </li>
 

@@ -35,7 +35,7 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>NISN</th>
-                        <th>JK</th>
+                        <th>Jenis Kelamin</th>
                         <th>Asal Sekolah</th>
                         <th>Alamat</th>
                         <th>No HP</th>
@@ -50,7 +50,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td class="fw-bold">{{ $siswa->nama }}</td>
                         <td>{{ $siswa->nisn }}</td>
-                        <td>{{ $siswa->jenis_kelamin == 'Laki-laki' ? 'L' : 'P' }}</td>
+                        <td>{{ $siswa->jenis_kelamin}}</td>
                         <td>{{ $siswa->asal_sekolah }}</td>
                         <td>{{ $siswa->alamat }}</td>
                         <td>{{ $siswa->no_hp }}</td>
