@@ -29,8 +29,7 @@ Route::post('/login', [PenggunaController::class, 'login']);
 Route::get('/register', [PenggunaController::class, 'index'])->name('register.form'); // hanya view
 Route::post('/register', [PenggunaController::class, 'simpanRegistrasi'])->name('register'); // simpan data
 Route::post('/logout', [PenggunaController::class, 'logout'])->name('logout');
-Route::get('/formulir', [UserController::class, 'formulir'])->name('formulir.user');
-Route::post('/formulir', [UserController::class, 'simpanFormulir'])->name('formulir.simpan');
+
 
 
 // user dashboard
