@@ -14,9 +14,10 @@ class MainController extends Controller
     {
         $ekskul = Ekstrakurikuler::all();
         $profil = ProfilSekolah::first() ?? new ProfilSekolah();
-        $berita = Berita::latest()->take(10)->get(); // <-- ambil berita
+        $berita = Berita::latest()->take(10)->get(); 
+        $prestasi = \App\Models\Prestasi::latest()->take(3)->get();
 
-        return view('main.dashboard', compact('ekskul', 'profil', 'berita'));
+        return view('main.dashboard', compact('ekskul', 'profil', 'berita', 'prestasi'));
     }
 
     public function detailBerita($slug)

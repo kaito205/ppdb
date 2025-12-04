@@ -13,6 +13,8 @@ use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
+    use \App\Traits\UploadTrait;
+
     public function dashboard()
     {
         $totalAkun = \App\Models\User::where('role', 'user')->count();
@@ -50,10 +52,7 @@ class AdminController extends Controller
         $data->nama = $request->nama;
 
         if ($request->hasFile('foto')) {
-            $foto = $request->file('foto');
-            $nama = time() . '.' . $foto->getClientOriginalExtension();
-            $foto->move(public_path('uploads/ekskul'), $nama);
-            $data->foto = $nama;
+            $data->foto = $this->uploadFile($request->file('foto'), 'uploads/ekskul');
         }
 
         $data->save();
@@ -69,14 +68,16 @@ class AdminController extends Controller
 
     public function ekskulUpdate(Request $request, $id)
     {
+        $request->validate([
+            'nama' => 'required',
+            'foto' => 'image|max:2048'
+        ]);
+
         $data = Ekstrakurikuler::findOrFail($id);
         $data->nama = $request->nama;
 
         if ($request->hasFile('foto')) {
-            $foto = $request->file('foto');
-            $nama = time() . '.' . $foto->getClientOriginalExtension();
-            $foto->move(public_path('uploads/ekskul'), $nama);
-            $data->foto = $nama;
+            $data->foto = $this->uploadFile($request->file('foto'), 'uploads/ekskul', $data->foto);
         }
 
         $data->save();
@@ -86,7 +87,11 @@ class AdminController extends Controller
 
     public function ekskulDelete($id)
     {
-        Ekstrakurikuler::findOrFail($id)->delete();
+        $data = Ekstrakurikuler::findOrFail($id);
+        if ($data->foto) {
+            $this->deleteFile('uploads/ekskul', $data->foto);
+        }
+        $data->delete();
         return back()->with('success', 'Ekskul dihapus');
     }
 
@@ -112,10 +117,7 @@ class AdminController extends Controller
         $profil->misi = $request->misi;
 
         if ($request->hasFile('foto')) {
-            $foto = $request->file('foto');
-            $nama = time() . '.' . $foto->getClientOriginalExtension();
-            $foto->move(public_path('uploads/profil'), $nama);
-            $profil->foto = $nama;
+            $profil->foto = $this->uploadFile($request->file('foto'), 'uploads/profil', $profil->foto);
         }
 
         $profil->save();
@@ -153,10 +155,7 @@ class AdminController extends Controller
 
 
         if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploads/berita'), $filename);
-            $berita->gambar = $filename;
+            $berita->gambar = $this->uploadFile($request->file('gambar'), 'uploads/berita');
         }
 
         $berita->save();
@@ -172,6 +171,12 @@ class AdminController extends Controller
 
     public function beritaUpdate(Request $request, $id)
     {
+        $request->validate([
+            'judul' => 'required',
+            'isi' => 'required',
+            'gambar' => 'image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
         $berita = Berita::findOrFail($id);
 
         $berita->judul = $request->judul;
@@ -179,15 +184,7 @@ class AdminController extends Controller
         $berita->isi = $request->isi;
 
         if ($request->hasFile('gambar')) {
-
-            if ($berita->gambar && file_exists(public_path('uploads/berita/' . $berita->gambar))) {
-                unlink(public_path('uploads/berita/' . $berita->gambar));
-            }
-
-            $file = $request->file('gambar');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploads/berita'), $filename);
-            $berita->gambar = $filename;
+            $berita->gambar = $this->uploadFile($request->file('gambar'), 'uploads/berita', $berita->gambar);
         }
 
         $berita->save();
@@ -200,8 +197,8 @@ class AdminController extends Controller
     {
         $berita = Berita::findOrFail($id);
 
-        if ($berita->gambar && file_exists(public_path('uploads/berita/' . $berita->gambar))) {
-            unlink(public_path('uploads/berita/' . $berita->gambar));
+        if ($berita->gambar) {
+            $this->deleteFile('uploads/berita', $berita->gambar);
         }
 
         $berita->delete();
@@ -296,10 +293,7 @@ class AdminController extends Controller
         $data->deskripsi = $request->deskripsi;
 
         if ($request->hasFile('foto')) {
-            $file = $request->file('foto');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploads/prestasi'), $filename);
-            $data->foto = $filename;
+            $data->foto = $this->uploadFile($request->file('foto'), 'uploads/prestasi');
         }
 
         $data->save();
@@ -315,18 +309,18 @@ class AdminController extends Controller
 
     public function prestasiUpdate(Request $request, $id)
     {
+        $request->validate([
+            'judul' => 'required',
+            'deskripsi' => 'required',
+            'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
         $data = \App\Models\Prestasi::findOrFail($id);
         $data->judul = $request->judul;
         $data->deskripsi = $request->deskripsi;
 
         if ($request->hasFile('foto')) {
-            if ($data->foto && file_exists(public_path('uploads/prestasi/' . $data->foto))) {
-                unlink(public_path('uploads/prestasi/' . $data->foto));
-            }
-            $file = $request->file('foto');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploads/prestasi'), $filename);
-            $data->foto = $filename;
+            $data->foto = $this->uploadFile($request->file('foto'), 'uploads/prestasi', $data->foto);
         }
 
         $data->save();
@@ -337,8 +331,8 @@ class AdminController extends Controller
     public function prestasiDelete($id)
     {
         $data = \App\Models\Prestasi::findOrFail($id);
-        if ($data->foto && file_exists(public_path('uploads/prestasi/' . $data->foto))) {
-            unlink(public_path('uploads/prestasi/' . $data->foto));
+        if ($data->foto) {
+            $this->deleteFile('uploads/prestasi', $data->foto);
         }
         $data->delete();
         return back()->with('success', 'Prestasi berhasil dihapus');

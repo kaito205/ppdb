@@ -39,7 +39,7 @@
                     <p class="text-muted mb-1">Gelombang 1: Jan – Maret 2025</p>
                     <p class="text-muted mb-1">Gelombang 2: April – Juni 2025</p>
                     <p class="text-muted">Pendaftaran dibuka setiap hari kerja.</p>
-                    <a href="#" class="btn btn-success w-100 mt-2 rounded-pill btn-premium">Daftar Sekarang</a>
+                    <a href="{{ route('register') }}" class="btn btn-success w-100 mt-2 rounded-pill btn-premium">Daftar Sekarang</a>
                 </div>
             </div>
 
