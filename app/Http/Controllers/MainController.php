@@ -26,4 +26,26 @@ class MainController extends Controller
         $beritaLain = Berita::where('slug', '!=', $slug)->latest()->take(5)->get();
         return view('main.berita-detail', compact('berita', 'beritaLain'));
     }
+
+    public function berita(Request $request)
+    {
+        $query = $request->input('q');
+        
+        $berita = Berita::query();
+
+        if ($query) {
+            $berita->where('judul', 'like', '%' . $query . '%')
+                   ->orWhere('isi', 'like', '%' . $query . '%');
+        }
+
+        $berita = $berita->latest()->paginate(6);
+        $beritaLain = Berita::latest()->take(5)->get();
+
+        return view('main.berita', compact('berita', 'beritaLain', 'query'));
+    }
+
+    public function profil()
+    {
+        return view('main.profil');
+    }
 }

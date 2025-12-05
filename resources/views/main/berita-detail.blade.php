@@ -61,9 +61,9 @@
                     <div class="card border-0 shadow-sm rounded-4 mb-4" data-aos="fade-left" data-aos-delay="100">
                         <div class="card-body p-4">
                             <h5 class="fw-bold mb-3">Cari Berita</h5>
-                            <form action="#" method="GET">
+                            <form action="{{ route('berita.list') }}" method="GET">
                                 <div class="input-group">
-                                    <input type="text" class="form-control rounded-start-pill" placeholder="Kata kunci...">
+                                    <input type="text" name="q" class="form-control rounded-start-pill" placeholder="Kata kunci..." value="{{ request('q') }}">
                                     <button class="btn btn-primary rounded-end-pill" type="submit"><i class="bi bi-search"></i></button>
                                 </div>
                             </form>
@@ -80,7 +80,8 @@
                                 <img src="{{ asset('uploads/berita/'.$item->gambar) }}" 
                                      class="rounded-3 object-fit-cover" 
                                      width="80" height="80" 
-                                     alt="{{ $item->judul }}">
+                                     alt="{{ $item->judul }}"
+                                     title="{{ $item->judul }}">
                                 <div class="ms-3">
                                     <h6 class="mb-1">
                                         <a href="{{ route('berita.detail', $item->slug) }}" class="text-decoration-none text-dark fw-bold stretched-link">

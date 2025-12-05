@@ -180,7 +180,14 @@ class AdminController extends Controller
         $berita = Berita::findOrFail($id);
 
         $berita->judul = $request->judul;
-        $berita->slug = Str::slug($request->judul); // ← wajib juga
+        
+        // Generate unique slug
+        $slug = Str::slug($request->judul);
+        $count = Berita::where('slug', $slug)->where('id', '!=', $id)->count();
+        if ($count > 0) {
+            $slug .= '-' . time();
+        }
+        $berita->slug = $slug;
         $berita->isi = $request->isi;
 
         if ($request->hasFile('gambar')) {
