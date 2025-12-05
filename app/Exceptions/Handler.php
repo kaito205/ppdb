@@ -45,4 +45,24 @@ class Handler extends ExceptionHandler
             //
         });
     }
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Throwable  $e
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Throwable
+     */
+    public function render($request, Throwable $e)
+    {
+        if ($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
+            // Cek apakah URL diawali 'admin/', user sudah login, DAN role-nya admin
+            if ($request->is('admin/*') && auth()->check() && auth()->user()->role === 'admin') {
+                return response()->view('errors.admin_404', [], 404);
+            }
+        }
+
+        return parent::render($request, $e);
+    }
 }

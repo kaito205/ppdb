@@ -19,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        \Illuminate\Pagination\Paginator::useBootstrapFive();
+
         \Illuminate\Support\Facades\View::composer('layouts.navbar', function ($view) {
             $messages = \App\Models\Contact::latest()->take(5)->get();
             $count = \App\Models\Contact::count();

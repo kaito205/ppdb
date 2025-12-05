@@ -40,7 +40,7 @@
                         <th>Alamat</th>
                         <th>No HP</th>
                         <th>Email</th>
-                        <th class="text-center">Status Formulir</th>
+                        <th class="text-center">Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -58,15 +58,15 @@
                         <td class="text-center">
                             @if($siswa->status_seleksi == 'Lulus')
                                 <span class="badge bg-success rounded-pill px-3 py-2 d-inline-flex align-items-center gap-2">
-                                    <i class="fas fa-check-circle"></i> Lengkap
+                                    <i class="fas fa-check-circle"></i> Terkonfirmasi
                                 </span>
                             @elseif($siswa->status_seleksi == 'Tidak Lulus')
                                 <span class="badge bg-danger rounded-pill px-3 py-2 d-inline-flex align-items-center gap-2">
-                                    <i class="fas fa-times-circle"></i> Tidak Lengkap
+                                    <i class="fas fa-times-circle"></i> Ditolak
                                 </span>
                             @else
                                 <span class="badge bg-warning text-dark rounded-pill px-3 py-2 d-inline-flex align-items-center gap-2">
-                                    <i class="fas fa-hourglass-half"></i> Menunggu
+                                    <i class="fas fa-hourglass-half"></i> Belum Terkonfirmasi
                                 </span>
                             @endif
                         </td>
