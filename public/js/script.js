@@ -7,7 +7,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
     /* =========================
-     1) COUNTER (IntersectionObserver)
+     1) AUTO CLOSE NAVBAR ON MOBILE
+     ========================= */
+    (() => {
+        const navLinks = $$(".navbar-nav .nav-link:not(.dropdown-toggle)");
+        const navbarCollapse = $(".navbar-collapse");
+        const navbarToggler = $(".navbar-toggler");
+
+        navLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                if (navbarCollapse && navbarCollapse.classList.contains("show")) {
+                    // Option 1: formatting click
+                    navbarToggler.click(); 
+                    // Option 2: bootstrap API if available
+                    // const bsCollapse = new bootstrap.Collapse(navbarCollapse, {toggle:false});
+                    // bsCollapse.hide();
+                }
+            });
+        });
+    })();
+
+    /* =========================
+     2) COUNTER (IntersectionObserver)
      ========================= */
     (() => {
         const counters = $$(".counter");
@@ -109,47 +130,106 @@ document.addEventListener("DOMContentLoaded", () => {
     })();
 
    
-    const initInfiniteSlider = (selector, velocity = 0.25) => {
+    /* =========================
+     3) GALLERY INFINITE SCROLL (SMOOTH & CENTERED)
+     ========================= */
+    const initGallerySlider = (selector, velocity = 0.5) => {
         const scrollArea = $(selector);
         if (!scrollArea) return;
+        
+        // Disable smooth scrolling/snap via JS ensuring direct control
+        scrollArea.style.scrollBehavior = "auto";
+        scrollArea.style.scrollSnapType = "none";
 
-        // grab original items (live children may change after clone)
+        // 1. Setup Clones for Infinite Loop
         const originalItems = Array.from(scrollArea.children);
         if (!originalItems.length) return;
 
-        // compute original width (sum of offsetWidth + gaps)
-        const style = getComputedStyle(scrollArea);
-        const gap = parseFloat(style.columnGap || style.gap || 0);
-        const originalWidth = originalItems.reduce(
-            (sum, el) => sum + el.offsetWidth + gap,
-            0
-        );
-
-        // clone each original item once and append (so total = 2 * originals)
+        // Clone enough items to fill extra space and allow smooth wrap
+        // We append a full set of clones to the end
         originalItems.forEach((it) => {
             const clone = it.cloneNode(true);
+            clone.classList.add('clone');
             scrollArea.appendChild(clone);
         });
 
-        // start at originalWidth to place user in middle of loop
-        scrollArea.scrollLeft = originalWidth;
+        // 2. Measure One Set Width
+        // Forces a reflow to ensure dimensions are correct
+        const itemStyle = window.getComputedStyle(originalItems[0]);
+        const gap = parseFloat(getComputedStyle(scrollArea).gap || "0");
+        const singleItemWidth = originalItems[0].offsetWidth + gap;
+        const totalSetWidth = singleItemWidth * originalItems.length;
 
-        /* Auto-scroll using requestAnimationFrame */
+        // 3. Start in the Middle (Optional: Center the view on 1st original item, or actually center)
+        // If we want "Centre" like Alumni, maybe user means text alignment, but for Marquee, 
+        // usually it means not starting at the very edge.
+        // Let's set it to start at the beginning of the original set (which is now preceded by nothing? No we appended).
+        // If we want it to look "centered", we might want to shift it. 
+        // But for continuous loop, starting at 0 is fine, OR starting at totalSetWidth if we prepended.
+        // Since we only appended, 0 is the start of real items. 
+        // User said: "dimulai nyah dibagian tengah". 
+        // Implementation: Scroll to the middle of the ENTIRE scrollable area (Original + Clones)
+        // Adjust scrollLeft to (ScrollWidth / 2) - (ViewportWidth / 2)
+        
+        // Let's try to center the FIRST set initially if possible, or just standard 0 if it looks good.
+        // But "dimulai nyah dibagian tengah" implies specific visual preference.
+        // Let's try centering the first item of the original set in the viewport.
+        // Actually, if we want infinite loop, we usually need clones BEFORE too if we start in middle.
+        // Simpler approach for "Start Middle": Prepend clones too.
+        
+        originalItems.reverse().forEach((it) => {
+            const clone = it.cloneNode(true);
+            clone.classList.add('clone');
+            scrollArea.insertBefore(clone, scrollArea.firstChild);
+        });
+        // Restore order for other computations if needed
+        originalItems.reverse(); 
+
+        // Now structure is: [Clones Reversed] [Originals] [Clones]
+        // Center of standard set is at offset: totalSetWidth
+        // We want to center the first item of Original set? Or the middle item?
+        // Let's center the whole view on the Original Set.
+        
+        const startPos = totalSetWidth; // This places the start of Original set at left edge
+        // To center the Original Set's *content* relative to screen? 
+        // Let's center the first item of Original set in the viewport.
+        const viewportWidth = scrollArea.clientWidth;
+        const initialScroll = startPos - (viewportWidth / 2) + (singleItemWidth / 2);
+        
+        // Clamp to positive
+        scrollArea.scrollLeft = Math.max(0, initialScroll);
+
+        
+        // 4. Auto Scroll Logic
         let playing = true;
         let rafId = null;
 
         const step = () => {
             if (playing) {
                 scrollArea.scrollLeft += velocity;
-                // wrap logic
-                if (scrollArea.scrollLeft >= originalWidth * 2) {
-                    scrollArea.scrollLeft -= originalWidth;
-                } else if (scrollArea.scrollLeft <= 0) {
-                    scrollArea.scrollLeft += originalWidth;
+
+                // Seamless Loop Logic
+                // If we scrolled past the originals (to the right clones), reset to start of originals
+                // Structure: [0..W] (Prepend) | [W..2W] (Original) | [2W..3W] (Append)
+                // We are moving Right. scrollLeft increases.
+                // When scrollLeft > 2W (start of Append), we can jump back to W (start of Original)
+                // Actually, exact join point is when scrollLeft reaches (2W).
+                // At that point, the view is identical to scrollLeft = W.
+                
+                if (scrollArea.scrollLeft >= totalSetWidth * 2) {
+                   scrollArea.scrollLeft -= totalSetWidth;
+                } 
+                // Bi-directional safety (if velocity < 0)
+                else if (scrollArea.scrollLeft <= totalSetWidth - viewportWidth) {
+                     // If we moved too far left into prepended clones?
+                     // reset to corresponding position in appended/original?
+                     // For simple 'velocity > 0', we just need the forward reset.
+                     // But if user drags?
                 }
             }
             rafId = requestAnimationFrame(step);
         };
+        
         rafId = requestAnimationFrame(step);
 
         /* Pause auto-scroll on user interaction */
@@ -158,63 +238,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
         scrollArea.addEventListener("mouseenter", pause);
         scrollArea.addEventListener("mouseleave", resume);
-
-        /* Pointer drag (works for mouse + touch) */
-        let isDown = false;
-        let startX = 0;
-        let startScroll = 0;
-        let isDragging = false;
-
-        scrollArea.addEventListener("pointerdown", (e) => {
-            isDown = true;
-            isDragging = false;
-            startX = e.clientX;
-            startScroll = scrollArea.scrollLeft;
-            pause();
-        });
-
-        scrollArea.addEventListener("pointermove", (e) => {
-            if (!isDown) return;
-            const dx = e.clientX - startX;
-            
-            if (Math.abs(dx) > 5) isDragging = true;
-
-            scrollArea.scrollLeft = startScroll - dx;
-            if (scrollArea.scrollLeft >= originalWidth * 2)
-                scrollArea.scrollLeft -= originalWidth;
-            if (scrollArea.scrollLeft <= 0)
-                scrollArea.scrollLeft += originalWidth;
-        });
-
-        const release = (e) => {
-            if (!isDown) return;
-            isDown = false;
-            resume();
-        };
-
-        scrollArea.addEventListener("pointerup", release);
-        scrollArea.addEventListener("pointercancel", release);
-        scrollArea.addEventListener("pointerleave", (e) => {
-            if (isDown) release(e);
-        });
-
-        // Return state/methods if needed externally
-        return { isDragging };
+        scrollArea.addEventListener("pointerdown", pause);
+        scrollArea.addEventListener("pointerup", resume);
+        
+        // Optional: Manual Drag logic could be re-added here if needed, 
+        // but often conflicts with simple Marquee. 
+        // Let's align with "Alumni": Alumni has manual drag.
+        // We can keep the simple marquee for now unless requested.
+        // User asked "smoot dan lancar" (smooth and fluid).
     };
 
     // Initialize Gallery Slider
-    initInfiniteSlider(".galeri-scroll", 0.5);
+    // Velocity 0.5 is slow and smooth.
+    initGallerySlider(".gallery-scroll", 0.5);
 
   
-    const initAlumniFocus = () => {
+    /* =========================
+     4) ALUMNI SLIDER (INFINITE AUTO-SCROLL + FOCUS)
+     ========================= */
+    const initAlumniSlider = () => {
         const scrollArea = $(".alumni-scroll");
         if (!scrollArea) return;
+        
+        // Disable smooth scrolling/snap via JS
+        scrollArea.style.scrollBehavior = "auto";
+        scrollArea.style.scrollSnapType = "none";
 
         let items = $$(".alumni-item", scrollArea);
         const originalCount = items.length;
         if (originalCount === 0) return;
 
         // 1. Clone items for infinite loop if not already cloned
+        // We need enough buffer. Existing logic clones 1 set each side.
         if (!scrollArea.querySelector(".clone")) {
             const clonesA = items.map(item => item.cloneNode(true));
             const clonesC = items.map(item => item.cloneNode(true));
@@ -234,10 +289,8 @@ document.addEventListener("DOMContentLoaded", () => {
         items = $$(".alumni-item", scrollArea);
         const cards = $$(".alumni-card", scrollArea);
         
-        // State variables
         let itemWidth, setWidth;
 
-        // Function to update dimensions
         const updateDimensions = () => {
             const itemStyle = window.getComputedStyle(items[0]);
             const containerStyle = window.getComputedStyle(scrollArea);
@@ -246,18 +299,16 @@ document.addEventListener("DOMContentLoaded", () => {
             setWidth = itemWidth * originalCount;
         };
 
-        // Initial calculation
         updateDimensions();
 
-        // 2. Set Initial Scroll Position
+        // 2. Set Initial Scroll Position (Center)
         const middleIndex = Math.floor(originalCount / 2); 
-        const startScrollPos = (originalCount + middleIndex) * itemWidth;
+        // We have 1 set prepended, so start is at (1 set + middle)
+        const startScrollPos = setWidth + (middleIndex * itemWidth);
         
-        scrollArea.style.scrollSnapType = "none";
         scrollArea.scrollLeft = startScrollPos;
-        scrollArea.style.scrollSnapType = "x mandatory";
 
-        // 3. Focus Logic
+        // 3. Focus Logic (Highlight Center Item)
         const updateFocus = () => {
             const center = scrollArea.scrollLeft + (scrollArea.clientWidth / 2);
             let closest = null;
@@ -279,33 +330,66 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         };
 
-        const handleScroll = () => {
-            const currentScroll = scrollArea.scrollLeft;
-            
-            if (currentScroll < setWidth - itemWidth) {
-                scrollArea.style.scrollSnapType = "none"; 
-                scrollArea.scrollLeft += setWidth;
-                scrollArea.style.scrollSnapType = "x mandatory"; 
-            } else if (currentScroll > (2 * setWidth) - itemWidth) {
-                scrollArea.style.scrollSnapType = "none";
-                scrollArea.scrollLeft -= setWidth;
-                scrollArea.style.scrollSnapType = "x mandatory";
-            }
+        // 4. Auto Scroll Logic
+        let playing = true;
+        let velocity = 0.5; // Smooth speed
+        let rafId = null;
 
-            window.requestAnimationFrame(updateFocus);
+        const step = () => {
+            if (playing) {
+                scrollArea.scrollLeft += velocity;
+
+                // Seamless Loop Logic
+                // Structure: [Clones A (Width=W)] [Originals (Width=W)] [Clones C (Width=W)]
+                // Total width ~ 3W.
+                // We start at W.
+                // If scrollLeft >= 2W (Start of Clones C), jump back to W (Start of Originals)
+                
+                if (scrollArea.scrollLeft >= setWidth * 2) {
+                    scrollArea.scrollLeft -= setWidth;
+                } 
+                else if (scrollArea.scrollLeft <= 0) {
+                     scrollArea.scrollLeft += setWidth;
+                }
+                
+                updateFocus(); // Update focus while auto-scrolling
+            }
+            rafId = requestAnimationFrame(step);
         };
 
-        updateFocus();
-        scrollArea.addEventListener("scroll", handleScroll);
+        rafId = requestAnimationFrame(step);
 
-        // 5. Handle Resize
+        /* Pause auto-scroll on user interaction */
+        const pause = () => { 
+            playing = false; 
+            // Optional: Enable scroll snap when paused for better UX?
+            // scrollArea.style.scrollSnapType = "x mandatory";
+        };
+        const resume = () => { 
+            playing = true; 
+            // scrollArea.style.scrollSnapType = "none";
+        };
+
+        // Disable scroll snap for smooth auto-scroll
+        scrollArea.style.scrollSnapType = "none";
+
+        scrollArea.addEventListener("mouseenter", pause);
+        scrollArea.addEventListener("mouseleave", resume);
+        scrollArea.addEventListener("pointerdown", pause);
+        scrollArea.addEventListener("pointerup", resume);
+        
+        // Handle Resize
         window.addEventListener("resize", () => {
             updateDimensions();
             updateFocus();
         });
+        
+        // If user manually scrolls (touch drag), 'scroll' event fires.
+        // We might want to pause there too, or let the pointer events handle it.
+        // Pointer events usually suffice for "touching".
     };
 
-    initAlumniFocus();
+    initAlumniSlider();
 
 
     /* =========================
@@ -375,7 +459,131 @@ document.addEventListener("DOMContentLoaded", () => {
     // can be extended if layout jump observed
 
     /* =========================
-     6) CLEANUP on unload (cancel RAF)
+     6) PRESTASI SLIDER (MOBILE AUTO-SCROLL)
+     ========================= */
+    const initPrestasiSlider = () => {
+        const scrollArea = $(".prestasi-scroll");
+        if (!scrollArea) return;
+
+        // Disable smooth scrolling/snap via JS
+        scrollArea.style.scrollBehavior = "auto";
+        scrollArea.style.scrollSnapType = "none";
+
+        // Check if we are in mobile/scroll mode (clones exist or overflow)
+        // Better: Always init logic, but auto-scroll only effectively runs if overflow/clones created?
+        // Actually, we need to create clones ONLY if we are in a mode that supports it, 
+        // OR create them always (hidden on desktop) and run logic.
+        // Since we hide .clone on desktop via CSS, we can safely create them.
+        
+        let items = $$(".prestasi-item", scrollArea);
+        const originalCount = items.length;
+        if (originalCount === 0) return;
+
+        // 1. Clone items for infinite loop
+        if (!scrollArea.querySelector(".clone")) {
+            const clonesA = items.map(item => item.cloneNode(true));
+            const clonesC = items.map(item => item.cloneNode(true));
+            
+            // Add identifying class
+            clonesA.forEach(c => c.classList.add("clone"));
+            clonesC.forEach(c => c.classList.add("clone"));
+
+            clonesA.reverse().forEach(clone => {
+                scrollArea.insertBefore(clone, scrollArea.firstChild);
+            });
+
+            clonesC.forEach(clone => {
+                scrollArea.appendChild(clone);
+            });
+        }
+
+        items = $$(".prestasi-item", scrollArea); // re-query including clones? 
+        // wait, we typically re-query inside `updateDimensions` or just use the container width.
+        // For logic consistency, let's treat it like Alumni w/o focus scaling (unless requested).
+        // Prestasi is simple slider.
+        
+        let totalWidth = 0;
+        
+        const updateDimensions = () => {
+             // For Prestasi, items might have different widths (text length?)
+             // But we set min-width: 240px.
+             // Let's compute total scroll width accurately.
+             totalWidth = scrollArea.scrollWidth / 3; // Approx if 3 sets (A + Orig + B)
+             // Better: measure one set.
+        };
+        // Actually simpler: 
+        // We know we added 1 set before and 1 set after.
+        // So total content = 3 * OriginalSetWidth.
+        // Start Position (Original Start) = TotalScrollWidth / 3.
+        
+        // 2. Set Initial Scroll Position (Center of Original Set)
+        // User wants "start centered".
+        // Center of Original Set = (TotalScrollWidth / 3) + (OriginalSetWidth / 2) - (Viewport / 2)
+        // OR just start at the beginning of Original Set?
+        // "dimulai nyah dibagian tengah" (start in the middle).
+        // Let's aim for the Middle Card of the Original Set.
+        
+        const calculateStart = () => {
+            const scrollW = scrollArea.scrollWidth;
+            const viewW = scrollArea.clientWidth;
+            
+            // If on desktop (grid), scrollWidth might be same as clientWidth (no scroll).
+            // Logic should be robust.
+            if (scrollW <= viewW) return 0;
+
+            const singleSetWidth = scrollW / 3;
+            const middleOfOriginalSet = singleSetWidth + (singleSetWidth / 2);
+            return middleOfOriginalSet - (viewW / 2);
+        };
+        
+        // Apply start position
+        // We use a timeout to let layout settle slightly if needed, or just run.
+        scrollArea.scrollLeft = calculateStart();
+
+        // 3. Auto Scroll
+        let playing = true;
+        let velocity = 0.5;
+        let rafId = null;
+
+        const step = () => {
+            // Only scroll if we have space to scroll (Mobile)
+            if (scrollArea.scrollWidth > scrollArea.clientWidth && playing) {
+                scrollArea.scrollLeft += velocity;
+                
+                const oneSetWidth = scrollArea.scrollWidth / 3;
+                
+                // Infinite Loop Checks
+                if (scrollArea.scrollLeft >= oneSetWidth * 2) {
+                    scrollArea.scrollLeft -= oneSetWidth;
+                } else if (scrollArea.scrollLeft <= 0) {
+                    scrollArea.scrollLeft += oneSetWidth;
+                }
+            }
+            rafId = requestAnimationFrame(step);
+        };
+        
+        rafId = requestAnimationFrame(step);
+
+        /* Pause auto-scroll on user interaction */
+        const pause = () => { playing = false; };
+        const resume = () => { playing = true; };
+
+        scrollArea.addEventListener("mouseenter", pause);
+        scrollArea.addEventListener("mouseleave", resume);
+        scrollArea.addEventListener("pointerdown", pause);
+        scrollArea.addEventListener("pointerup", resume);
+        
+        window.addEventListener("resize", () => {
+             // On resize, re-center if we crossed breakpoint?
+             // Or primarily just let the user scroll.
+             // If we go from Desktop -> Mobile, we might need to reset scrollLeft.
+        });
+    };
+
+    initPrestasiSlider();
+
+    /* =========================
+     7) CLEANUP on unload (cancel RAF)
      ========================= */
     window.addEventListener("beforeunload", () => {
         // cancel any RAF if needed (we kept rafId var inside closure so not globally accessible)

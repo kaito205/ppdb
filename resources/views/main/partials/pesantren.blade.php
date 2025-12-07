@@ -41,7 +41,7 @@
                         </li>
                     </ul>
 
-                    <a href="https://riyadlulhidayah.blogspot.com/2015/09/sejarah-berdirinya-pondok-pesantren.html" class="btn btn-outline-primary rounded-pill px-4 py-2 mt-4">
+                    <a href="https://riyadlulhidayah.blogspot.com/2015/09/sejarah-berdirinya-pondok-pesantren.html" class="btn btn-blue rounded-pill px-4 py-2 mt-4">
                         Pelajari Lebih Lanjut
                     </a>
                 </div>

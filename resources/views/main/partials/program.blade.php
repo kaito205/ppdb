@@ -16,7 +16,7 @@
             <div style="width:80px;height:4px;background:#0d6efd;margin:0 auto;border-radius:10px;"></div>
         </div>
 
-        <div class="row g-2 g-md-4">
+        <div class="row g-2 g-md-4 justify-content-center">
             <div class="col-6 col-md-4 mb-2" data-aos="fade-up" data-aos-delay="100">
                 <div class="p-2 p-md-4 bg-white shadow rounded-4 h-100 text-center card-hover">
                     <div class="icon mb-2 mb-md-3">

@@ -359,8 +359,6 @@ section {
     overflow-x: auto;
     gap: 20px;
     padding: 20px 0 40px 0; /* Extra bottom padding for hover effects */
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch; /* Momentum scroll on iOS */
     /* Centering items if they don't fill the screen (User request: "kurang dari sekian bagian bawah nyah jadi ditengah") */
     justify-content: flex-start; /* Default start, but we can center via margin auto if content is small, or use `justify-content: center` if we want them always centered when few. However, for scrollable, better to keep start and specific centering logic if needed. Let's try `justify-content: center` logic only if no overflow, but usually `margin: auto` on wrapper helps if width is fixed. For flex, `justify-content: center` works if items < container width. But if items > container, it might clip start. Safe bet: use ::before/::after spacers or simply `margin: 0 auto` on container handles the block centering, but for flex items centering: */
@@ -511,33 +509,114 @@ section {
 /* ==========================================================
    9. PRESTASI
 ========================================================== */
+/* ==========================================================
+   9. PRESTASI
+========================================================== */
+.prestasi-scroll {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0 40px 0;
+}
+
+/* Mobile: Horizontal Scroll & Compact Size */
+@media (max-width: 768px) {
+    .prestasi-scroll {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        flex-wrap: nowrap; /* Force single line */
+        justify-content: flex-start;
+        padding-left: 20px; /* Peek effect */
+        padding-right: 20px;
+    }
+    
+    .prestasi-scroll::-webkit-scrollbar {
+        display: none;
+    }
+
+    .prestasi-item {
+        min-width: 240px; /* Reduced from 300px for mobile */
+        max-width: 240px;
+        flex: 0 0 auto;
+        scroll-snap-align: center;
+    }
+
+    .prestasi-card img {
+        height: 150px; /* Smaller image on mobile */
+    }
+
+    .prestasi-card .card-body h5 {
+        font-size: 1rem; /* Smaller title */
+    }
+}
+
+/* Desktop: Grid Layout */
+@media (min-width: 769px) {
+    .prestasi-scroll {
+        flex-wrap: wrap; /* Allow wrapping like a grid */
+        justify-content: center; /* Center items */
+    }
+
+    .prestasi-item {
+        width: calc(33.333% - 20px); /* Equivalent to col-lg-4 with gap consideration */
+        margin-bottom: 20px;
+    }
+
+    /* Hide cloned items on desktop to prevent duplicates in grid */
+    .prestasi-item.clone {
+        display: none !important;
+    }
+}
+
+.prestasi-card {
+    transition: 0.3s ease;
+    border-radius: 12px;
+    height: 100%; /* Ensure full height */
+    display: flex;       /* Use flex column to push footer down */
+    flex-direction: column;
+}
+
 .prestasi-card img {
     width: 100%;
-    height: 200px;
     object-fit: cover;
     transition: transform 0.4s ease;
+}
+
+/* Default Image Height (Desktop) will be overridden by existing blade style or we set it here */
+@media (min-width: 769px) {
+    .prestasi-card img {
+        height: 230px;
+    }
 }
 
 .prestasi-card:hover img {
     transform: scale(1.08);
 }
 
-.prestasi-card {
-    transition: 0.3s ease;
-    border-radius: 12px;
-}
-
 .prestasi-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 .prestasi-card .card-body {
-    padding: 10px 12px !important; /* lebih tipis */
+    padding: 15px 15px !important;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Body takes available space */
 }
+
 .prestasi-card .card-body h5 {
-    font-size: 1.1rem;
     font-weight: 600;
     color: #0e2e72;
+    margin-bottom: 0.5rem;
+}
+
+/* Ensure winner section is at bottom */
+.prestasi-winner {
+    margin-top: auto; 
+    padding-top: 10px;
+    border-top: 1px solid #eee;
 }
 
 /* ==========================================================
@@ -678,15 +757,11 @@ section {
     gap: 20px;
     overflow-x: auto;
     padding-bottom: 20px;
-    scroll-snap-type: x mandatory;
+    /* Removed scroll-snap for smooth auto-scroll */
 }
 
 .alumni-scroll::-webkit-scrollbar {
-    height: 8px;
-}
-.alumni-scroll::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background: #ccc;
+    display: none; /* Hide scrollbar (marking part below cards) */
 }
 
 /* Slider Focus Effect */

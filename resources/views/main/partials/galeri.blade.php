@@ -8,7 +8,7 @@
         </div>
 
         <!-- MASTERPIECE GALLERY SCROLL -->
-        <div class="gallery-scroll" data-aos="fade-up">
+        <div class="gallery-scroll">
 
             <!-- Item 1 -->
             <div class="gallery-item">

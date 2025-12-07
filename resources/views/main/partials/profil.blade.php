@@ -11,7 +11,7 @@
                     <p class="mb-4">
                         {{ $profil->deskripsi ?? 'SMA ERHA JATINAGARA adalah lembaga pendidikan yang berkomitmen mencetak generasi unggul, berakhlak mulia, dan berwawasan global. Kami memadukan kurikulum nasional dengan nilai-nilai pesantren untuk membentuk karakter siswa yang kuat.' }}
                     </p>
-                    <a href="#kontak" class="btn btn-primary rounded-pill px-4 py-2 shadow-sm">Hubungi Kami</a>
+                    <a href="#kontak" class="btn btn-blue rounded-pill px-4 py-2 shadow-sm">Hubungi Kami</a>
                 </div>
             </div>
 

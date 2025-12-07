@@ -15,7 +15,7 @@
                 <div class="alumni-item">
                     <div class="alumni-card">
                         <div class="alumni-img-container">
-                            <img src="{{ asset('img/pp.jpg') }}" class="alumni-img" alt="Foto Alumni">
+                            <img src="{{ asset('img/user.jpeg') }}" class="alumni-img" alt="Foto Alumni">
                         </div>
                         <div class="alumni-body">
                             <p class="alumni-quote">
@@ -32,7 +32,7 @@
                 <div class="alumni-item">
                     <div class="alumni-card">
                         <div class="alumni-img-container">
-                            <img src="{{ asset('img/anita.jpg') }}" class="alumni-img" alt="Foto Alumni">
+                            <img src="{{ asset('img/user.jpeg') }}" class="alumni-img" alt="Foto Alumni">
                         </div>
                         <div class="alumni-body">
                             <p class="alumni-quote">
@@ -48,7 +48,7 @@
                 <div class="alumni-item">
                     <div class="alumni-card">
                         <div class="alumni-img-container">
-                            <img src="{{ asset('img/head1.jpg') }}" class="alumni-img" alt="Foto Alumni">
+                            <img src="{{ asset('img/user.jpeg') }}" class="alumni-img" alt="Foto Alumni">
                         </div>
                         <div class="alumni-body">
                             <p class="alumni-quote">
@@ -64,7 +64,7 @@
                 <div class="alumni-item">
                     <div class="alumni-card">
                         <div class="alumni-img-container">
-                            <img src="{{ asset('img/head2.jpg') }}" class="alumni-img" alt="Foto Alumni">
+                            <img src="{{ asset('img/user.jpeg') }}" class="alumni-img" alt="Foto Alumni">
                         </div>
                         <div class="alumni-body">
                             <p class="alumni-quote">
@@ -80,7 +80,7 @@
                 <div class="alumni-item">
                     <div class="alumni-card">
                         <div class="alumni-img-container">
-                            <img src="{{ asset('img/dida.jpg') }}" class="alumni-img" alt="Foto Alumni">
+                            <img src="{{ asset('img/user.jpeg') }}" class="alumni-img" alt="Foto Alumni">
                         </div>
                         <div class="alumni-body">
                             <p class="alumni-quote">

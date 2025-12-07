@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login Siswa</title>
+    <link rel="icon" href="{{ asset('img/favicon.png') }}" sizes="32x32" type="image/png">
     <style>
         body {
             font-family: Arial, sans-serif;

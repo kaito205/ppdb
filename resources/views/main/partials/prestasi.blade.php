@@ -22,10 +22,10 @@
             <div class="mx-auto" style="width:80px;height:4px;background:#dc3545;border-radius:10px;"></div>
         </div>
 
-        <div class="row g-2 g-md-4">
+        <div class="prestasi-scroll">
 
             @foreach ($prestasi as $item)
-            <div class="col-6 col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="prestasi-item" data-aos="zoom-in" data-aos-delay="100">
                 <div class="card border-0 shadow-sm prestasi-card h-100 card-hover">
 
                     <div class="overflow-hidden rounded-top">
@@ -37,14 +37,15 @@
                         <h5 class="fw-bold text-dark fs-6 fs-md-5">
                             {{ $item->judul }}
                         </h5>
-                        <p class="text-muted mb-2 small" style="font-size: 0.85rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
-                            {{ $item->deskripsi }}
-                        </p>
+                        
                         @if($item->pemenang)
-                        <div class="mt-2 pt-2 border-top">
+                        <div class="mt-2 pt-2 border-top prestasi-winner">
                             <small class="text-primary fw-bold d-block text-uppercase" style="font-size: 0.7rem;">Diraih oleh</small>
                             <span class="fw-medium text-dark" style="font-size: 0.85rem;">{{ $item->pemenang }}</span>
                         </div>
+                        @else
+                        <!-- Spacer to keep alignment if needed, or flex-grow handles it -->
+                        <div class="mt-auto"></div>
                         @endif
                     </div>
 
