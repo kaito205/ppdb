@@ -14,6 +14,22 @@ section {
     margin-bottom: 80px;
 }
 
+/* Tighten spacing on mobile */
+@media (max-width: 768px) {
+    section {
+        padding-top: 60px;
+        scroll-margin-top: 80px;
+        margin-bottom: 40px;
+    }
+
+    /* Aggressive Spacing Fix for Profile & Pesantren */
+    #sekolah, .pesantren {
+        padding-top: 20px !important;
+        padding-bottom: 20px !important;
+        margin-bottom: 20px !important;
+    }
+}
+
 /* ==========================================================
    2. NAVBAR
 ========================================================== */
@@ -136,26 +152,36 @@ section {
 
 /* Untuk layar kecil tetap responsif */
 @media (max-width: 768px) {
+    #hero {
+        height: 60vh; /* Reduced height on mobile */
+    }
+
+    .hero-img {
+        height: 60vh; /* Match hero container height */
+    }
+
     .hero-content {
-        right: 5%;
-        bottom: 15%;
-        text-align: center;
+        /* Removed right/bottom positioning to allow Flexbox centering from parent */
+        width: 100%;
         max-width: 100%;
         padding: 0 20px;
+        margin-top: 20px; /* Slight offset if needed, but flex centers it */
     }
     
     .carousel-caption {
         justify-content: center;
         padding-right: 0;
         text-align: center !important;
+        bottom: 0; /* Ensure full height usage */
     }
 
     .hero-title {
-        font-size: 2rem !important;
+        font-size: 1.8rem !important;
+        margin-bottom: 0.5rem;
     }
     
     .hero-subtitle {
-        font-size: 1rem !important;
+        font-size: 0.9rem !important;
     }
 }
 
@@ -322,71 +348,163 @@ section {
 /* ==========================================================
    8. GALERI
 ========================================================== */
-.galeri-item .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.55);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none; /* Allow clicks to pass through to the link */
-}
-.galeri-item .overlay * {
-    pointer-events: none; /* Ensure children also don't block clicks */
-}
-.galeri-item:hover .overlay {
-    opacity: 1;
-}
+/* ==========================================================
+   8. GALERI
+========================================================== */
 
-.galeri-scroll {
+/* Modern Grid Gallery */
+/* Modern Horizontal Scroll Gallery */
+.gallery-scroll {
     display: flex;
-    gap: 16px;
     overflow-x: auto;
-    padding-bottom: 10px;
+    gap: 20px;
+    padding: 20px 0 40px 0; /* Extra bottom padding for hover effects */
     scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* Momentum scroll on iOS */
+    /* Centering items if they don't fill the screen (User request: "kurang dari sekian bagian bawah nyah jadi ditengah") */
+    justify-content: flex-start; /* Default start, but we can center via margin auto if content is small, or use `justify-content: center` if we want them always centered when few. However, for scrollable, better to keep start and specific centering logic if needed. Let's try `justify-content: center` logic only if no overflow, but usually `margin: auto` on wrapper helps if width is fixed. For flex, `justify-content: center` works if items < container width. But if items > container, it might clip start. Safe bet: use ::before/::after spacers or simply `margin: 0 auto` on container handles the block centering, but for flex items centering: */
 }
 
-.galeri-wrapper {
-    overflow-x: auto;
-    overflow-y: hidden;
+/* Hide scrollbar for cleaner look */
+.gallery-scroll::-webkit-scrollbar {
+    height: 8px; /* Allow minimal scrollbar usage if mouse users need it, or set display:none for "clean" */
+    display: none; 
 }
 
-.galeri-scroll::-webkit-scrollbar {
-    height: 8px;
-}
+/* If user wants to see scrollbar on hover, can adjust. But usually "kren" implies hidden. */
 
-.galeri-scroll::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-}
-
-.galeri-item {
-    flex: 0 0 320px;
-    cursor: grab;
-    height: 230px;
-    scroll-snap-align: center;
+.gallery-item {
     position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 350px;
+    min-width: 280px; /* Fixed width for consistent horizontal scrolling */
+    flex: 0 0 auto; /* Don't shrink */
+    scroll-snap-align: center; /* Snap to center */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    margin: 10px 0; /* Safety margin */
 }
 
+/* Handle "center if few items" logic: 
+   If we use `margin: 0 auto` on the wrapper, the wrapper itself is centered. 
+   To center items INSIDE the wrapper if they don't overflow, we can use a media query or JS.
+   CSS Grid `fit-content` or Flex with `justify-content` has caveats with overflow.
+   Easiest is: Wrapper is full width.
+   If we want "few items -> center":
+*/
+@media (min-width: 1200px) {
+    .gallery-scroll {
+        justify-content: center; /* Center items on large screens if there are only a few */
+    }
+    /* Note: If items overflow, justify-content: center might clip the start. 
+       Use safe center if supported, or just let it be. 
+       "justify-content: safe center" is the modern solution. */
+    .gallery-scroll {
+        justify-content: safe center;
+    }
+}
 
-.galeri-item img {
+.gallery-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(14, 46, 114, 0.2);
+    z-index: 10;
+}
+
+.gallery-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.8s ease;
 }
 
-/* overlay */
-.overlay {
+.gallery-item:hover img {
+    transform: scale(1.15);
+}
+
+.gallery-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    background: linear-gradient(
+        to top, 
+        rgba(0, 0, 0, 0.8) 0%, 
+        rgba(0, 0, 0, 0.2) 50%, 
+        rgba(255, 255, 255, 0) 100%
+    );
     opacity: 0;
-    transition: 0.3s;
+    transition: opacity 0.4s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 25px;
 }
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-info {
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+    width: 100%;
+    text-align: left;
+}
+
+.gallery-item:hover .gallery-info {
+    transform: translateY(0);
+}
+
+.gallery-info i {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 10px;
+    display: block;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.gallery-info span {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    display: block;
+    border-left: 4px solid #ffd700;
+    padding-left: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .gallery-scroll {
+        gap: 15px;
+        padding-left: 20px; /* Peek effect */
+        padding-right: 20px;
+        justify-content: flex-start; /* Ensure scrolling works on mobile */
+    }
+    
+    .gallery-item {
+        height: 280px;
+        min-width: 240px;
+    }
+
+    .gallery-info span {
+        font-size: 1rem;
+    }
+    
+    .gallery-info i {
+        font-size: 1.5rem;
+    }
+}
+
+/* Old styles removal/compat if needed (Currently unused after blade update) */
+.galeri-wrapper {
+    overflow-x: auto;
+}
+
 
 
 
@@ -754,6 +872,7 @@ section {
 /* ==========================================================
    14. LIGHTBOX / MODAL
 ========================================================== */
+/* Modern Lightbox/Modal */
 .img-modal {
     display: none;
     position: fixed;
@@ -763,42 +882,63 @@ section {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+    overflow: hidden; /* Prevent scrolling background */
+    background-color: rgba(0, 0, 0, 0.85); /* Darker background */
+    backdrop-filter: blur(8px); /* Blur effect behind modal */
 }
 
 .img-modal-content {
     margin: auto;
     display: block;
-    width: 80%;
-    max-width: 900px;
-    max-height: 80vh;
-    object-fit: contain;
-    animation-name: zoom;
-    animation-duration: 0.6s;
+    width: auto;
+    max-width: 90%;
+    max-height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    animation: zoom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @keyframes zoom {
-    from {transform:scale(0)}
-    to {transform:scale(1)}
+    from {transform: scale(0.8); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
 }
 
 .close {
     position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
+    top: 20px;
+    right: 40px;
+    color: #fff;
+    font-size: 50px;
+    font-weight: 300;
     transition: 0.3s;
     cursor: pointer;
+    line-height: 1;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    z-index: 10000;
 }
 
 .close:hover,
 .close:focus {
-    color: #bbb;
+    color: #ffd700;
     text-decoration: none;
     cursor: pointer;
+    transform: rotate(90deg);
+}
+
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 20px 0;
+    height: 150px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    animation: fadeInUp 0.5s ease 0.2s forwards;
+    opacity: 0;
 }
 
 /* Responsive Modal */
@@ -1066,4 +1206,110 @@ html {
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================
+   15. MOBILE TEXT OVERLAY (Profil & Pesantren)
+========================================================== */
+@media (max-width: 768px) {
+    .mobile-merge-row {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        border-radius: 20px;
+        margin-bottom: 15px; /* Reduced from 30px */
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05); /* Softer shadow */
+        min-height: auto; /* Remove fixed height */
+        background: #fff; /* Clean white background */
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    /* 1. HIDE IMAGE LAYER */
+    .mobile-merge-row > div[class*="col-"]:has(img),
+    .mobile-merge-row > div[class*="col-"]:has(.premium-img-wrapper) {
+        display: none !important; /* The user requested: "gambar nyah dihilangkan" */
+    }
+
+    /* 2. Content Layer (Clean Text) */
+    .mobile-merge-row > div[class*="col-"]:not(:has(img)):not(:has(.premium-img-wrapper)) {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 30px 25px;
+        z-index: 1;
+        background: transparent;
+        border: none;
+        backdrop-filter: none;
+        text-align: center; /* Center text for nice card look */
+    }
+
+    /* Typography Polish (Dark Text) */
+    .mobile-merge-row h2 {
+        font-size: 1.6rem !important;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+        color: #0e2e72 !important; /* Brand Blue */
+        text-shadow: none;
+    }
+    
+    .mobile-merge-row .divider {
+        margin: 10px auto 20px auto; /* Center divider */
+        background: linear-gradient(90deg, #0e2e72, #00d2ff) !important;
+        width: 60px;
+        height: 4px;
+    }
+
+    .mobile-merge-row p, 
+    .mobile-merge-row .text-muted,
+    .mobile-merge-row small {
+        font-size: 0.95rem !important;
+        line-height: 1.7;
+        color: #555 !important; /* Dark grey for readability */
+        text-shadow: none;
+    }
+    
+    .mobile-merge-row h5 {
+        color: #0e2e72 !important;
+        text-shadow: none;
+    }
+
+    /* Feature List Styling (Pesantren) */
+    .mobile-merge-row .feature-list {
+        margin-top: 20px;
+        width: 100%;
+        text-align: left; /* Keep list left-aligned or center? Left usually easier to read lists */
+    }
+
+    .mobile-merge-row .feature-item {
+        background: #f8fbff; /* Very light blue tint */
+        border: 1px solid #eef2f7;
+        margin-bottom: 10px;
+        padding: 12px 15px;
+        border-radius: 12px;
+        color: #333;
+    }
+
+    .mobile-merge-row .feature-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+        background: #e3f2fd; /* Brand light blue */
+        color: #0e2e72 !important;
+    }
+    
+    /* Button Tweak */
+    .mobile-merge-row .btn {
+        width: 100%;
+        margin-top: 20px;
+        background: #0e2e72 !important;
+        color: #fff !important;
+        border: none !important;
+        font-weight: 700;
+        box-shadow: 0 4px 10px rgba(14, 46, 114, 0.3);
+    }
+
+    
+    #sekolah .mobile-merge-row .btn {
+        display: none !important;
+    }
 }

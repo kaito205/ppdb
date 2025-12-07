@@ -18,6 +18,14 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+                
+                <div class="mb-3">
+                    <label for="pemenang" class="form-label">Nama Pemenang (Opsional)</label>
+                    <input type="text" class="form-control @error('pemenang') is-invalid @enderror" id="pemenang" name="pemenang" value="{{ old('pemenang', $data->pemenang) }}">
+                    @error('pemenang')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
 
                 <div class="mb-3">
                     <label for="deskripsi" class="form-label">Deskripsi</label>

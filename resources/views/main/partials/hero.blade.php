@@ -8,7 +8,7 @@
                 <img src="{{ asset('img/hero2.jpeg') }}" class="d-block w-100 hero-img">
                 <div class="hero-overlay"></div>
                 <div class="carousel-caption">
-                    <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
+                    <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
                         <h3 class="hero-title">Selamat Datang di <br><span class="text-success">{{ $profil->nama_sekolah ?? 'SMA ERHA' }}</span></h3>
                         <p class="hero-subtitle">Membentuk generasi berprestasi, berkarakter, dan berakhlakul karimah.</p>
                     </div>
@@ -19,7 +19,7 @@
                 <img src="{{ asset('img/hero1.jpeg') }}" class="d-block w-100 hero-img">
                 <div class="hero-overlay"></div>
                 <div class="carousel-caption">
-                    <div class="hero-content" data-aos="fade-up">
+                    <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
                         <h3 class="hero-title">Pendidikan Unggul & <br><span class="text-warning">Berkarakter</span></h3>
                         <p class="hero-subtitle">Membentuk generasi cerdas dan berakhlak mulia untuk masa depan gemilang.</p>
                     </div>
@@ -31,7 +31,7 @@
                 <img src="{{ asset('img/hero.jpeg') }}" class="d-block w-100 hero-img">
                 <div class="hero-overlay"></div>
                 <div class="carousel-caption">
-                    <div class="hero-content" data-aos="fade-up">
+                    <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
                         <h3 class="hero-title">Raih <span class="text-info">Prestasi</span></h3>
                         <p class="hero-subtitle">Lingkungan Belajar Nyaman.</p>
                     </div>

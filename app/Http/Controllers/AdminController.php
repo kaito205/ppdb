@@ -292,12 +292,14 @@ class AdminController extends Controller
         $request->validate([
             'judul' => 'required',
             'deskripsi' => 'required',
+            'pemenang' => 'nullable|string',
             'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $data = new \App\Models\Prestasi();
         $data->judul = $request->judul;
         $data->deskripsi = $request->deskripsi;
+        $data->pemenang = $request->pemenang;
 
         if ($request->hasFile('foto')) {
             $data->foto = $this->uploadFile($request->file('foto'), 'uploads/prestasi');
@@ -319,12 +321,14 @@ class AdminController extends Controller
         $request->validate([
             'judul' => 'required',
             'deskripsi' => 'required',
+            'pemenang' => 'nullable|string',
             'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $data = \App\Models\Prestasi::findOrFail($id);
         $data->judul = $request->judul;
         $data->deskripsi = $request->deskripsi;
+        $data->pemenang = $request->pemenang;
 
         if ($request->hasFile('foto')) {
             $data->foto = $this->uploadFile($request->file('foto'), 'uploads/prestasi', $data->foto);

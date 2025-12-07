@@ -7,49 +7,89 @@
             <p class="text-muted">Momen-momen kegiatan di {{ $profil->nama_sekolah ?? 'SMA ERHA JATINAGARA' }}</p>
         </div>
 
-        <!-- WRAPPER AUTO SCROLL -->
-        <div class="galeri-wrapper" data-aos="fade-up">
-            <div class="galeri-scroll">
+        <!-- MASTERPIECE GALLERY SCROLL -->
+        <div class="gallery-scroll" data-aos="fade-up">
 
-                <div class="galeri-item position-relative overflow-hidden rounded shadow-sm">
-                    <a href="{{ asset('img/head1.jpg') }}" class="galeri-link" data-caption="Upacara Bendera">
-                        <img src="{{ asset('img/head1.jpg') }}" class="img-fluid" alt="Kegiatan 1">
-                    </a>
-                </div>
-
-                <div class="galeri-item position-relative overflow-hidden rounded shadow-sm">
-                    <a href="{{ asset('img/head2.jpg') }}" class="galeri-link" data-caption="Belajar di Kelas">
-                        <img src="{{ asset('img/head2.jpg') }}" class="img-fluid" alt="Kegiatan 2">
-                    </a>
-                </div>
-
-                <div class="galeri-item position-relative overflow-hidden rounded shadow-sm">
-                    <a href="{{ asset('img/head3.jpg') }}" class="galeri-link" data-caption="Kegiatan Tahfidz">
-                        <img src="{{ asset('img/head3.jpg') }}" class="img-fluid" alt="Kegiatan 3">
-                    </a>
-                </div>
-
-                <div class="galeri-item position-relative overflow-hidden rounded shadow-sm">
-                    <a href="{{ asset('img/head3.jpg') }}" class="galeri-link" data-caption="Ekstrakurikuler Pramuka">
-                        <img src="{{ asset('img/head3.jpg') }}" class="img-fluid" alt="Kegiatan 4">
-                    </a>
-                </div>
-
-                <div class="galeri-item position-relative overflow-hidden rounded shadow-sm">
-                    <a href="{{ asset('img/head2.jpg') }}" class="galeri-link" data-caption="Kegiatan Olahraga">
-                        <img src="{{ asset('img/head2.jpg') }}" class="img-fluid" alt="Kegiatan 5">
-                    </a>
-                </div>
-
-                <div class="galeri-item position-relative overflow-hidden rounded shadow-sm">
-                    <a href="{{ asset('img/head1.jpg') }}" class="galeri-link" data-caption="Pelatihan Kepemimpinan">
-                        <img src="{{ asset('img/head1.jpg') }}" class="img-fluid" alt="Kegiatan 6">
-                    </a>
-                </div>
-
+            <!-- Item 1 -->
+            <div class="gallery-item">
+                <a href="{{ asset('img/head1.jpg') }}" class="gallery-link" data-caption="Upacara Bendera">
+                    <img src="{{ asset('img/head1.jpg') }}" alt="Upacara Bendera">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <i class="bi bi-arrows-angle-expand"></i>
+                            <span>Upacara Bendera</span>
+                        </div>
+                    </div>
+                </a>
             </div>
+
+            <!-- Item 2 -->
+            <div class="gallery-item">
+                <a href="{{ asset('img/head2.jpg') }}" class="gallery-link" data-caption="Belajar di Kelas">
+                    <img src="{{ asset('img/head2.jpg') }}" alt="Belajar di Kelas">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <i class="bi bi-arrows-angle-expand"></i>
+                            <span>Belajar di Kelas</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="gallery-item">
+                <a href="{{ asset('img/head3.jpg') }}" class="gallery-link" data-caption="Kegiatan Tahfidz">
+                    <img src="{{ asset('img/head3.jpg') }}" alt="Kegiatan Tahfidz">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <i class="bi bi-arrows-angle-expand"></i>
+                            <span>Kegiatan Tahfidz</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="gallery-item">
+                <a href="{{ asset('img/head3.jpg') }}" class="gallery-link" data-caption="Ekstrakurikuler Pramuka">
+                    <img src="{{ asset('img/head3.jpg') }}" alt="Ekstrakurikuler Pramuka">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <i class="bi bi-arrows-angle-expand"></i>
+                            <span>Ekstrakurikuler Pramuka</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="gallery-item">
+                <a href="{{ asset('img/head2.jpg') }}" class="gallery-link" data-caption="Kegiatan Olahraga">
+                    <img src="{{ asset('img/head2.jpg') }}" alt="Kegiatan Olahraga">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <i class="bi bi-arrows-angle-expand"></i>
+                            <span>Kegiatan Olahraga</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="gallery-item">
+                <a href="{{ asset('img/head1.jpg') }}" class="gallery-link" data-caption="Pelatihan Kepemimpinan">
+                    <img src="{{ asset('img/head1.jpg') }}" alt="Pelatihan Kepemimpinan">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <i class="bi bi-arrows-angle-expand"></i>
+                            <span>Pelatihan Kepemimpinan</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
         </div>
-        <!-- END WRAPPER -->
+        <!-- END GALLERY GRID -->
 
     </div>
     <!-- MODAL FULLSCREEN GAMBAR -->

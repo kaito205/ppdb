@@ -10,8 +10,6 @@
 
     @include('main.partials.visimisi')
 
-    @include('main.partials.kenapa-erha')
-
     @include('main.partials.program')
 
     @include('main.partials.prestasi')

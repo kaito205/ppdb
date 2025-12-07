@@ -1,6 +1,6 @@
 <section class="pesantren py-5 bg-light position-relative">
     <div class="container">
-        <div class="row align-items-center">
+        <div class="row align-items-center mobile-merge-row">
             <!-- FOTO -->
             <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
                 <div class="premium-img-wrapper" style="transform: rotate(2deg);">

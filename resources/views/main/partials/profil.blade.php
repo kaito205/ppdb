@@ -1,6 +1,6 @@
 <section id="sekolah" class="py-5 bg-white overflow-hidden">
     <div class="container">
-        <div class="row align-items-center">
+        <div class="row align-items-center mobile-merge-row">
             <!-- TEKS -->
             <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
                 <div class="section-title-premium">

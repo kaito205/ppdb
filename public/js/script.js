@@ -73,9 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     })();
 
-    /* =========================
-     3) NAVBAR ACTIVE (IntersectionObserver)
-     ========================= */
     (() => {
         const sections = $$("section[id]");
         const navLinks = $$(".navbar .nav-link");
@@ -111,12 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
         sections.forEach((s) => io.observe(s));
     })();
 
-    /* =========================
-     4) GALLERY: infinite loop, auto-scroll, drag, thumbnails, modal
-     ========================= */
-    /* =========================
-     4) INFINITE SLIDER LOGIC (Reusable)
-     ========================= */
+   
     const initInfiniteSlider = (selector, velocity = 0.25) => {
         const scrollArea = $(selector);
         if (!scrollArea) return;
@@ -213,15 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize Gallery Slider
     initInfiniteSlider(".galeri-scroll", 0.5);
 
-    // Initialize Alumni Slider
-    // initInfiniteSlider(".alumni-scroll", 0.4);
-
-    /* =========================
-     Alumni Focus Effect (Infinite Loop & Center Start)
-     ========================= */
-    /* =========================
-     Alumni Focus Effect (Infinite Loop & Center Start)
-     ========================= */
+  
     const initAlumniFocus = () => {
         const scrollArea = $(".alumni-scroll");
         if (!scrollArea) return;
@@ -295,7 +279,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         };
 
-        // 4. Infinite Scroll Logic (Jump)
         const handleScroll = () => {
             const currentScroll = scrollArea.scrollLeft;
             
@@ -328,15 +311,20 @@ document.addEventListener("DOMContentLoaded", () => {
     /* =========================
      5) GALLERY LIGHTBOX & INTERACTION
      ========================= */
+    /* =========================
+     5) GALLERY LIGHTBOX & INTERACTION
+     ========================= */
     (() => {
-        const scrollArea = $(".galeri-scroll");
+        // Supports both old (.galeri-scroll) and new (.gallery-grid/.gallery-scroll) containers
+        // Including .gallery-scroll for horizontal layout
+        const galleryContainers = [$(".galeri-scroll"), $(".gallery-grid"), $(".gallery-scroll")].filter(el => el);
         const modal = $("#imgModal");
         const modalImg = $("#imgFull");
         
-        if (scrollArea && modal && modalImg) {
-             // event delegation on scrollArea to handle both originals & clones
-             scrollArea.addEventListener("click", (e) => {
-                const link = e.target.closest(".galeri-link");
+        if (galleryContainers.length && modal && modalImg) {
+             const handleImageClick = (e) => {
+                // Support both old class .galeri-link and new .gallery-link
+                const link = e.target.closest(".galeri-link, .gallery-link");
                 if (link) {
                     e.preventDefault();
                     modal.style.display = "block";
@@ -348,8 +336,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (captionEl) {
                         captionEl.innerText = captionText || '';
                     }
-                    return;
                 }
+            };
+
+            galleryContainers.forEach(container => {
+                container.addEventListener("click", handleImageClick);
             });
 
             // Close Modal Logic
@@ -363,6 +354,13 @@ document.addEventListener("DOMContentLoaded", () => {
             // Close when clicking outside the image
             modal.addEventListener("click", (e) => {
                 if (e.target === modal || e.target.id === "caption") {
+                    modal.style.display = "none";
+                }
+            });
+            
+            // Close on ESC key
+            document.addEventListener('keydown', function(e) {
+                if(e.key === "Escape" && modal.style.display === "block") {
                     modal.style.display = "none";
                 }
             });

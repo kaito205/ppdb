@@ -23,6 +23,7 @@ Route::get('/', [MainController::class, 'dashboard'])->name('home');
 Route::get('/berita/{slug}', [MainController::class, 'detailBerita'])->name('berita.detail');
 Route::get('/berita', [MainController::class, 'berita'])->name('berita.list');
 Route::get('/profil', [MainController::class, 'profil'])->name('profil');
+Route::get('/pesantren', [MainController::class, 'pesantren'])->name('pesantren');
 
 // auth user
 

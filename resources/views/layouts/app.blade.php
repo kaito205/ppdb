@@ -47,7 +47,7 @@
                             aria-expanded="false">Profile</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ Request::is('/') ? '#sekolah' : url('/#sekolah') }}">Sekolah</a></li>
-                            <li><a class="dropdown-item" href="{{ Request::is('/') ? '#pesantren' : url('/#pesantren') }}">Pesantren</a></li>
+                            <li><a class="dropdown-item" href="{{ route('pesantren') }}">Pesantren</a></li>
 
                         </ul>
                     </li>
