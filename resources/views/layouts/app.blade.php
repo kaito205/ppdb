@@ -18,7 +18,7 @@
     <!-- Animate -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
 
@@ -28,7 +28,7 @@
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid px-3 px-md-5">
             <a class="navbar-brand d-flex align-items-center" href="/">
-                <img src="{{ asset('img/logo.png') }}" alt="Logo" width="80" class="me-2">
+                <img src="{{ asset('img/logo.webp') }}" alt="Logo" width="80" class="me-2">
                 <span>SMA ERHA JATINAGARA</span>
             </a>
 
@@ -142,7 +142,7 @@
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-md-5 mb-4">
-                    <img src="{{ asset('img/logo.png') }}" alt="Logo SMA ERHA" height="80" class="mb-3">
+                    <img src="{{ asset('img/logo.webp') }}" alt="Logo SMA ERHA" height="80" class="mb-3">
                     <h5>SMA ERHA JATINAGARA</h5>
                     <ul>
                         <li><i class="bi bi-geo-alt-fill me-2"></i> Kec. Jatinagara, Kab. Ciamis, Jawa Barat</li>
@@ -155,11 +155,11 @@
                     <h5>Sosial Media Kami</h5>
                     <div class="icon-mds mt-3">
                         <a href="https://web.facebook.com/smaerhajatinagara"><img
-                                src="{{ asset('img/icons8-facebook.gif') }}" alt="facebook" class="me-2"></a>
+                                src="{{ asset('img/icons8-facebook.webp') }}" alt="facebook" class="me-2"></a>
                         <a href="https://www.instagram.com/smaerhajatinagara/"><img
-                                src="{{ asset('img/icons8-instagram.gif') }}" alt="instagram" class="me-2"></a>
-                        <a href="#"><img src="{{ asset('img/icons8-whatsapp.gif') }}" alt="whatsapp" class="me-2"></a>
-                        <a href="#"><img src="{{ asset('img/icons8-youtube.gif') }}" alt="youtube" class="me-2"></a>
+                                src="{{ asset('img/icons8-instagram.webp') }}" alt="instagram" class="me-2"></a>
+                        <a href="#"><img src="{{ asset('img/icons8-whatsapp.webp') }}" alt="whatsapp" class="me-2"></a>
+                        <a href="#"><img src="{{ asset('img/icons8-youtube.webp') }}" alt="youtube" class="me-2"></a>
                     </div>
                 </div>
             </div>
@@ -180,8 +180,6 @@
             offset: 100, // Offset trigger
         });
     </script>
-
-    <script src="{{ asset('js/script.js') }}"></script>
 
 </body>
 

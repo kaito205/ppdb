@@ -3,7 +3,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center py-3" href="/">
         <div class="sidebar-brand-icon">
-            <img src="{{ asset('img/logo.png') }}" alt="Logo Sekolah" class="rounded-circle" style="width: 70px; height: 70px; object-fit: cover;">
+            <img src="{{ asset('img/logo.webp') }}" alt="Logo Sekolah" class="rounded-circle" style="width: 70px; height: 70px; object-fit: cover;">
         </div>
         <div class="sidebar-brand-text mx-3 small">SMA ERHA JATINAGARA</div>
     </a>

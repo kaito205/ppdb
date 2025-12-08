@@ -5,7 +5,7 @@
 
             <!-- Slide 1 -->
             <div class="carousel-item active">
-                <img src="{{ asset('img/hero2.jpeg') }}" class="d-block w-100 hero-img">
+                <img src="{{ asset('img/hero2.webp') }}" class="d-block w-100 hero-img">
                 <div class="hero-overlay"></div>
                 <div class="carousel-caption">
                     <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
@@ -16,7 +16,7 @@
             </div>
             <!-- Slide 2 -->
             <div class="carousel-item">
-                <img src="{{ asset('img/hero1.jpeg') }}" class="d-block w-100 hero-img">
+                <img src="{{ asset('img/hero1.webp') }}" class="d-block w-100 hero-img">
                 <div class="hero-overlay"></div>
                 <div class="carousel-caption">
                     <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
@@ -28,7 +28,7 @@
 
             <!-- Slide 3 -->
             <div class="carousel-item">
-                <img src="{{ asset('img/hero.jpeg') }}" class="d-block w-100 hero-img">
+                <img src="{{ asset('img/hero.webp') }}" class="d-block w-100 hero-img">
                 <div class="hero-overlay"></div>
                 <div class="carousel-caption">
                     <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">

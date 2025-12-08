@@ -1,0 +1,64 @@
+﻿composer : The "3.1" 
+constraint for 
+"maatwebsite/excel" 
+appears too strict 
+and will likely not 
+match what you want. 
+See https://getcompos
+er.org/constraints
+At line:1 char:1
++ composer require ma
+atwebsite/excel:^3.1 
+> composer_error.log 
+2>&1
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (The "3.   
+ 1" const...org/c    
+onstraints:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+./composer.json has 
+been updated
+Running composer 
+update 
+maatwebsite/excel
+Loading composer 
+repositories with 
+package information
+Updating dependencies
+Your requirements 
+could not be 
+resolved to an 
+installable set of 
+packages.
+
+  Problem 1
+    - Root 
+composer.json 
+requires 
+maatwebsite/excel 
+3.1 -> satisfiable 
+by maatwebsite/excel[
+3.1.0].
+    - 
+maatwebsite/excel 
+3.1.0 requires php 
+^7.0 -> your php 
+version (8.2.12) 
+does not satisfy 
+that requirement.
+
+
+Installation failed, 
+reverting 
+./composer.json to 
+its original content.

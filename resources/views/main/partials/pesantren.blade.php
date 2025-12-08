@@ -4,7 +4,7 @@
             <!-- FOTO -->
             <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
                 <div class="premium-img-wrapper" style="transform: rotate(2deg);">
-                    <img src="{{ asset('img/hero1.jpeg') }}" alt="Sekolah Berbasis Pesantren" class="img-fluid shadow-lg">
+                    <img src="{{ asset('img/hero1.webp') }}" alt="Sekolah Berbasis Pesantren" class="img-fluid shadow-lg">
                 </div>
             </div>
 

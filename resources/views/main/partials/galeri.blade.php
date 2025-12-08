@@ -12,8 +12,8 @@
 
             <!-- Item 1 -->
             <div class="gallery-item">
-                <a href="{{ asset('img/head1.jpg') }}" class="gallery-link" data-caption="Upacara Bendera">
-                    <img src="{{ asset('img/head1.jpg') }}" alt="Upacara Bendera">
+                <a href="{{ asset('img/head1.webp') }}" class="gallery-link" data-caption="Upacara Bendera">
+                    <img src="{{ asset('img/head1.webp') }}" alt="Upacara Bendera">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
                             <i class="bi bi-arrows-angle-expand"></i>
@@ -25,8 +25,8 @@
 
             <!-- Item 2 -->
             <div class="gallery-item">
-                <a href="{{ asset('img/head2.jpg') }}" class="gallery-link" data-caption="Belajar di Kelas">
-                    <img src="{{ asset('img/head2.jpg') }}" alt="Belajar di Kelas">
+                <a href="{{ asset('img/head2.webp') }}" class="gallery-link" data-caption="Belajar di Kelas">
+                    <img src="{{ asset('img/head2.webp') }}" alt="Belajar di Kelas">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
                             <i class="bi bi-arrows-angle-expand"></i>
@@ -38,8 +38,8 @@
 
             <!-- Item 3 -->
             <div class="gallery-item">
-                <a href="{{ asset('img/head3.jpg') }}" class="gallery-link" data-caption="Kegiatan Tahfidz">
-                    <img src="{{ asset('img/head3.jpg') }}" alt="Kegiatan Tahfidz">
+                <a href="{{ asset('img/head3.webp') }}" class="gallery-link" data-caption="Kegiatan Tahfidz">
+                    <img src="{{ asset('img/head3.webp') }}" alt="Kegiatan Tahfidz">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
                             <i class="bi bi-arrows-angle-expand"></i>
@@ -51,8 +51,8 @@
 
             <!-- Item 4 -->
             <div class="gallery-item">
-                <a href="{{ asset('img/head3.jpg') }}" class="gallery-link" data-caption="Ekstrakurikuler Pramuka">
-                    <img src="{{ asset('img/head3.jpg') }}" alt="Ekstrakurikuler Pramuka">
+                <a href="{{ asset('img/head3.webp') }}" class="gallery-link" data-caption="Ekstrakurikuler Pramuka">
+                    <img src="{{ asset('img/head3.webp') }}" alt="Ekstrakurikuler Pramuka">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
                             <i class="bi bi-arrows-angle-expand"></i>
@@ -64,8 +64,8 @@
 
             <!-- Item 5 -->
             <div class="gallery-item">
-                <a href="{{ asset('img/head2.jpg') }}" class="gallery-link" data-caption="Kegiatan Olahraga">
-                    <img src="{{ asset('img/head2.jpg') }}" alt="Kegiatan Olahraga">
+                <a href="{{ asset('img/head2.webp') }}" class="gallery-link" data-caption="Kegiatan Olahraga">
+                    <img src="{{ asset('img/head2.webp') }}" alt="Kegiatan Olahraga">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
                             <i class="bi bi-arrows-angle-expand"></i>
@@ -77,8 +77,8 @@
 
             <!-- Item 6 -->
             <div class="gallery-item">
-                <a href="{{ asset('img/head1.jpg') }}" class="gallery-link" data-caption="Pelatihan Kepemimpinan">
-                    <img src="{{ asset('img/head1.jpg') }}" alt="Pelatihan Kepemimpinan">
+                <a href="{{ asset('img/head1.webp') }}" class="gallery-link" data-caption="Pelatihan Kepemimpinan">
+                    <img src="{{ asset('img/head1.webp') }}" alt="Pelatihan Kepemimpinan">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
                             <i class="bi bi-arrows-angle-expand"></i>
