@@ -86,13 +86,17 @@ section {
 /* ==========================================================
    3. BUTTON
 ========================================================== */
-.btn-blue {
+.btn-blue{
     background-color: #0e2e72;
     border-color: #0e2e72;
     color: white;
     border-radius: 30px;
     padding: 0.4rem 1rem;
     transition: 0.3s;
+}
+
+.text-blue{
+    color: #0e2e72 !important;
 }
 
 .btn-blue:hover {

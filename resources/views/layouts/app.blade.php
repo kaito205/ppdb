@@ -78,7 +78,6 @@
                             aria-expanded="false">Lainnya</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ Request::is('/') ? '#berita' : url('/#berita') }}">Berita</a></li>
-                            <li><a class="dropdown-item" href="#">Kegiatan</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -126,7 +125,7 @@
                     <textarea class="form-control" id="message" name="message" rows="4"
                         placeholder="Tulis pesan Anda di sini" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-success">Kirim Pesan</button>
+                <button type="submit" class="btn btn-blue">Kirim Pesan</button>
             </form>
             <div class="map-container mt-5" data-aos="zoom-in" data-aos-delay="200">
                 <iframe
