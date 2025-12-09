@@ -8,7 +8,7 @@
         <div class="col-md-4">
             <div class="card border-0 shadow-sm">
                 <div class="card-body text-center">
-                    <img src="{{ asset('img/pp.jpg') }}" class="rounded-circle mb-3" alt="Profile Picture" width="150px" height="150px" style="object-fit: cover;">
+                    <img src="{{ asset('img/user.jpeg') }}" class="rounded-circle mb-3" alt="Profile Picture" width="150px" height="150px" style="object-fit: cover;">
                     <h4>{{ $user->name }}</h4>
                     <p class="text-muted">{{ $user->email }}</p>
                 </div>

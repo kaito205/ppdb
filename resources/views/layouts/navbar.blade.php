@@ -129,7 +129,7 @@
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="me-2 d-none d-lg-inline text-white">Admin</span>
                 <img class="img-profile rounded-circle"
-                    src="{{ asset('img/pp.jpg') }}">
+                    src="{{ asset('img/user.jpeg') }}">
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-end shadow animated--grow-in"

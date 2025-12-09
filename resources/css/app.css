@@ -242,6 +242,7 @@ section {
     overflow: hidden;
 }
 
+
 .bg-blue-statistik::before,
 .bg-blue-statistik::after {
     content: "";

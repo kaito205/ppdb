@@ -25,7 +25,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow pt-3 pb-3">
             <div class="container-fluid">
-                <img src="{{ asset('img/logo.png') }}" class="mb-3" alt="" height="70">
+                <img src="{{ asset('img/logo.webp') }}" class="mb-3" alt="" height="70">
                 <a class="navbar-brand h2 p-lg-2" href="/">SMA ERHA JATINAGARA</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">

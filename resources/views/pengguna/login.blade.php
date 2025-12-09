@@ -136,7 +136,7 @@
         <form action="{{ route('login') }}" method="POST">
             @csrf
             <div class="brand">
-                <img src="{{ asset('img/logo.png') }}" alt="logo">
+                <img src="{{ asset('img/logo.webp') }}" alt="logo">
             </div>
             <h2>Login</h2>
             <div class="form-group">

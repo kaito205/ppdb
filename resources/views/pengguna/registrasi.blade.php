@@ -120,7 +120,7 @@
     <div class="login-container">
 
         <div class="brand">
-            <img src="{{ asset('img/logo.png') }}" alt="logo">
+            <img src="{{ asset('img/logo.webp') }}" alt="logo">
         </div>
         <h2>Daftar Akun</h2>
         @if(session('success'))
