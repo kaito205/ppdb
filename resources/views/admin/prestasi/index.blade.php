@@ -24,7 +24,7 @@
                             <th>No</th>
                             <th>Foto</th>
                             <th>Judul</th>
-                            <th>Deskripsi</th>
+
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -40,7 +40,7 @@
                                 @endif
                             </td>
                             <td>{{ $item->judul }}</td>
-                            <td>{{ Str::limit($item->deskripsi, 100) }}</td>
+
                             <td>
                                 <a href="{{ route('admin.prestasi.edit', $item->id) }}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                                 <a href="{{ route('admin.prestasi.hapus', $item->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus prestasi ini?')"><i class="bi bi-trash"></i></a>
@@ -48,7 +48,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="5" class="text-center">Belum ada data prestasi.</td>
+                            <td colspan="4" class="text-center">Belum ada data prestasi.</td>
                         </tr>
                         @endforelse
                     </tbody>

@@ -1,7 +1,7 @@
 {{-- ====== GALERI SEKOLAH ====== --}}
-<section id="galeri" class="galeri py-5">
+<section id="galeri" class="galeri py-3 py-md-5">
     <div class="container">
-        <div class="text-center mb-5">
+        <div class="text-center mb-3 mb-md-5">
             <h2 class="fw-bold">GALERI <span class="text-success">SEKOLAH</span></h2>
             <hr class="w-25 mx-auto border-success">
             <p class="text-muted">Momen-momen kegiatan di {{ $profil->nama_sekolah ?? 'SMA ERHA JATINAGARA' }}</p>

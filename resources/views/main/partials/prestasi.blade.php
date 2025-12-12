@@ -38,6 +38,7 @@
                             {{ $item->judul }}
                         </h5>
                         
+                        
                         @if($item->pemenang)
                         <div class="mt-2 pt-2 border-top prestasi-winner">
                             <small class="text-blue fw-bold d-block text-uppercase" style="font-size: 0.7rem;">Diraih oleh</small>

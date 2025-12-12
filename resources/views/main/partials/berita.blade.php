@@ -1,10 +1,10 @@
-<section id="berita" class="berita-section py-5">
+<section id="berita" class="berita-section py-3 py-md-5">
     <div class="container">
 
         <h1 class="text-center fw-bold mb-3">
             Artikel & <span class="text-success">Berita</span>
         </h1>
-        <p class="text-center mb-4 text-muted">
+        <p class="text-center mb-3 mb-md-4 text-muted">
             Informasi terbaru seputar kegiatan, prestasi, dan pengumuman sekolah.
         </p>
 

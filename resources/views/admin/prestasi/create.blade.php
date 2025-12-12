@@ -27,13 +27,6 @@
                     @enderror
                 </div>
 
-                <div class="mb-3">
-                    <label for="deskripsi" class="form-label">Deskripsi</label>
-                    <textarea class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi" name="deskripsi" rows="5" required>{{ old('deskripsi') }}</textarea>
-                    @error('deskripsi')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
 
                 <div class="mb-3">
                     <label for="foto" class="form-label">Foto Dokumentasi</label>

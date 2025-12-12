@@ -1,13 +1,13 @@
-<section id="ppdb" class="py-5 bg-light">
+<section id="ppdb" class="py-3 py-md-5 bg-light">
     <div class="container">
 
-        <div class="text-center mb-5">
+        <div class="text-center mb-3 mb-md-5">
             <h2 class="fw-bold">Informasi PPDB</h2>
             <p class="text-muted">Penerimaan Peserta Didik Baru Tahun 2025/2026</p>
             <div style="width:80px;height:4px;background:#198754;margin:0 auto;border-radius:10px;"></div>
         </div>
 
-        <div class="row g-4">
+        <div class="row g-3 g-md-4">
 
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="p-4 bg-white shadow rounded-4 h-100 card-hover">
