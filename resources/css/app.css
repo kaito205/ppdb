@@ -1229,8 +1229,29 @@ footer img {
     footer {
         text-align: center;
     }
+    /* Fix Footer Logo too big */
+    footer img {
+        height: 50px !important; /* Force smaller size on mobile */
+        width: auto;
+    }
     footer .icon-mds a {
         margin-right: 10px;
+    }
+
+    /* =========================
+       FIX NAVBAR "TURUN KE BAWAH"
+    ========================== */
+    .navbar > .container-fluid {
+        flex-wrap: nowrap !important; /* Prevent Hamburger from taking new line */
+    }
+
+    /* Shrink Brand elements on very small screens to fit */
+    .navbar-brand img {
+        width: 45px; /* Reduced from 60px default mobile */
+    }
+    .navbar-brand span {
+        font-size: 0.9rem; /* Slightly smaller text */
+        white-space: nowrap; /* Prevent text wrapping awkwardly */
     }
 
     /* =========================
