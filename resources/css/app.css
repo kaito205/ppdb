@@ -128,8 +128,13 @@ img {
 }
 
 .navbar-brand img {
-    width: 80px;
+    width: 50px; /* Reduced from 80px */
     height: auto;
+}
+
+.footer-logo {
+    height: 50px;
+    width: auto;
 }
 
 .navbar-nav .nav-link {

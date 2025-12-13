@@ -146,7 +146,7 @@
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-md-5 mb-4">
-                    <img src="{{ asset('img/logo.webp') }}" alt="Logo SMA ERHA" height="80" class="mb-3">
+                    <img src="{{ asset('img/logo.webp') }}" alt="Logo SMA ERHA" height="50" class="mb-3 footer-logo">
                     <h5>SMA ERHA JATINAGARA</h5>
                     <ul>
                         <li><i class="bi bi-geo-alt-fill me-2"></i> Kec. Jatinagara, Kab. Ciamis, Jawa Barat</li>
