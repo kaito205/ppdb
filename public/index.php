@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
-set_time_limit(60); // Increase timeout to 60 seconds
+set_time_limit(300); // Increase timeout to 300 seconds (5 minutes)
 
 /*
 |--------------------------------------------------------------------------

@@ -165,7 +165,7 @@
             </div>
 
             <div class="text-center ">
-                <small>&copy; 2025 SMA ERHA JATINAGARA. software development by Eight.</small>
+                <small>&copy; 2025 SMA ERHA JATINAGARA. development by Eight.</small>
             </div>
         </div>
     </footer>
