@@ -32,13 +32,9 @@
                 <span>SMA ERHA JATINAGARA</span>
             </a>
 
-            <button class="navbar-toggler custom-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <div class="hamburger-icon">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+                <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -146,7 +142,7 @@
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-md-5 mb-4">
-                    <img src="{{ asset('img/logo.webp') }}" alt="Logo SMA ERHA" height="50" class="mb-3 footer-logo">
+                    <img src="{{ asset('img/logo.webp') }}" alt="Logo SMA ERHA" height="80" class="mb-3">
                     <h5>SMA ERHA JATINAGARA</h5>
                     <ul>
                         <li><i class="bi bi-geo-alt-fill me-2"></i> Kec. Jatinagara, Kab. Ciamis, Jawa Barat</li>

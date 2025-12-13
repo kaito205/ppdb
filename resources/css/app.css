@@ -14,76 +14,6 @@ section {
     margin-bottom: 80px;
 }
 
-/* ============================
-   Hamburger Animation
-============================ */
-.navbar-toggler:focus {
-    box-shadow: none;
-    outline: none;
-}
-
-.hamburger-icon {
-    width: 35px; /* Increased from 30px */
-    height: 24px; /* Increased from 20px */
-    position: relative;
-    transform: rotate(0deg);
-    transition: .5s ease-in-out;
-    cursor: pointer;
-}
-
-.hamburger-icon span {
-    display: block;
-    position: absolute;
-    height: 4px; /* Thicker bars (3px -> 4px) */
-    width: 100%;
-    background: #0e2e72; 
-    border-radius: 9px;
-    opacity: 1;
-    left: 0;
-    transform: rotate(0deg);
-    transition: .25s ease-in-out;
-}
-
-.hamburger-icon span:nth-child(1) { top: 0px; }
-.hamburger-icon span:nth-child(2) { top: 10px; } /* Adjusted spacing */
-.hamburger-icon span:nth-child(3) { top: 20px; }
-
-/* Animate to X */
-.navbar-toggler[aria-expanded="true"] .hamburger-icon span:nth-child(1) {
-    top: 10px;
-    transform: rotate(135deg);
-}
-
-.navbar-toggler[aria-expanded="true"] .hamburger-icon span:nth-child(2) {
-    opacity: 0;
-    left: -60px;
-}
-
-.navbar-toggler[aria-expanded="true"] .hamburger-icon span:nth-child(3) {
-    top: 10px;
-    transform: rotate(-135deg);
-}
-
-/* Navbar Collapse Smooth Transition */
-.navbar-collapse {
-    transition: height 0.35s ease; /* Standard Bootstrap transition helper, enforcing it */
-}
-
-/* Fix for "Lonjong" (Stretched) Images on Mobile */
-img {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover; 
-}
-
-/* Ensure carousel images specifically don't stretch */
-.hero-img {
-    width: 100%;
-    height: 100vh;
-    object-fit: cover !important;
-    object-position: center;
-}
-
 /* Tighten spacing on mobile */
 @media (max-width: 768px) {
     section {
@@ -98,12 +28,8 @@ img {
         padding-bottom: 20px !important;
         margin-bottom: 20px !important;
     }
-
-    /* Fix Ekskul Images "Too Long" on Mobile */
-    .ekskul-card {
-        height: 160px; /* Reduced from 220px to prevent "long" look on 2-col */
-    }
 }
+
 /* ==========================================================
    2. NAVBAR
 ========================================================== */
@@ -128,13 +54,8 @@ img {
 }
 
 .navbar-brand img {
-    width: 50px; /* Reduced from 80px */
+    width: 80px;
     height: auto;
-}
-
-.footer-logo {
-    height: 50px;
-    width: auto;
 }
 
 .navbar-nav .nav-link {
@@ -236,15 +157,11 @@ img {
 /* Untuk layar kecil tetap responsif */
 @media (max-width: 768px) {
     #hero {
-        height: 60vh; 
-        min-height: 400px; /* Prevent being too short */
+        height: 60vh; /* Reduced height on mobile */
     }
 
     .hero-img {
-        height: 60vh; /* Match container */
-        min-height: 400px;
-        object-fit: cover !important; /* Force cover to prevent stretching */
-        object-position: center top; /* Center top usually better for faces/buildings */
+        height: 60vh; /* Match hero container height */
     }
 
     .hero-content {
@@ -1234,29 +1151,8 @@ footer img {
     footer {
         text-align: center;
     }
-    /* Fix Footer Logo too big */
-    footer img {
-        height: 50px !important; /* Force smaller size on mobile */
-        width: auto;
-    }
     footer .icon-mds a {
         margin-right: 10px;
-    }
-
-    /* =========================
-       FIX NAVBAR "TURUN KE BAWAH"
-    ========================== */
-    .navbar > .container-fluid {
-        flex-wrap: nowrap !important; /* Prevent Hamburger from taking new line */
-    }
-
-    /* Shrink Brand elements on very small screens to fit */
-    .navbar-brand img {
-        width: 45px; /* Reduced from 60px default mobile */
-    }
-    .navbar-brand span {
-        font-size: 0.9rem; /* Slightly smaller text */
-        white-space: nowrap; /* Prevent text wrapping awkwardly */
     }
 
     /* =========================
