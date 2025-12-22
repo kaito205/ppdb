@@ -8,45 +8,47 @@
         }
     }
 </style>
-<section id="prestasi" class="py-3 py-md-5 bg-light">
+<section id="prestasi" class="py-5 bg-light">
     <div class="container">
 
         <!-- Judul -->
-        <div class="text-center mb-3 mb-md-5">
-            <h2 class="fw-bold text-uppercase fs-4 fs-md-2">
-                Prestasi Siswa & <span class="text-success">Sekolah</span>
-            </h2>
-            <p class="text-muted small">
-                Beberapa pencapaian membanggakan dari siswa dan guru {{ $profil->nama_sekolah ?? 'SMA ERHA Jatinagara' }}
-            </p>
-            <div class="mx-auto" style="width:80px;height:4px;background:#dc3545;border-radius:10px;"></div>
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="fw-bold display-5">Prestasi <span class="text-success">Siswa</span></h2>
+            <p class="text-muted">Kebanggaan kami atas dedikasi dan kerja keras para siswa di berbagai bidang.</p>
+            <div class="mx-auto" style="width: 80px; height: 4px; background: #28a745; border-radius: 10px;"></div>
         </div>
 
         <div class="prestasi-scroll">
 
             @foreach ($prestasi as $item)
-            <div class="prestasi-item" data-aos="zoom-in" data-aos-delay="100">
-                <div class="card border-0 shadow-sm prestasi-card h-100 card-hover">
-
-                    <div class="overflow-hidden rounded-top">
-                        <img src="{{ asset('uploads/prestasi/' . $item->foto) }}" alt="{{ $item->judul }}" class="img-fluid prestasi-img"
-                            style="width: 100%; object-fit:cover; transition:.4s;">
+            <div class="prestasi-item" data-aos="zoom-in" data-aos-delay="{{ $loop->iteration * 100 }}">
+                <div class="card border-0 shadow-sm prestasi-card h-100 rounded-4 overflow-hidden">
+                    
+                    <div class="position-relative">
+                        <img src="{{ asset('uploads/prestasi/' . $item->foto) }}" alt="{{ $item->judul }}" class="img-fluid"
+                            style="width: 100%; height: 200px; object-fit: cover;">
+                        <div class="position-absolute top-0 end-0 m-3">
+                            <span class="badge bg-warning text-dark px-3 py-2 rounded-pill shadow-sm">
+                                <i class="bi bi-trophy-fill me-1"></i> JUARA
+                            </span>
+                        </div>
                     </div>
 
-                    <div class="card-body text-center p-2 p-md-3">
-                        <h5 class="fw-bold text-dark fs-6 fs-md-5">
-                            {{ $item->judul }}
-                        </h5>
-                        
+                    <div class="card-body p-4 d-flex flex-column">
+                        <h5 class="fw-bold text-blue mb-3">{{ $item->judul }}</h5>
                         
                         @if($item->pemenang)
-                        <div class="mt-2 pt-2 border-top prestasi-winner">
-                            <small class="text-blue fw-bold d-block text-uppercase" style="font-size: 0.7rem;">Diraih oleh</small>
-                            <span class="fw-medium text-dark" style="font-size: 0.85rem;">{{ $item->pemenang }}</span>
+                        <div class="mt-auto pt-3 border-top">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-sm bg-blue bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                    <i class="bi bi-person text-blue"></i>
+                                </div>
+                                <div>
+                                    <small class="text-muted d-block">Pemenang:</small>
+                                    <span class="fw-bold text-dark small text-uppercase">{{ $item->pemenang }}</span>
+                                </div>
+                            </div>
                         </div>
-                        @else
-                        <!-- Spacer to keep alignment if needed, or flex-grow handles it -->
-                        <div class="mt-auto"></div>
                         @endif
                     </div>
 
@@ -56,5 +58,19 @@
 
         </div>
 
+        <div class="text-center mt-5">
+            <a href="{{ route('prestasi') }}" class="btn btn-blue rounded-pill px-4">Lihat Semua Prestasi</a>
+        </div>
+
     </div>
 </section>
+
+<style>
+    .prestasi-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .prestasi-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    }
+</style>

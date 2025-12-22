@@ -48,7 +48,74 @@
             </div>
         </div>
 
-        
+        <!-- Teachers & Staff Section -->
+        <div class="mt-5 pt-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold text-blue h1">Tenaga <span class="text-success">Pendidik & Kependidikan</span></h2>
+                <div class="mx-auto mt-2" style="width: 60px; height: 3px; background-color: #0e2e72; border-radius: 10px;"></div>
+                <p class="text-muted mt-3">Dibimbing oleh tenaga pengajar profesional dan berdedikasi tinggi.</p>
+            </div>
+
+            <div class="row g-4">
+                @php
+                    $staff = [
+                        [
+                            'nama' => 'H. Ahmad Syarifuddin, M.Pd.',
+                            'jabatan' => 'Kepala Sekolah',
+                            'spesialis' => 'Manajemen Kurikulum',
+                            'foto' => 'user.jpeg'
+                        ],
+                        [
+                            'nama' => 'Dra. Siti Hajar',
+                            'jabatan' => 'Guru Kimia',
+                            'spesialis' => 'Wakasek Kurikulum',
+                            'foto' => 'user.jpeg'
+                        ],
+                        [
+                            'nama' => 'Budi Santoso, S.Kom',
+                            'jabatan' => 'Guru Informatika',
+                            'spesialis' => 'IT & Digital Literacy',
+                            'foto' => 'user.jpeg'
+                        ],
+                        [
+                            'nama' => 'Ust. Fauzan Azhari, Lc.',
+                            'jabatan' => 'Guru Bahasa Arab',
+                            'spesialis' => 'Tahfidz Al-Qur\'an',
+                            'foto' => 'user.jpeg'
+                        ],
+                        [
+                            'nama' => 'Rina Amalia, S.Pd.',
+                            'jabatan' => 'Guru Bahasa Inggris',
+                            'spesialis' => 'Linguistics & Debate',
+                            'foto' => 'user.jpeg'
+                        ],
+                        [
+                            'nama' => 'Anwar Ibrahim, M.Si.',
+                            'jabatan' => 'Guru Matematika',
+                            'spesialis' => 'Olimpiade Sains',
+                            'foto' => 'user.jpeg'
+                        ]
+                    ];
+                @endphp
+
+                @foreach($staff as $s)
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 50 }}">
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 staff-card">
+                        <div class="d-flex align-items-center p-4">
+                            <div class="staff-img-box me-3">
+                                <img src="{{ asset('img/' . $s['foto']) }}" class="rounded-circle shadow-sm" alt="{{ $s['nama'] }}">
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-1 text-blue">{{ $s['nama'] }}</h6>
+                                <p class="text-success small fw-bold mb-1">{{ $s['jabatan'] }}</p>
+                                <span class="badge bg-light text-muted border fw-normal" style="font-size: 0.75rem;">{{ $s['spesialis'] }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
     </div>
 </section>
 
@@ -57,5 +124,21 @@
     .bg-blue { background-color: #0e2e72; }
     .bg-blue-light { background-color: rgba(14, 46, 114, 0.1); }
     .bg-success-light { background-color: rgba(25, 135, 84, 0.1); }
+
+    .staff-card {
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0,0,0,0.02) !important;
+    }
+    .staff-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(14, 46, 114, 0.1) !important;
+        border-color: rgba(14, 46, 114, 0.1) !important;
+    }
+    .staff-img-box img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        border: 3px solid #f8f9fa;
+    }
 </style>
 @endsection

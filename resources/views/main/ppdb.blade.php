@@ -21,13 +21,13 @@
                         <div class="floating-card card-1 shadow-sm">
                             <div class="d-flex align-items-center gap-3">
                                 <div class="icon-circle bg-success text-white"><i class="bi bi-person-check"></i></div>
-                                <div><h6 class="mb-0 fw-bold">100+</h6><small class="text-muted">Pendaftar Baru</small></div>
+                                <div><h6 class="mb-0 fw-bold">500+</h6><small class="text-muted">Pendaftar Baru</small></div>
                             </div>
                         </div>
                         <div class="floating-card card-2 shadow-sm">
                             <div class="d-flex align-items-center gap-3">
                                 <div class="icon-circle bg-blue text-white"><i class="bi bi-award"></i></div>
-                                <div><h6 class="mb-0 fw-bold">Akreditasi A</h6><small class="text-muted">Sekolah Terbaik</small></div>
+                                <div><h6 class="mb-0 fw-bold">Akreditasi B</h6><small class="text-muted">Sekolah Terbaik</small></div>
                             </div>
                         </div>
                     </div>
@@ -107,25 +107,37 @@
                     </ul>
                 </div>
                 <div class="col-lg-7" data-aos="fade-left">
-                    <div class="row g-3">
-                        <div class="col-6">
-                            <div class="feature-box p-4 rounded-4 shadow-sm bg-white mb-3">
-                                <i class="bi bi-wifi fs-2 text-blue mb-2 d-block"></i>
-                                <h6 class="fw-bold">High Speed WiFi</h6>
-                            </div>
-                            <div class="feature-box p-4 rounded-4 shadow-sm bg-white">
-                                <i class="bi bi-cup-hot fs-2 text-warning mb-2 d-block"></i>
-                                <h6 class="fw-bold">Modern Library</h6>
+                    <div class="row g-4">
+                        <!-- Card 1: Tahfidz -->
+                        <div class="col-sm-6">
+                            <div class="feature-box p-4 rounded-4 shadow-sm bg-white mb-4 h-100">
+                                <div class="icon-circle bg-blue-light mb-3"><i class="bi bi-book-half fs-3 text-blue"></i></div>
+                                <h6 class="fw-bold mb-0">Tahfidz Al-Qur'an</h6>
+                                <p class="small text-muted mt-2 mb-0">Program intensif menghafal Al-Qur'an dengan metode efektif.</p>
                             </div>
                         </div>
-                        <div class="col-6 mt-4">
-                            <div class="feature-box p-4 rounded-4 shadow-sm bg-white mb-3">
-                                <i class="bi bi-shield-check fs-2 text-success mb-2 d-block"></i>
-                                <h6 class="fw-bold">Aman & Nyaman</h6>
+                        <!-- Card 2: Bahasa Asing -->
+                        <div class="col-sm-6 feature-stack-offset">
+                            <div class="feature-box p-4 rounded-4 shadow-sm bg-white mb-4 h-100">
+                                <div class="icon-circle bg-success-light mb-3"><i class="bi bi-translate fs-3 text-success"></i></div>
+                                <h6 class="fw-bold mb-0">Bahasa Asing</h6>
+                                <p class="small text-muted mt-2 mb-0">Penerapan Bahasa Arab & Inggris dalam harian.</p>
                             </div>
-                            <div class="feature-box p-4 rounded-4 shadow-sm bg-white text-white bg-blue">
-                                <i class="bi bi-briefcase fs-2 mb-2 d-block"></i>
-                                <h6 class="fw-bold">Persiapan Karir</h6>
+                        </div>
+                        <!-- Card 3: Kitab Kuning -->
+                        <div class="col-sm-6">
+                            <div class="feature-box p-4 rounded-4 shadow-sm bg-white mb-4 h-100">
+                                <div class="icon-circle bg-warning-light mb-3"><i class="bi bi-journal-bookmark-fill fs-3 text-warning"></i></div>
+                                <h6 class="fw-bold mb-0">Kitab Kuning</h6>
+                                <p class="small text-muted mt-2 mb-0">Melestarikan tradisi keilmuan Islam klasik.</p>
+                            </div>
+                        </div>
+                        <!-- Card 4: Asrama -->
+                        <div class="col-sm-6 feature-stack-offset">
+                            <div class="feature-box p-4 rounded-4 shadow-sm bg-white mb-4 h-100">
+                                <div class="icon-circle bg-blue-light mb-3"><i class="bi bi-houses-fill fs-3 text-blue"></i></div>
+                                <h6 class="fw-bold mb-0">Asrama Kondusif</h6>
+                                <p class="small text-muted mt-2 mb-0">Fasilitas bersih & diawasi musyrif/ah.</p>
                             </div>
                         </div>
                     </div>
@@ -203,8 +215,8 @@
                                 </button>
                             </h2>
                             <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body opacity-75">
-                                    Biaya pendaftaran untuk tahun ajaran 2025/2026 adalah GRATIS untuk formulir online, namun ada biaya administrasi tes seleksi sebesar Rp 150.000.
+                                <div class="accordion-body text-white">
+                                    Pendaftaran online melalui website adalah GRATIS. Orang tua/wali hanya perlu membayar Infaq Pendaftaran sebesar Rp 250.000 saat proses verifikasi berkas dan wawancara.
                                 </div>
                             </div>
                         </div>
@@ -215,7 +227,7 @@
                                 </button>
                             </h2>
                             <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body opacity-75">
+                                <div class="accordion-body text-white">
                                     Berkas utama: Fotokopi Ijazah/SKL, Akta Kelahiran, Kartu Keluarga, dan Pas Foto terbaru. Semua diunggah dalam format PDF/JPG.
                                 </div>
                             </div>
@@ -227,8 +239,8 @@
                                 </button>
                             </h2>
                             <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body opacity-75">
-                                    Ya, kami memiliki program beasiswa Prestasi Akademik, Non-Akademik (Olahraga/Seni), dan Beasiswa Tahfidz Al-Quran minimal 5 Juz.
+                                <div class="accordion-body text-white">
+                                    Ya, kami memiliki program beasiswa Prestasi Akademik, Tahfidz Al-Quran (Minimal 5 Juz), dan bantuan khusus bagi anak yatim.
                                 </div>
                             </div>
                         </div>
@@ -318,12 +330,30 @@
         z-index: 0;
     }
     
+    /* Fitur Unggulan - Improved Visibility */
     .feature-box {
-        transition: transform 0.3s ease;
-        border: 1px solid #eee;
+        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        border: 1px solid rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
-    .feature-box:hover { transform: translateY(-5px); }
+    .feature-box:hover { 
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.08) !important;
+    }
     .bg-blue { background-color: #0e2e72; }
+    
+    .feature-stack-offset {
+        margin-top: 40px;
+    }
+
+    @media (max-width: 576px) {
+        .feature-stack-offset {
+            margin-top: 0;
+        }
+    }
     
     /* Accordion Custom */
     .custom-accordion .accordion-button:not(.collapsed) {

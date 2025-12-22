@@ -28,6 +28,8 @@ Route::get('/ekskul', [MainController::class, 'ekskul'])->name('ekskul');
 Route::get('/prestasi', [MainController::class, 'prestasi'])->name('prestasi');
 Route::get('/galeri', [MainController::class, 'galeri'])->name('galeri');
 Route::get('/informasi-ppdb', [MainController::class, 'ppdb'])->name('ppdb.info');
+Route::get('/fasilitas', [MainController::class, 'fasilitas'])->name('fasilitas');
+
 
 
 

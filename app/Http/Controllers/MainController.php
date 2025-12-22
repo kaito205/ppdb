@@ -81,6 +81,11 @@ class MainController extends Controller
         return view('main.ppdb', compact('profil'));
     }
 
+    public function fasilitas()
+    {
+        $profil = ProfilSekolah::first() ?? new ProfilSekolah();
+        return view('main.fasilitas', compact('profil'));
+    }
 }
 
 

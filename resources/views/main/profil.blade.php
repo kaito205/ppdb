@@ -20,7 +20,7 @@
                 <div class="row g-4">
                     <!-- Deskripsi & Sejarah -->
                     <div class="col-lg-8">
-                        <div class="card border-0 shadow-sm rounded-4 mb-4">
+                        <div class="card border-0 shadow-sm rounded-4 mb-4" id="tentang">
                             <div class="card-body p-4 p-lg-5">
                                 <h2 class="fw-bold mb-4 text-blue">Tentang Sekolah</h2>
                                 <div class="text-muted" style="line-height: 1.8; text-align: justify;">
@@ -87,7 +87,7 @@
                         </div>
 
                         <!-- Visi & Misi -->
-                        <div class="card border-0 shadow-sm rounded-4">
+                        <div class="card border-0 shadow-sm rounded-4 mb-4" id="visimisi">
                             <div class="card-body p-4 p-lg-5">
                                 <h2 class="fw-bold mb-4 text-success">Visi & Misi</h2>
                                 
@@ -107,6 +107,9 @@
                                 </ul>
                             </div>
                         </div>
+
+                        <!-- Fasilitas (Anchor Target) -->
+                        <div id="fasilitas"></div>
                     </div>
 
                     <!-- Sidebar info -->

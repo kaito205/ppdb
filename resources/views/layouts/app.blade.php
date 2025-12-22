@@ -22,7 +22,8 @@
 
 </head>
 
-<body>
+<body class="{{ Request::is('/') ? 'is-home' : '' }}">
+
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -42,39 +43,69 @@
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('profil') ? 'active' : '' }}" href="{{ route('profil') }}">Profile</a>
+                    
+                    <!-- Profil Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ request()->is('profil') ? 'active' : '' }}" href="#" id="navbarProfil" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Profil
+                        </a>
+                        <ul class="dropdown-menu border-0 shadow-sm rounded-3" aria-labelledby="navbarProfil">
+                            <li><a class="dropdown-item" href="{{ route('profil') }}#tentang">Tentang Sekolah</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profil') }}#visimisi">Visi Misi</a></li>
+                            <li><a class="dropdown-item" href="{{ route('fasilitas') }}">Fasilitas</a></li>
+                        </ul>
                     </li>
 
+                    <!-- Akademik Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ request()->is('akademik') ? 'active' : '' }}" href="#" id="navbarAkademik" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Akademik
+                        </a>
+                        <ul class="dropdown-menu border-0 shadow-sm rounded-3" aria-labelledby="navbarAkademik">
+                            <li><a class="dropdown-item" href="{{ route('akademik') }}">Kurikulum</a></li>
+                            <li><a class="dropdown-item" href="{{ route('akademik') }}">Guru & Staf</a></li>
+                        </ul>
+                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('akademik') ? 'active' : '' }}" href="{{ route('akademik') }}">Akademik</a>
+                    <!-- Kesiswaan Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ request()->is('ekskul') || request()->is('prestasi') ? 'active' : '' }}" href="#" id="navbarKesiswaan" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Kesiswaan
+                        </a>
+                        <ul class="dropdown-menu border-0 shadow-sm rounded-3" aria-labelledby="navbarKesiswaan">
+                            <li><a class="dropdown-item" href="{{ route('ekskul') }}">Ekstrakurikuler</a></li>
+                            <li><a class="dropdown-item" href="{{ route('prestasi') }}">Prestasi</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('ekskul') ? 'active' : '' }}" href="{{ route('ekskul') }}">Ekskul</a>
+
+                    <!-- PPDB Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ request()->is('informasi-ppdb') ? 'active' : '' }}" href="#" id="navbarPPDB" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            PPDB
+                        </a>
+                        <ul class="dropdown-menu border-0 shadow-sm rounded-3" aria-labelledby="navbarPPDB">
+                            <li><a class="dropdown-item" href="{{ route('ppdb.info') }}#alur">Alur Pendaftaran</a></li>
+                            <li><a class="dropdown-item" href="{{ route('ppdb.info') }}#biaya">Biaya</a></li>
+                            <li><a class="dropdown-item" href="{{ route('ppdb.info') }}#jadwal">Jadwal</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('prestasi') ? 'active' : '' }}" href="{{ route('prestasi') }}">Prestasi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('informasi-ppdb') ? 'active' : '' }}" href="{{ route('ppdb.info') }}">PPDB</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('galeri') ? 'active' : '' }}" href="{{ route('galeri') }}">Galeri</a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('berita*') ? 'active' : '' }}" href="{{ route('berita.list') }}">Berita</a>
                     </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('galeri') ? 'active' : '' }}" href="{{ route('galeri') }}">Galeri</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ Request::is('/') ? '#kontak' : url('/#kontak') }}">Kontak</a>
                     </li>
 
                     <li class="nav-item ms-lg-3">
-                        <a class="btn btn-blue" href="{{ route('register') }}">Daftar Sekarang</a>
+                        <a class="btn btn-blue px-4 shadow-sm" href="{{ route('register') }}">Daftar Sekarang</a>
                     </li>
                 </ul>
-
-
             </div>
         </div>
     </nav>
@@ -243,7 +274,18 @@
             duration: 800,
             offset: 100,
         });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
     </script>
+
 
 
 
