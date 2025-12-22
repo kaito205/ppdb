@@ -192,7 +192,7 @@
 
     <style>
         .footer {
-            background-color: #1a1a1a;
+            background-color: #3C3D37;
             color: #b0b0b0;
         }
         .text-accent { color: #ffd700 !important; }

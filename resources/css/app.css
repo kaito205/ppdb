@@ -9,7 +9,7 @@
     --text-muted: #6c757d;
     --glass-bg: rgba(255, 255, 255, 0.1);
     --glass-border: rgba(255, 255, 255, 0.2);
-    --footer-bg: #1a1a1a;
+    --footer-bg: #3C3D37;
 }
 
 html {
@@ -1097,7 +1097,7 @@ section {
    14. FOOTER
 ========================================================== */
 footer {
-    background-color: #464444;
+    background-color: var(--footer-bg);
     color: white;
 }
 
