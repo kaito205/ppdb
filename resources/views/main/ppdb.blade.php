@@ -8,7 +8,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6" data-aos="fade-right">
                     <span class="badge bg-soft-success text-success px-3 py-2 rounded-pill mb-3">PPDB 2025/2026 Telah Dibuka</span>
-                    <h1 class="display-4 fw-bold mb-4 text-blue">Membangun Generasi <br><span class="text-gradient">Digital & Berkarakter</span></h1>
+                    <h1 class="display-4 fw-bold mb-4 text-blue">Membangun Generasi <br><span class="text-gradient">Berakhlak & Berkarakter</span></h1>
                     <p class="lead text-muted mb-5">Bergabunglah bersama SMA ERHA Jatinagara. Tempat di mana potensi Anda diasah dengan fasilitas modern dan bimbingan pengajar berpengalaman.</p>
                     <div class="d-flex gap-3">
                         <a href="{{ route('register') }}" class="btn btn-blue btn-lg px-4 rounded-pill shadow-blue">Daftar Sekarang <i class="bi bi-arrow-right ms-2"></i></a>

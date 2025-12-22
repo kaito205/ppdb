@@ -3,15 +3,15 @@
 
         <div class="carousel-inner">
 
-            <!-- Slide 1 -->
+            <!-- Slide 1: Welcome -->
             <div class="carousel-item active">
                 <img src="{{ asset('img/hero2.webp') }}" class="d-block w-100 hero-img">
                 <div class="hero-overlay"></div>
                 <div class="carousel-caption">
                     <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
                         <span class="badge bg-warning text-dark mb-3 px-3 py-2 rounded-pill fw-bold animate__animated animate__fadeInDown">PENERIMAAN SISWA BARU DIBUKA</span>
-                        <h1 class="hero-title display-3 fw-bold">Mempersiapkan Pemimpin <br>Masa Depan dengan <span class="text-warning">Ahklak & Karakter</span></h1>
-                        <p class="hero-subtitle fs-5 mx-auto opacity-75" style="max-width: 700px;">Membentuk generasi cerdas, inovatif, dan berakhlak mulia untuk menghadapi tantangan global.</p>
+                        <h1 class="hero-title display-3 fw-bold">Mempersiapkan Pemimpin <br>Masa Depan Berakhlak Mulia</h1>
+                        <p class="hero-subtitle fs-5 mx-auto opacity-75" style="max-width: 700px;">Membentuk generasi cerdas, inovatif, dan berkarakter islami untuk menghadapi tantangan peradaban global.</p>
                         <div class="mt-4">
                             <a href="{{ route('register') }}" class="btn btn-warning btn-lg px-5 py-3 rounded-pill fw-bold shadow-lg me-3 transition-all">Daftar Sekarang</a>
                             <a href="{{ route('profil') }}" class="btn btn-outline-light btn-lg px-5 py-3 rounded-pill fw-bold transition-all">Pelajari Lebih Lanjut</a>
@@ -19,17 +19,61 @@
                     </div>
                 </div>
             </div>
-            <!-- Slide 2 -->
+
+            <!-- Slide 2: Pesantren Modern -->
             <div class="carousel-item">
                 <img src="{{ asset('img/hero1.webp') }}" class="d-block w-100 hero-img">
                 <div class="hero-overlay"></div>
                 <div class="carousel-caption">
                     <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
+                        <span class="badge bg-success text-white mb-3 px-3 py-2 rounded-pill fw-bold">BOARDING SCHOOL</span>
                         <h1 class="hero-title display-3 fw-bold">Pendidikan Berbasis <br><span class="text-success">Pesantren Modern</span></h1>
-                        <p class="hero-subtitle fs-5 mx-auto opacity-75" style="max-width: 700px;">Kombinasi sempurna antara kurikulum nasional dan nilai-nilai keislaman dalam lingkungan boarding school yang nyaman.</p>
+                        <p class="hero-subtitle fs-5 mx-auto opacity-75" style="max-width: 700px;">Kombinasi sempurna antara kurikulum nasional dan nilai-nilai keislaman dalam lingkungan asrama yang kondusif.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Fasilitas -->
+            <div class="carousel-item">
+                <img src="{{ asset('img/head1.webp') }}" class="d-block w-100 hero-img">
+                <div class="hero-overlay" style="background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));"></div>
+                <div class="carousel-caption">
+                    <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
+                        <span class="badge bg-blue text-white mb-3 px-3 py-2 rounded-pill fw-bold">FASILITAS UNGGULAN</span>
+                        <h1 class="hero-title display-3 fw-bold">Sarana Belajar <br><span class="text-info">Lengkap & Modern</span></h1>
+                        <p class="hero-subtitle fs-5 mx-auto opacity-75" style="max-width: 700px;">Gedung representatif, laboratorium canggih, dan fasilitas olahraga untuk menunjang kreativitas tanpa batas.</p>
                         <div class="mt-4">
-                            <a href="#ekskul" class="btn btn-success btn-lg px-5 py-3 rounded-pill fw-bold shadow-lg transition-all">Eksplorasi Program</a>
+                            <a href="{{ route('fasilitas') }}" class="btn btn-info text-white btn-lg px-5 py-3 rounded-pill fw-bold shadow-lg transition-all">Lihat Fasilitas</a>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Ekstrakurikuler -->
+            <div class="carousel-item">
+                <img src="{{ asset('img/head2.webp') }}" class="d-block w-100 hero-img">
+                <div class="hero-overlay"></div>
+                <div class="carousel-caption">
+                    <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
+                        <span class="badge bg-danger text-white mb-3 px-3 py-2 rounded-pill fw-bold">EKSTRAKURIKULER</span>
+                        <h1 class="hero-title display-3 fw-bold">Wadah Kreativitas <br><span class="text-danger">& Bakat Siswa</span></h1>
+                        <p class="hero-subtitle fs-5 mx-auto opacity-75" style="max-width: 700px;">Temukan dan asah potensi dirimu melalui berbagai kegiatan pengembangan diri yang variatif dan berprestasi.</p>
+                        <div class="mt-4">
+                            <a href="{{ route('ekskul') }}" class="btn btn-danger btn-lg px-5 py-3 rounded-pill fw-bold shadow-lg transition-all">Eksplorasi Program</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Prestasi -->
+            <div class="carousel-item">
+                <img src="{{ asset('img/head3.webp') }}" class="d-block w-100 hero-img">
+                <div class="hero-overlay"></div>
+                <div class="carousel-caption">
+                    <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
+                        <span class="badge bg-primary text-white mb-3 px-3 py-2 rounded-pill fw-bold">PRESTASI GEMILANG</span>
+                        <h1 class="hero-title display-3 fw-bold">Mencetak Generasi <br><span class="text-primary">Juara & Kompetitif</span></h1>
+                        <p class="hero-subtitle fs-5 mx-auto opacity-75" style="max-width: 700px;">Bangga menjadi saksi lahirnya juara-juara baru di berbagai bidang akademik maupun olahraga.</p>
                     </div>
                 </div>
             </div>

@@ -4,9 +4,6 @@
 
     @include('main.partials.hero')
 
-    <!-- Profile Summary Section -->
-    @include('main.partials.profil')
-
     <!-- Quick Info Items -->
     @include('main.partials.fasilitas')
     
