@@ -22,7 +22,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.profil') }}">
             <i class="fas fa-fw fa-school"></i>
-            <span>Profil Sekolah</span>
+            <span>Kelola Profil Sekolah</span>
         </a>
     </li>
 

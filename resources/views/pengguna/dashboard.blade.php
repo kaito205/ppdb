@@ -73,15 +73,15 @@
                 <i class="bi bi-megaphone-fill"></i> Pengumuman
             </div>
             <div class="card-body">
-                @if($data && $data->status_seleksi === 'Diterima')
-                <h5 class="text-success"><i class="bi bi-award-fill me-1"></i> Selamat! Kamu dinyatakan <strong>Diterima</strong>.</h5>
-                <p>Silakan lanjutkan proses daftar ulang.</p>
+                @if($data && $data->status_seleksi === 'Lulus')
+                <h5 class="text-success"><i class="bi bi-award-fill me-1"></i> Selamat! Kamu dinyatakan <strong>LULUS SELEKSI</strong>.</h5>
+                <p>Silakan lanjutkan proses daftar ulang sesuai jadwal yang dikirim melalui email.</p>
                 <a href="{{ route('daftar.user') }}" class="btn btn-success btn-sm">Daftar Ulang</a>
-                @elseif($data && $data->status_seleksi === 'Ditolak')
-                <h5 class="text-danger"><i class="bi bi-x-octagon-fill me-1"></i> Maaf, kamu <strong>Tidak Diterima</strong>.</h5>
-                <p>Jangan menyerah, tetap semangat!</p>
+                @elseif($data && $data->status_seleksi === 'Tidak Lulus')
+                <h5 class="text-danger"><i class="bi bi-x-octagon-fill me-1"></i> Maaf, kamu dinyatakan <strong>TIDAK LULUS</strong>.</h5>
+                <p>Jangan menyerah, tetap semangat! Silahkan coba pendaftaran di gelombang berikutnya.</p>
                 @else
-                <p><i class="bi bi-info-circle"></i> Belum ada pengumuman.</p>
+                <p><i class="bi bi-info-circle"></i> Hasil seleksi Anda sedang dalam proses verifikasi. Silahkan cek secara berkala.</p>
                 @endif
             </div>
         </div>

@@ -19,6 +19,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
 
     <!-- Custom styles for this template-->
@@ -41,6 +42,28 @@
     .btn-primary:focus,
     .btn-primary:active {
         background-color: #0E2E72 !important;
+    }
+
+    /* Fixed/Sticky Navigation for Admin */
+    #wrapper #accordionSidebar {
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        overflow-y: auto;
+    }
+
+    .sticky-top {
+        z-index: 999;
+    }
+
+    /* Custom Scrollbar for Sidebar */
+    #accordionSidebar::-webkit-scrollbar {
+        width: 5px;
+    }
+    #accordionSidebar::-webkit-scrollbar-thumb {
+        background: rgba(0,0,0,0.1);
+        border-radius: 10px;
     }
 </style>
 
@@ -131,7 +154,7 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('asset/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('asset/js/demo/chart-pie-demo.js') }}"></script>
-
+    @stack('scripts')
 </body>
 
 </html>

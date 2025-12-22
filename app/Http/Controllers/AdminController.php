@@ -17,13 +17,22 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        $totalAkun = \App\Models\User::where('role', 'user')->count();
-        $formulirMasuk = Pendaftaran::count();
-        $menungguValidasi = Pendaftaran::where('verifikasi_dokumen', 'Pending')->count();
+        // Hitung total pendaftar dari tabel Pendaftaran
+        $totalPendaftar = Pendaftaran::count();
+        
+        // Status Menunggu Validasi (Pendaftar yang belum dikonfirmasi)
+        $menungguValidasi = Pendaftaran::where('status_seleksi', 'Diproses')->count();
+        
+        // Status Diterima (Lulus)
         $diterima = Pendaftaran::where('status_seleksi', 'Lulus')->count();
+        
+        // Status Ditolak (Tidak Lulus)
+        $ditolak = Pendaftaran::where('status_seleksi', 'Tidak Lulus')->count();
+        
+        // Total Pesan Masuk
         $pesanMasuk = \App\Models\Contact::count();
 
-        return view('admin.dashboard', compact('totalAkun', 'formulirMasuk', 'menungguValidasi', 'diterima', 'pesanMasuk'));
+        return view('admin.dashboard', compact('totalPendaftar', 'menungguValidasi', 'diterima', 'ditolak', 'pesanMasuk'));
     }
     public function login()
     {
@@ -227,9 +236,17 @@ class AdminController extends Controller
         }
 
         $data = $query->paginate(10);
-        $data->appends(['search' => $request->search]);
+    $data->appends(['search' => $request->search]);
 
-        return view('admin.datasiswa', compact('data'));
+    // Summary Stats
+    $stats = [
+        'total' => Pendaftaran::count(),
+        'pending' => Pendaftaran::where('status_seleksi', 'Diproses')->count(),
+        'lulus' => Pendaftaran::where('status_seleksi', 'Lulus')->count(),
+        'ditolak' => Pendaftaran::where('status_seleksi', 'Tidak Lulus')->count(),
+    ];
+
+    return view('admin.datasiswa', compact('data', 'stats'));
     }
 
     public function hapusSiswa($id)
@@ -259,10 +276,19 @@ class AdminController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|min:8|confirmed',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $user->name = $request->name;
         $user->email = $request->email;
+
+        if ($request->hasFile('foto')) {
+            // Hapus foto lama jika ada
+            if ($user->foto && file_exists(storage_path('app/public/' . $user->foto))) {
+                unlink(storage_path('app/public/' . $user->foto));
+            }
+            $user->foto = $request->file('foto')->store('profile', 'public');
+        }
 
         if ($request->filled('password')) {
             $user->password = \Illuminate\Support\Facades\Hash::make($request->password);
@@ -354,45 +380,69 @@ class AdminController extends Controller
     // ============================
 
     public function exportExcel()
-    {
-        $data = Pendaftaran::all();
-        $filename = "data_pendaftar_" . date('Y-m-d_H-i-s') . ".csv";
-        
-        $headers = array(
-            "Content-type"        => "text/csv",
-            "Content-Disposition" => "attachment; filename=$filename",
-            "Pragma"              => "no-cache",
-            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
-            "Expires"             => "0"
-        );
+{
+    $data = Pendaftaran::all();
+    $filename = "Laporan_Pendaftar_PPDB_" . date('Y-m-d') . ".xls";
+    
+    // Header for Excel Download
+    header("Content-Type: application/vnd.ms-excel");
+    header("Content-Disposition: attachment; filename=\"$filename\"");
+    header("Pragma: no-cache");
+    header("Expires: 0");
 
-        $columns = array('Nama', 'NISN', 'Jenis Kelamin', 'Tempat Lahir', 'Tanggal Lahir', 'Asal Sekolah', 'Alamat', 'No HP', 'Email', 'Nama Ayah', 'Nama Ibu', 'Status Formulir');
+    // Start HTML Table for Styled Excel
+    echo '<style>
+        .text-center { text-align: center; }
+        .font-bold { font-weight: bold; }
+        .bg-blue { background-color: #0e2e72; color: white; }
+        td, th { padding: 5px; }
+    </style>';
+    echo '<table border="1">';
+    echo '<tr><th colspan="14" style="font-size: 20px; font-weight: bold; background-color: #0e2e72; color: white; height: 40px; vertical-align: middle;">LAPORAN DATA PENDAFTAR SISWA BARU (PPDB)</th></tr>';
+    echo '<tr><th colspan="14" style="font-size: 14px; font-weight: bold; height: 25px; vertical-align: middle;">Tahun Ajaran ' . date('Y') . '/' . (date('Y') + 1) . '</th></tr>';
+    echo '<tr><td colspan="14" style="font-size: 11px;">Dicetak pada: ' . date('d F Y H:i:s') . '</td></tr>';
+    echo '<tr></tr>'; // Empty row
 
-    $callback = function() use($data, $columns) {
-        $file = fopen('php://output', 'w');
-        fputcsv($file, $columns);
+    // Table Headers
+    echo '<tr style="background-color: #0e2e72; color: white; font-weight: bold; text-align: center; height: 30px; vertical-align: middle;">';
+    echo '<th>Nomor</th>';
+    echo '<th>Nama Lengkap</th>';
+    echo '<th>NIK</th>';
+    echo '<th>NISN</th>';
+    echo '<th>Nomor Kartu Keluarga</th>';
+    echo '<th>Jenis Kelamin</th>';
+    echo '<th>Tempat Lahir</th>';
+    echo '<th>Tanggal Lahir</th>';
+    echo '<th>Asal Sekolah</th>';
+    echo '<th width="300">Alamat Lengkap</th>';
+    echo '<th>Telepon / WhatsApp</th>';
+    echo '<th>Email</th>';
+    echo '<th>Nama Ayah</th>';
+    echo '<th>Nama Ibu</th>';
+    echo '</tr>';
 
-        foreach ($data as $row) {
-            fputcsv($file, array(
-                $row['nama'],
-                $row['nisn'],
-                $row['jenis_kelamin'],
-                $row['tempat_lahir'],
-                $row['tanggal_lahir'],
-                $row['asal_sekolah'],
-                $row['alamat'],
-                $row['no_hp'],
-                $row['email'],
-                $row['nama_ayah'],
-                $row['nama_ibu'],
-                $row['status_seleksi'] == 'Lulus' ? 'Lengkap' : ($row['status_seleksi'] == 'Tidak Lulus' ? 'Tidak Lengkap' : 'Menunggu')
-            ));
-        }
-
-        fclose($file);
-    };
-        return response()->stream($callback, 200, $headers);
+    // Data rows
+    foreach ($data as $index => $row) {
+        echo '<tr>';
+        echo '<td align="center" style="vertical-align: middle;">' . ($index + 1) . '</td>';
+        echo '<td style="font-weight: bold; vertical-align: middle;">' . $row->nama . '</td>';
+        echo '<td style="mso-number-format:\'@\'; vertical-align: middle;">' . ($row->nik ?? '-') . '</td>';
+        echo '<td style="mso-number-format:\'@\'; vertical-align: middle;">' . $row->nisn . '</td>';
+        echo '<td style="mso-number-format:\'@\'; vertical-align: middle;">' . ($row->no_kk ?? '-') . '</td>';
+        echo '<td align="center" style="vertical-align: middle;">' . $row->jenis_kelamin . '</td>';
+        echo '<td style="vertical-align: middle;">' . $row->tempat_lahir . '</td>';
+        echo '<td style="vertical-align: middle;">' . \Carbon\Carbon::parse($row->tanggal_lahir)->format('d F Y') . '</td>';
+        echo '<td style="vertical-align: middle;">' . $row->asal_sekolah . '</td>';
+        echo '<td style="vertical-align: middle;">' . $row->alamat . '</td>';
+        echo '<td style="mso-number-format:\'@\'; vertical-align: middle;">' . $row->no_hp . '</td>';
+        echo '<td style="vertical-align: middle;">' . $row->email . '</td>';
+        echo '<td style="vertical-align: middle;">' . $row->nama_ayah . '</td>';
+        echo '<td style="vertical-align: middle;">' . $row->nama_ibu . '</td>';
+        echo '</tr>';
     }
+    echo '</table>';
+    exit();
+}
 
     public function exportPdf()
     {

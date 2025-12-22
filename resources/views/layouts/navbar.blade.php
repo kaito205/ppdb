@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow-sm">
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 sticky-top shadow-sm">
 
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -39,48 +39,35 @@
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge bg-danger badge-counter">3+</span>
+                @if(isset($navbarAlertsCount) && $navbarAlertsCount > 0)
+                <span class="badge bg-danger badge-counter">{{ $navbarAlertsCount }}</span>
+                @endif
             </a>
             <!-- Dropdown - Alerts -->
             <div class="dropdown-list dropdown-menu dropdown-menu-end shadow animated--grow-in"
                 aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                    Alerts Center
+                    Pemberitahuan Pendaftaran
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="me-3">
-                        <div class="icon-circle bg-danger">
-                            <i class="fas fa-file-alt text-white"></i>
+                @if(isset($navbarAlerts) && $navbarAlerts->count() > 0)
+                    @foreach($navbarAlerts as $alert)
+                    <a class="dropdown-item d-flex align-items-center" href="{{ route('datasiswa') }}">
+                        <div class="me-3">
+                            <div class="icon-circle bg-primary">
+                                <i class="fas fa-user-plus text-white"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="small text-gray-500">December 12, 2019</div>
-                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                    </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="me-3">
-                        <div class="icon-circle bg-success">
-                            <i class="fas fa-donate text-white"></i>
+                        <div>
+                            <div class="small text-gray-500">{{ $alert->created_at->format('d M Y') }}</div>
+                            <span class="font-weight-bold">Siswa Baru: {{ $alert->nama }}</span>
+                            <div class="small text-muted">Menunggu verifikasi berkas</div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="small text-gray-500">December 7, 2019</div>
-                        $290.29 has been deposited into your account!
-                    </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="me-3">
-                        <div class="icon-circle bg-warning">
-                            <i class="fas fa-exclamation-triangle text-white"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="small text-gray-500">December 2, 2019</div>
-                        Spending Alert: We've noticed unusually high spending for your account.
-                    </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                    </a>
+                    @endforeach
+                @else
+                    <a class="dropdown-item text-center small text-gray-500 py-3" href="#">Tidak ada pendaftaran baru</a>
+                @endif
+                <a class="dropdown-item text-center small text-gray-500" href="{{ route('datasiswa') }}">Lihat Semua Pendaftar</a>
             </div>
         </li>
 
@@ -127,14 +114,14 @@
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="me-2 d-none d-lg-inline text-white">Admin</span>
+                <span class="me-2 d-none d-lg-inline text-dark">{{ Auth::user()->name }}</span>
                 <img class="img-profile rounded-circle"
-                    src="{{ asset('img/user.jpeg') }}">
+                    src="{{ Auth::user()->foto ? asset('storage/' . Auth::user()->foto) : asset('img/user.jpeg') }}" style="object-fit: cover; width: 32px; height: 32px;">
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-end shadow animated--grow-in"
                 aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="profile/admin">
+                <a class="dropdown-item" href="{{ route('profile.admin') }}">
                     <i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>
                     Profile
                 </a>
@@ -145,12 +132,14 @@
 
                 <div class="dropdown-divider"></div>
 
-                <a href="" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>Logout</a>
-
-    <form id="logout-form" action="" method="POST" style="display: none;">
-        @csrf
-    </form>
+                <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>
+                    Logout
                 </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </div>
         </li>
 
