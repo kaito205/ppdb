@@ -46,12 +46,47 @@ class MainController extends Controller
 
     public function profil()
     {
-        return view('main.profil');
+        $profil = ProfilSekolah::first() ?? new ProfilSekolah();
+        return view('main.profil', compact('profil'));
     }
 
-    public function pesantren()
+
+    public function akademik()
     {
         $profil = ProfilSekolah::first() ?? new ProfilSekolah();
-        return view('main.pesantren', compact('profil'));
+        return view('main.akademik', compact('profil'));
     }
+
+    public function ekskul()
+    {
+        $ekskul = Ekstrakurikuler::all();
+        return view('main.ekskul', compact('ekskul'));
+    }
+
+    public function prestasi()
+    {
+        $prestasi = \App\Models\Prestasi::latest()->get();
+        return view('main.prestasi', compact('prestasi'));
+    }
+
+    public function galeri()
+    {
+        $profil = ProfilSekolah::first() ?? new ProfilSekolah();
+        return view('main.galeri', compact('profil'));
+    }
+
+    public function ppdb()
+    {
+        $profil = ProfilSekolah::first() ?? new ProfilSekolah();
+        return view('main.ppdb', compact('profil'));
+    }
+
 }
+
+
+
+
+
+
+
+

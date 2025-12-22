@@ -40,54 +40,41 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-lg-center mt-3 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ Request::is('/') ? '#hero' : url('/#hero') }}">Home</a>
+                        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">Profile</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ Request::is('/') ? '#sekolah' : url('/#sekolah') }}">Sekolah</a></li>
-                            <li><a class="dropdown-item" href="{{ route('pesantren') }}">Pesantren</a></li>
-
-                        </ul>
-                    </li>
-
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('tentang') ? 'active' : '' }}" href="{{ Request::is('/') ? '#kegiatan' : url('/#kegiatan') }}"> Kegiatan
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('tentang') ? 'active' : '' }}" href="{{ Request::is('/') ? '#ppdb' : url('/#ppdb') }}"> Informasi
-                        </a>
+                        <a class="nav-link {{ request()->is('profil') ? 'active' : '' }}" href="{{ route('profil') }}">Profile</a>
                     </li>
 
 
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('tentang') ? 'active' : '' }}" href="{{ Request::is('/') ? '#galeri' : url('/#galeri') }}">Galeri
-                        </a>
+                        <a class="nav-link {{ request()->is('akademik') ? 'active' : '' }}" href="{{ route('akademik') }}">Akademik</a>
                     </li>
-
-
-
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('kontak') ? 'active' : '' }}" href="{{ Request::is('/') ? '#kontak' : url('/#kontak') }}">Contact</a>
+                        <a class="nav-link {{ request()->is('ekskul') ? 'active' : '' }}" href="{{ route('ekskul') }}">Ekskul</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">Lainnya</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ Request::is('/') ? '#berita' : url('/#berita') }}">Berita</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Pengumuman</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('prestasi') ? 'active' : '' }}" href="{{ route('prestasi') }}">Prestasi</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('informasi-ppdb') ? 'active' : '' }}" href="{{ route('ppdb.info') }}">PPDB</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('galeri') ? 'active' : '' }}" href="{{ route('galeri') }}">Galeri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('berita*') ? 'active' : '' }}" href="{{ route('berita.list') }}">Berita</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ Request::is('/') ? '#kontak' : url('/#kontak') }}">Kontak</a>
+                    </li>
+
                     <li class="nav-item ms-lg-3">
-                        <a class="btn btn-blue" href="{{ route('register') }}">Pendaftaran</a>
+                        <a class="btn btn-blue" href="{{ route('register') }}">Daftar Sekarang</a>
                     </li>
                 </ul>
+
+
             </div>
         </div>
     </nav>
@@ -138,48 +125,127 @@
 
 
     <!-- Footer -->
-    <footer>
+    <!-- Footer -->
+    <footer class="footer py-5 mt-5">
         <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-md-5 mb-4">
-                    <img src="{{ asset('img/logo.webp') }}" alt="Logo SMA ERHA" height="80" class="mb-3">
-                    <h5>SMA ERHA JATINAGARA</h5>
-                    <ul>
-                        <li><i class="bi bi-geo-alt-fill me-2"></i> Kec. Jatinagara, Kab. Ciamis, Jawa Barat</li>
-                        <li><i class="bi bi-telephone-fill me-2"></i> (0341) 2345678</li>
-                        <li><i class="bi bi-envelope-fill me-2"></i> aryad@gmail.com</li>
-                    </ul>
+            <div class="row g-5">
+                <!-- Identitas Sekolah -->
+                <div class="col-lg-5">
+                    <div class="footer-logo mb-4">
+                        <img src="{{ asset('img/logo.webp') }}" alt="Logo SMA ERHA" height="70" class="mb-3 rounded-circle">
+                        <h5 class="fw-bold text-white mb-0">SMA ERHA JATINAGARA</h5>
+                        <small class="text-accent">Unggul dalam Prestasi, Santun dalam Budi</small>
+                    </div>
+                    <p class="text-gray mb-4">
+                        Membentuk generasi unggul, berkarakter, dan berdaya saing global melalui pendidikan berkualitas berbasis kurikulum nasional dan nilai-nilai luhur.
+                    </p>
+                    <div class="social-links d-flex gap-2">
+                        <a href="https://web.facebook.com/smaerhajatinagara" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/smaerhajatinagara/" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
 
-                <div class="col-md-4">
-                    <h5>Sosial Media Kami</h5>
-                    <div class="icon-mds mt-3">
-                        <a href="https://web.facebook.com/smaerhajatinagara"><img
-                                src="{{ asset('img/icons8-facebook.webp') }}" alt="facebook" class="me-2"></a>
-                        <a href="https://www.instagram.com/smaerhajatinagara/"><img
-                                src="{{ asset('img/icons8-instagram.webp') }}" alt="instagram" class="me-2"></a>
-                        <a href="#"><img src="{{ asset('img/icons8-whatsapp.webp') }}" alt="whatsapp" class="me-2"></a>
-                        <a href="#"><img src="{{ asset('img/icons8-youtube.webp') }}" alt="youtube" class="me-2"></a>
-                    </div>
+                <!-- Tautan Cepat (Hidden on Mobile) -->
+                <div class="col-lg-3 d-none d-lg-block">
+                    <h5 class="fw-bold text-white mb-4">Tautan Cepat</h5>
+                    <ul class="footer-links list-unstyled">
+                        <li><a href="{{ route('home') }}">Home</a></li>
+                        <li><a href="{{ route('profil') }}">Profil Sekolah</a></li>
+                        <li><a href="{{ route('akademik') }}">Akademik</a></li>
+                        <li><a href="{{ route('ekskul') }}">Ekstrakurikuler</a></li>
+                        <li><a href="{{ route('ppdb.info') }}">Informasi PPDB</a></li>
+                    </ul>
+
+                </div>
+
+                <!-- Hubungi Kami -->
+                <div class="col-12 col-lg-4">
+                    <h5 class="fw-bold text-white mb-4">Hubungi Kami</h5>
+                    <ul class="footer-contact list-unstyled">
+                        <li class="d-flex gap-3 mb-3">
+                            <i class="bi bi-geo-alt-fill text-accent fs-5"></i>
+                            <span class="text-gray small">Dusun Kulon, Desa Jatinagara, Kec. Jatinagara, Kab. Ciamis, Jawa Barat</span>
+                        </li>
+                        <li class="d-flex gap-3 mb-3">
+                            <i class="bi bi-telephone-fill text-accent fs-5"></i>
+                            <span class="text-gray small">(0341) 2345678</span>
+                        </li>
+                        <li class="d-flex gap-3">
+                            <i class="bi bi-envelope-fill text-accent fs-5"></i>
+                            <span class="text-gray small">aryad@gmail.com</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="text-center ">
-                <small>&copy; 2025 SMA ERHA JATINAGARA. development by Eight.</small>
+            <!-- Bottom Footer -->
+            <div class="footer-bottom mt-5 pt-4 border-top border-secondary border-opacity-25 text-center">
+                <p class="text-gray small mb-0">
+                    &copy; {{ date('Y') }} <strong>SMA ERHA JATINAGARA</strong>. All rights reserved. 
+                    <span class="d-none d-md-inline ms-2">| Development by Eight.</span>
+                </p>
             </div>
         </div>
     </footer>
+
+    <style>
+        .footer {
+            background-color: #1a1a1a;
+            color: #b0b0b0;
+        }
+        .text-accent { color: #ffd700 !important; }
+        .text-gray { color: #b0b0b0; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        .footer-links a:hover {
+            color: #ffd700;
+            padding-left: 8px;
+        }
+        .social-icon {
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .social-icon:hover {
+            background: #ffd700;
+            color: #1a1a1a;
+            transform: translateY(-3px);
+            border-color: #ffd700;
+        }
+        .footer-logo img {
+            width: 70px;
+            height: auto;
+        }
+    </style>
+
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
-            once: true, // Animasi hanya sekali saat scroll
-            duration: 800, // Durasi animasi
-            offset: 100, // Offset trigger
+            once: true,
+            duration: 800,
+            offset: 100,
         });
     </script>
+
+
 
 </body>
 

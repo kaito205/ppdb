@@ -23,7 +23,20 @@ Route::get('/', [MainController::class, 'dashboard'])->name('home');
 Route::get('/berita/{slug}', [MainController::class, 'detailBerita'])->name('berita.detail');
 Route::get('/berita', [MainController::class, 'berita'])->name('berita.list');
 Route::get('/profil', [MainController::class, 'profil'])->name('profil');
-Route::get('/pesantren', [MainController::class, 'pesantren'])->name('pesantren');
+Route::get('/akademik', [MainController::class, 'akademik'])->name('akademik');
+Route::get('/ekskul', [MainController::class, 'ekskul'])->name('ekskul');
+Route::get('/prestasi', [MainController::class, 'prestasi'])->name('prestasi');
+Route::get('/galeri', [MainController::class, 'galeri'])->name('galeri');
+Route::get('/informasi-ppdb', [MainController::class, 'ppdb'])->name('ppdb.info');
+
+
+
+
+
+
+
+
+
 
 // auth user
 

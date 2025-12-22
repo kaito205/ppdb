@@ -1,12 +1,29 @@
 /* ==========================================================
    1. GLOBAL STYLE
 ========================================================== */
+:root {
+    --primary: #0e2e72;
+    --secondary: #198754;
+    --accent: #ffd700;
+    --text-main: #333333;
+    --text-muted: #6c757d;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --footer-bg: #1a1a1a;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
 body {
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     margin-top: 90px;
     font-style: normal;
 }
+
 
 section {
     padding-top: 100px;
