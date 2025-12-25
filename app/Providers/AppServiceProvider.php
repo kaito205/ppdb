@@ -25,16 +25,16 @@ class AppServiceProvider extends ServiceProvider
 
         \Illuminate\Pagination\Paginator::useBootstrapFive();
 
-        \Illuminate\Support\Facades\View::composer('layouts.navbar', function ($view) {
+        \Illuminate\Support\Facades\View::composer(['layouts.navbar', 'layouts.sidebar', 'admin.dashboard'], function ($view) {
             $messages = \App\Models\Contact::latest()->take(5)->get();
-            $messagesCount = \App\Models\Contact::count();
+            $messagesCount = \App\Models\Contact::where('is_read', false)->count();
             
             // Alerts for Pending Registrations
-            $pendingReg = \App\Models\Pendaftaran::where('verifikasi_dokumen', 'Pending')->latest()->take(5)->get();
-            $pendingCount = \App\Models\Pendaftaran::where('verifikasi_dokumen', 'Pending')->count();
+            $pendingReg = \App\Models\Pendaftaran::where('is_read', false)->latest()->take(5)->get();
+            $pendingCount = \App\Models\Pendaftaran::where('is_read', false)->count();
 
             $view->with('navbarMessages', $messages)
-                 ->with('navbarMessagesCount', $messagesCount)
+                 ->with('unreadMessagesCount', $messagesCount)
                  ->with('navbarAlerts', $pendingReg)
                  ->with('navbarAlertsCount', $pendingCount);
         });

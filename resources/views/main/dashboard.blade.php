@@ -4,7 +4,6 @@
 
     @include('main.partials.hero')
 
-    <!-- Quick Info Items -->
     @include('main.partials.fasilitas')
     
     @include('main.partials.prestasi')

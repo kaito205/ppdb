@@ -137,7 +137,7 @@
                             </div>
                             <div>
                                 <h6 class="mb-0 fw-bold small text-dark">Pesan Masuk</h6>
-                                <small class="text-muted small">{{ $pesanMasuk }} Pesan belum dibalas</small>
+                                <small class="text-muted small">{{ $unreadMessagesCount }} Pesan belum dibaca</small>
                             </div>
                         </div>
                     </a>

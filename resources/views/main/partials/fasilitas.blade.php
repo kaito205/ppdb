@@ -9,28 +9,28 @@
         <div class="row g-4">
             <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                 <div class="facility-card rounded-4 overflow-hidden position-relative shadow-sm h-100">
-                    <img src="{{ asset('img/hero1.webp') }}" class="w-100 h-100 object-fit-cover" style="min-height: 250px;" alt="Ruang Kelas">
-                    <div class="facility-overlay d-flex flex-column justify-content-end p-4">
-                        <h4 class="text-white fw-bold">Ruang Kelas Modern</h4>
-                        <p class="text-white-50 small mb-0">Dilengkapi dengan AC dan Smart TV untuk menunjang pembelajaran digital.</p>
+                    <img src="{{ asset('img/hero1.webp') }}" class="w-100 h-100 object-fit-cover" style="min-height: 200px;" alt="Ruang Kelas">
+                    <div class="facility-overlay d-flex flex-column justify-content-end p-3 p-md-4">
+                        <h5 class="text-white fw-bold mb-1">Ruang Kelas Modern</h5>
+                        <p class="text-white-50 extra-small mb-0 d-md-block">Dilengkapi dengan AC dan Smart TV untuk menunjang pembelajaran digital.</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
                 <div class="facility-card rounded-4 overflow-hidden position-relative shadow-sm h-100">
-                    <img src="{{ asset('img/hero2.webp') }}" class="w-100 h-100 object-fit-cover" style="min-height: 250px;" alt="Laboratorium Komputer">
-                    <div class="facility-overlay d-flex flex-column justify-content-end p-4">
-                        <h4 class="text-white fw-bold">Laboratorium Komputer</h4>
-                        <p class="text-white-50 small mb-0">Akses teknologi informasi terbaru dengan jaringan internet super cepat.</p>
+                    <img src="{{ asset('img/hero2.webp') }}" class="w-100 h-100 object-fit-cover" style="min-height: 200px;" alt="Laboratorium Komputer">
+                    <div class="facility-overlay d-flex flex-column justify-content-end p-3 p-md-4">
+                        <h5 class="text-white fw-bold mb-1">Laboratorium Komputer</h5>
+                        <p class="text-white-50 extra-small mb-0 d-md-block">Akses teknologi informasi terbaru dengan jaringan internet super cepat.</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
                 <div class="facility-card rounded-4 overflow-hidden position-relative shadow-sm h-100">
-                    <img src="{{ asset('img/hero.webp') }}" class="w-100 h-100 object-fit-cover" style="min-height: 250px;" alt="Asrama Siswa">
-                    <div class="facility-overlay d-flex flex-column justify-content-end p-4">
-                        <h4 class="text-white fw-bold">Asrama Nyaman</h4>
-                        <p class="text-white-50 small mb-0">Lingkungan boarding school yang bersih, aman, dan penuh kekeluargaan.</p>
+                    <img src="{{ asset('img/hero.webp') }}" class="w-100 h-100 object-fit-cover" style="min-height: 200px;" alt="Asrama Siswa">
+                    <div class="facility-overlay d-flex flex-column justify-content-end p-3 p-md-4">
+                        <h5 class="text-white fw-bold mb-1">Asrama Nyaman</h5>
+                        <p class="text-white-50 extra-small mb-0 d-md-block">Lingkungan boarding school yang bersih, aman, dan penuh kekeluargaan.</p>
                     </div>
                 </div>
             </div>

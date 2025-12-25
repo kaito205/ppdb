@@ -65,6 +65,9 @@
         background: rgba(0,0,0,0.1);
         border-radius: 10px;
     }
+    .bg-light-blue {
+        background-color: rgba(14, 46, 114, 0.03) !important;
+    }
 </style>
 
 <body id="page-top">
@@ -154,6 +157,55 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('asset/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('asset/js/demo/chart-pie-demo.js') }}"></script>
+
+    <!-- Real-time Polling for Messages & Notifications -->
+    <script>
+        function checkNewMessages() {
+            $.ajax({
+                url: "{{ route('admin.pesan.unread-count') }}",
+                type: 'GET',
+                success: function(data) {
+                    // 1. Update Pesan (Messages)
+                    const mCount = data.messageCount;
+                    const navMsgBadge = $('.navbar-unread-count');
+                    if (mCount > 0) {
+                        navMsgBadge.text(mCount).fadeIn();
+                    } else {
+                        navMsgBadge.fadeOut();
+                    }
+
+                    // Inbox Page updates
+                    const inboxBadge = $('#unread-badge');
+                    const inboxCount = $('#unread-count');
+                    if (inboxCount.length) {
+                        if (parseInt(inboxCount.text()) !== mCount) {
+                            inboxCount.text(mCount);
+                            if (mCount > 0) {
+                                inboxBadge.addClass('animate__pulse animate__infinite').removeClass('bg-secondary').addClass('bg-primary');
+                            } else {
+                                inboxBadge.removeClass('animate__pulse animate__infinite').removeClass('bg-primary').addClass('bg-secondary');
+                            }
+                        }
+                    }
+
+                    // 2. Update Pendaftaran (Alerts)
+                    const pCount = data.pendaftaranCount;
+                    const navAlertBadge = $('.navbar-alerts-count');
+                    if (pCount > 0) {
+                        navAlertBadge.text(pCount).fadeIn();
+                    } else {
+                        navAlertBadge.fadeOut();
+                    }
+                },
+                error: function() {
+                    console.log('Error checking for updates');
+                }
+            });
+        }
+
+        setInterval(checkNewMessages, 10000);
+        $(document).ready(checkNewMessages);
+    </script>
     @stack('scripts')
 </body>
 

@@ -141,6 +141,8 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
     // Contact Messages
     Route::prefix('pesan')->group(function () {
         Route::get('/', [App\Http\Controllers\ContactController::class, 'index'])->name('admin.pesan');
+        Route::get('/unread-count', [App\Http\Controllers\ContactController::class, 'getUnreadCount'])->name('admin.pesan.unread-count');
+        Route::post('/{id}/read', [App\Http\Controllers\ContactController::class, 'markAsRead'])->name('admin.pesan.read');
         Route::delete('/{id}', [App\Http\Controllers\ContactController::class, 'destroy'])->name('admin.pesan.hapus');
     });
 });

@@ -123,7 +123,7 @@
                             <th class="border-0 text-uppercase small fw-bold text-muted py-3">Data Siswa</th>
                             <th class="border-0 text-uppercase small fw-bold text-muted py-3">Informasi Kontak</th>
                             <th class="border-0 text-uppercase small fw-bold text-muted py-3">Asal Sekolah</th>
-                            <th class="border-0 text-uppercase small fw-bold text-muted py-3 text-center">Status Selsksi</th>
+                            <th class="border-0 text-uppercase small fw-bold text-muted py-3 text-center">Status Pendaftaran</th>
                             <th class="pe-4 border-0 text-uppercase small fw-bold text-muted py-3 text-end">Aksi</th>
                         </tr>
                     </thead>

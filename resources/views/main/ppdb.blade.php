@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-lg-6 d-none d-lg-block" data-aos="zoom-in" data-aos-delay="200">
                     <div class="hero-image-stack">
-                        <img src="{{ asset('img/ppbd.webp') }}" alt="Siswa SMA ERHA" class="img-fluid rounded-4 shadow-lg main-img">
+                        <img src="{{ asset('img/sekolah.jpg') }}" alt="Siswa SMA ERHA" class="img-fluid rounded-4 shadow-lg main-img">
                         <div class="floating-card card-1 shadow-sm">
                             <div class="d-flex align-items-center gap-3">
                                 <div class="icon-circle bg-success text-white"><i class="bi bi-person-check"></i></div>

@@ -29,6 +29,42 @@
                             </div>
                         </div>
 
+                        <!-- Quick Stats (Moved from Hero) -->
+                        <div class="row g-3 mb-4">
+                            <div class="col-4">
+                                <div class="card border-0 shadow-sm rounded-4 h-100 bg-white">
+                                    <div class="card-body p-2 p-md-3 text-center">
+                                        <div class="mini-icon-box bg-warning-light text-warning mb-2 mx-auto">
+                                            <i class="bi bi-megaphone"></i>
+                                        </div>
+                                        <small class="text-muted d-block text-uppercase" style="font-size: 0.6rem; font-weight: 700;">Status</small>
+                                        <h6 class="fw-bold mb-0" style="font-size: 0.8rem;">PPDB Buka</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="card border-0 shadow-sm rounded-4 h-100 bg-white">
+                                    <div class="card-body p-2 p-md-3 text-center">
+                                        <div class="mini-icon-box bg-blue-light text-blue mb-2 mx-auto">
+                                            <i class="bi bi-people"></i>
+                                        </div>
+                                        <small class="text-muted d-block text-uppercase" style="font-size: 0.6rem; font-weight: 700;">Siswa</small>
+                                        <h6 class="fw-bold mb-0" style="font-size: 0.8rem;">1000+</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="card border-0 shadow-sm rounded-4 h-100 bg-white">
+                                    <div class="card-body p-2 p-md-3 text-center">
+                                        <div class="mini-icon-box bg-success-light text-success mb-2 mx-auto">
+                                            <i class="bi bi-patch-check"></i>
+                                        </div>
+                                        <small class="text-muted d-block text-uppercase" style="font-size: 0.6rem; font-weight: 700;">Akreditasi</small>
+                                        <h6 class="fw-bold mb-0" style="font-size: 0.8rem;">B (Baik)</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Pendidikan Berbasis Pesantren (Merged Content) -->
                         <div class="card border-0 shadow-sm rounded-4 mb-4 bg-white">
                             <div class="card-body p-4 p-lg-5">
@@ -124,11 +160,11 @@
                                     </li>
                                     <li class="mb-3 d-flex align-items-center">
                                         <i class="bi bi-telephone-fill me-2 text-accent"></i>
-                                        <span>08123456789</span>
+                                        <span>085861930794</span>
                                     </li>
                                     <li class="d-flex align-items-center">
                                         <i class="bi bi-envelope-fill me-2 text-accent"></i>
-                                        <span>erha.jatina</span>
+                                        <span>smaerhajatinagara@gmail.com</span>
                                     </li>
                                 </ul>
                             </div>
@@ -138,10 +174,10 @@
                             <div class="card-body p-4">
                                 <h5 class="fw-bold mb-3 text-blue">Media Sosial</h5>
                                 <div class="d-flex gap-3">
-                                    <a href="#" class="social-btn"><i class="bi bi-facebook"></i></a>
-                                    <a href="#" class="social-btn"><i class="bi bi-instagram"></i></a>
-                                    <a href="#" class="social-btn"><i class="bi bi-youtube"></i></a>
-                                    <a href="#" class="social-btn"><i class="bi bi-whatsapp"></i></a>
+                                    <a href="https://web.facebook.com/smaerhajatinagara" class="social-btn"><i class="bi bi-facebook"></i></a>
+                                    <a href="https://www.instagram.com/smaerhajatinagara/" class="social-btn"><i class="bi bi-instagram"></i></a>
+                                    <a href="https://www.youtube.com/@smaerhajatinagara" class="social-btn"><i class="bi bi-youtube"></i></a>
+                                    <a href="https://wa.me/6285861930794" class="social-btn"><i class="bi bi-whatsapp"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -172,6 +208,16 @@
     .bg-success-light { background-color: rgba(25, 135, 84, 0.1); }
     .bg-warning-light { background-color: rgba(255, 193, 7, 0.1); }
     .bg-info-light { background-color: rgba(13, 202, 240, 0.1); }
+    
+    .mini-icon-box {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+    }
     .text-accent { color: #ffd700; }
     .social-btn {
         width: 40px;

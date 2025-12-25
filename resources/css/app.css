@@ -22,6 +22,16 @@ body {
     font-weight: 500;
     margin-top: 90px;
     font-style: normal;
+    overflow-x: hidden;
+}
+
+/* Home Page specific reset */
+body.is-home {
+    margin-top: 0 !important;
+}
+
+.alumni-marquee {
+    will-change: transform;
 }
 
 
@@ -34,16 +44,33 @@ section {
 /* Tighten spacing on mobile */
 @media (max-width: 768px) {
     section {
-        padding-top: 60px;
-        scroll-margin-top: 80px;
-        margin-bottom: 40px;
+        padding-top: 50px !important;
+        scroll-margin-top: 70px;
+        margin-bottom: 30px !important;
     }
 
-    /* Aggressive Spacing Fix for Profile & Pesantren */
-    #sekolah, .pesantren {
-        padding-top: 20px !important;
+    .container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    h2.display-5 {
+        font-size: 1.8rem !important;
+    }
+    
+    .display-3 {
+        font-size: 2.2rem !important;
+    }
+
+    /* Aggressive Spacing Fix for Home Sections */
+    #sekolah, .pesantren, #fasilitas, #prestasi, #ppdb, #testimoni, #berita {
+        padding-top: 40px !important;
         padding-bottom: 20px !important;
-        margin-bottom: 20px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .timeline-content {
+        padding: 1rem !important;
     }
 }
 
@@ -104,20 +131,39 @@ section {
 
 .navbar-brand {
     font-weight: 600;
-    font-size: 1.25rem;
+    font-size: 1.1rem; /* Slightly smaller base */
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .navbar-brand img {
-    width: 80px;
+    width: 60px; /* Smaller base */
     height: auto;
 }
 
-.is-home .navbar .navbar-toggler {
-    border-color: rgba(255, 255, 255, 0.5);
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 0.9rem;
+    }
+    .navbar-brand img {
+        width: 45px;
+    }
 }
+
+/* Navbar Toggler Polish */
+.navbar-toggler {
+    border: none !important;
+    padding: 0;
+}
+.navbar-toggler:focus {
+    box-shadow: none !important;
+}
+.navbar-toggler-icon {
+    width: 24px;
+    height: 24px;
+}
+
 .is-home .navbar .navbar-toggler-icon {
     filter: invert(1) brightness(2);
 }
@@ -230,12 +276,8 @@ section {
 
 /* Untuk layar kecil tetap responsif */
 @media (max-width: 768px) {
-    #hero {
-        height: 60vh; /* Reduced height on mobile */
-    }
-
-    .hero-img {
-        height: 60vh; /* Match hero container height */
+    #hero, .hero-img {
+        height: 60vh !important; /* Shorter height on mobile */
     }
 
     .hero-content {

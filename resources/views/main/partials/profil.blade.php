@@ -6,6 +6,8 @@
             <div class="mx-auto" style="width: 80px; height: 4px; background: #0e2e72; border-radius: 10px;"></div>
         </div>
 
+       
+
         <div class="row g-4 mt-2">
             <!-- Card 1: Sejarah -->
             <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
@@ -53,6 +55,38 @@
 </section>
 
 <style>
+    .info-mini-card {
+        background: #fff;
+        border: 1px solid rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    .info-mini-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+    }
+    .mini-icon-box {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+    @media (max-width: 768px) {
+        .mini-icon-box {
+            width: 32px;
+            height: 32px;
+            font-size: 0.9rem;
+            border-radius: 8px;
+        }
+        .info-mini-card {
+            border-radius: 15px !important;
+        }
+    }
+
     .profil-mini-card {
         transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         border: 1px solid rgba(0,0,0,0.05);

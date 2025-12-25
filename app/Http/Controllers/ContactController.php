@@ -20,10 +20,38 @@ class ContactController extends Controller
         return back()->with('success', 'Pesan Anda telah terkirim! Kami akan segera menghubungi Anda.');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->has('open')) {
+            $message = Contact::find($request->open);
+            if ($message && !$message->is_read) {
+                $message->is_read = true;
+                $message->save();
+            }
+        }
+
         $messages = Contact::latest()->get();
         return view('admin.pesan', compact('messages'));
+    }
+
+    public function markAsRead($id)
+    {
+        $message = Contact::findOrFail($id);
+        $message->is_read = true;
+        $message->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function getUnreadCount()
+    {
+        $messageCount = Contact::where('is_read', false)->count();
+        $pendaftaranCount = \App\Models\Pendaftaran::where('is_read', false)->count();
+        
+        return response()->json([
+            'messageCount' => $messageCount,
+            'pendaftaranCount' => $pendaftaranCount
+        ]);
     }
 
     public function destroy($id)

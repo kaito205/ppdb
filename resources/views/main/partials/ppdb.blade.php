@@ -82,38 +82,40 @@
                         <h6 class="mb-0 fw-bold"><i class="bi bi-info-circle me-2"></i> Estimasi Biaya TA 2024/2025</h6>
                     </div>
                     <div class="card-body p-0">
-                        <table class="table table-hover mb-0">
-                            <thead class="bg-light">
-                                <tr>
-                                    <th class="px-4 py-3 border-0">Keterangan</th>
-                                    <th class="px-4 py-3 border-0 text-end">Jumlah</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="px-4 py-3">Infaq Pendaftaran</td>
-                                    <td class="px-4 py-3 text-end fw-bold">Rp 250.000</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-3">Sarana Pembelajaran & Gedung</td>
-                                    <td class="px-4 py-3 text-end fw-bold">Rp 3.500.000</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-3">Seragam Sekolah Lengkap</td>
-                                    <td class="px-4 py-3 text-end fw-bold">Rp 1.200.000</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-3">Syahriah (Makan & Mondok /Bulan)</td>
-                                    <td class="px-4 py-3 text-end fw-bold">Rp 450.000</td>
-                                </tr>
-                            </tbody>
-                            <tfoot class="bg-light">
-                                <tr>
-                                    <td class="px-4 py-3 fw-bold">Total Pembayaran Awal</td>
-                                    <td class="px-4 py-3 text-end fw-bold text-blue h5">Rp 5.400.000</td>
-                                </tr>
-                            </tfoot>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th class="px-4 py-3 border-0">Keterangan</th>
+                                        <th class="px-4 py-3 border-0 text-end">Jumlah</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="px-4 py-3">Infaq Pendaftaran</td>
+                                        <td class="px-4 py-3 text-end fw-bold">Rp 25k</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3">Sarana & Gedung</td>
+                                        <td class="px-4 py-3 text-end fw-bold">Rp 3.5jt</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3">Seragam Lengkap</td>
+                                        <td class="px-4 py-3 text-end fw-bold">Rp 1.2jt</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3">Syahriah /Bln</td>
+                                        <td class="px-4 py-3 text-end fw-bold">Rp 25k</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot class="bg-light">
+                                    <tr>
+                                        <td class="px-4 py-3 fw-bold">Total Awal</td>
+                                        <td class="px-4 py-3 text-end fw-bold text-blue h5">Rp 4.75jt</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
@@ -125,13 +127,13 @@
                 </div>
                 <div class="p-4 bg-white rounded-4 border shadow-sm">
                     <div class="d-flex align-items-center">
-                        <div class="bg-success bg-opacity-10 p-3 rounded-circle me-3">
-                            <i class="bi bi-whatsapp text-success fs-4"></i>
+                        <div class="p-3 rounded-circle me-3" style="background-color: rgba(37, 211, 102, 0.1);">
+                            <i class="bi bi-whatsapp fs-4" style="color: #25D366;"></i>
                         </div>
                         <div>
                             <h6 class="fw-bold mb-1">Ada Pertanyaan?</h6>
                             <p class="small text-muted mb-2">Butuh bantuan pendaftaran? Hubungi Admin kami.</p>
-                            <a href="https://wa.me/6285861930794" class="text-success fw-bold text-decoration-none small">
+                            <a href="https://wa.me/6285861930794" class="fw-bold text-decoration-none small" style="color: #25D366;">
                                 Chat WhatsApp Sekarang <i class="bi bi-arrow-right ms-1"></i>
                             </a>
                         </div>
@@ -146,7 +148,15 @@
     .text-blue { color: #0e2e72; }
     .bg-blue { background-color: #0e2e72; }
     .timeline-date {
-        min-width: 80px;
+        min-width: 60px;
+    }
+    @media (max-width: 768px) {
+        .timeline-date {
+            min-width: 50px;
+        }
+        .timeline-date .h3 {
+            font-size: 1.2rem;
+        }
     }
     .table-hover tbody tr:hover {
         background-color: rgba(14, 46, 114, 0.02);

@@ -39,9 +39,9 @@
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                @if(isset($navbarAlertsCount) && $navbarAlertsCount > 0)
-                <span class="badge bg-danger badge-counter">{{ $navbarAlertsCount }}</span>
-                @endif
+                <span class="badge bg-danger badge-counter navbar-alerts-count" style="{{ (isset($navbarAlertsCount) && $navbarAlertsCount > 0) ? '' : 'display: none;' }}">
+                    {{ $navbarAlertsCount ?? 0 }}
+                </span>
             </a>
             <!-- Dropdown - Alerts -->
             <div class="dropdown-list dropdown-menu dropdown-menu-end shadow animated--grow-in"
@@ -51,21 +51,24 @@
                 </h6>
                 @if(isset($navbarAlerts) && $navbarAlerts->count() > 0)
                     @foreach($navbarAlerts as $alert)
-                    <a class="dropdown-item d-flex align-items-center" href="{{ route('datasiswa') }}">
-                        <div class="me-3">
-                            <div class="icon-circle bg-primary">
-                                <i class="fas fa-user-plus text-white"></i>
+                    <a class="dropdown-item d-flex align-items-center {{ $alert->is_read ? 'opacity-75' : 'bg-light-blue' }}" href="{{ route('admin.siswa.detail', $alert->id) }}">
+                        <div class="me-3 position-relative">
+                            <div class="icon-circle bg-primary text-white">
+                                <i class="fas fa-user-plus"></i>
                             </div>
+                            @if(!$alert->is_read)
+                            <div class="status-indicator bg-primary"></div>
+                            @endif
                         </div>
-                        <div>
+                        <div class="{{ $alert->is_read ? '' : 'font-weight-bold' }}">
                             <div class="small text-gray-500">{{ $alert->created_at->format('d M Y') }}</div>
-                            <span class="font-weight-bold">Siswa Baru: {{ $alert->nama }}</span>
+                            <span class="text-dark">Siswa Baru: {{ $alert->nama }}</span>
                             <div class="small text-muted">Menunggu verifikasi berkas</div>
                         </div>
                     </a>
                     @endforeach
                 @else
-                    <a class="dropdown-item text-center small text-gray-500 py-3" href="#">Tidak ada pendaftaran baru</a>
+                    <div class="dropdown-item text-center small text-gray-500 py-3">Tidak ada pendaftaran baru</div>
                 @endif
                 <a class="dropdown-item text-center small text-gray-500" href="{{ route('datasiswa') }}">Lihat Semua Pendaftar</a>
             </div>
@@ -77,9 +80,9 @@
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
                 <!-- Counter - Messages -->
-                @if(isset($navbarMessagesCount) && $navbarMessagesCount > 0)
-                <span class="badge bg-danger badge-counter">{{ $navbarMessagesCount }}</span>
-                @endif
+                <span class="badge bg-danger badge-counter navbar-unread-count" style="{{ (isset($unreadMessagesCount) && $unreadMessagesCount > 0) ? '' : 'display: none;' }}">
+                    {{ $unreadMessagesCount ?? 0 }}
+                </span>
             </a>
             <!-- Dropdown - Messages -->
             <div class="dropdown-list dropdown-menu dropdown-menu-end shadow animated--grow-in"
@@ -89,14 +92,16 @@
                 </h6>
                 @if(isset($navbarMessages) && $navbarMessages->count() > 0)
                     @foreach($navbarMessages as $msg)
-                    <a class="dropdown-item d-flex align-items-center" href="{{ route('admin.pesan') }}">
+                    <a class="dropdown-item d-flex align-items-center {{ $msg->is_read ? 'opacity-75' : 'bg-light-blue' }}" href="{{ route('admin.pesan', ['open' => $msg->id]) }}">
                         <div class="dropdown-list-image me-3">
                             <img class="rounded-circle" src="https://ui-avatars.com/api/?name={{ urlencode($msg->name) }}&background=random"
                                 alt="...">
-                            <div class="status-indicator bg-success"></div>
+                            @if(!$msg->is_read)
+                            <div class="status-indicator bg-primary"></div>
+                            @endif
                         </div>
-                        <div class="font-weight-bold">
-                            <div class="text-truncate">{{ Str::limit($msg->message, 30) }}</div>
+                        <div class="{{ $msg->is_read ? '' : 'font-weight-bold' }}">
+                            <div class="text-truncate text-dark">{{ Str::limit($msg->message, 35) }}</div>
                             <div class="small text-gray-500">{{ $msg->name }} · {{ $msg->created_at->diffForHumans() }}</div>
                         </div>
                     </a>

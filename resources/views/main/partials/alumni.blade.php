@@ -143,7 +143,7 @@
 
     @media (max-width: 768px) {
         .alumni-card-premium {
-            width: 320px;
+            width: 280px;
         }
         .alumni-marquee {
             animation-duration: 25s;

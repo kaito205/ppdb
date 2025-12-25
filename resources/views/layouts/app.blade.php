@@ -148,7 +148,7 @@
             <div class="map-container mt-5" data-aos="zoom-in" data-aos-delay="200">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.605554037798!2d108.41604447475952!3d-7.171512092833288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f4271aa8b0d0f%3A0xd708c8f48784f53e!2sSMA%20ERHA%20Jatinagara!5e0!3m2!1sid!2sid!4v1763284436981!5m2!1sid!2sid"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    width="100%" height="350" style="border:0; border-radius: 15px;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
@@ -161,7 +161,7 @@
         <div class="container">
             <div class="row g-5">
                 <!-- Identitas Sekolah -->
-                <div class="col-lg-5">
+                <div class="col-12 col-lg-5 text-start">
                     <div class="footer-logo mb-4">
                         <img src="{{ asset('img/logo.webp') }}" alt="Logo SMA ERHA" height="70" class="mb-3 rounded-circle">
                         <h5 class="fw-bold text-white mb-0">SMA ERHA JATINAGARA</h5>
@@ -170,16 +170,16 @@
                     <p class="text-gray mb-4">
                         Membentuk generasi unggul, berkarakter, dan berdaya saing global melalui pendidikan berkualitas berbasis kurikulum nasional dan nilai-nilai luhur.
                     </p>
-                    <div class="social-links d-flex gap-2">
+                    <div class="social-links d-flex gap-2 justify-content-start">
                         <a href="https://web.facebook.com/smaerhajatinagara" class="social-icon"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/smaerhajatinagara/" class="social-icon"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/6285861930794" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.youtube.com/@smaerhajatinagara" class="social-icon"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
 
                 <!-- Tautan Cepat (Hidden on Mobile) -->
-                <div class="col-lg-3 d-none d-lg-block">
+                <div class="col-lg-3 d-none d-lg-block text-start">
                     <h5 class="fw-bold text-white mb-4">Tautan Cepat</h5>
                     <ul class="footer-links list-unstyled">
                         <li><a href="{{ route('home') }}">Home</a></li>
@@ -188,24 +188,41 @@
                         <li><a href="{{ route('ekskul') }}">Ekstrakurikuler</a></li>
                         <li><a href="{{ route('ppdb.info') }}">Informasi PPDB</a></li>
                     </ul>
-
                 </div>
 
                 <!-- Hubungi Kami -->
-                <div class="col-12 col-lg-4">
-                    <h5 class="fw-bold text-white mb-4">Hubungi Kami</h5>
-                    <ul class="footer-contact list-unstyled">
-                        <li class="d-flex gap-3 mb-3">
-                            <i class="bi bi-geo-alt-fill text-accent fs-5"></i>
-                            <span class="text-gray small">Dusun Kulon, Desa Jatinagara, Kec. Jatinagara, Kab. Ciamis, Jawa Barat</span>
+                <div class="col-12 col-lg-4 text-start">
+                    <h5 class="fw-bold text-white mb-4 position-relative pb-2">
+                        Hubungi Kami
+                        <span class="position-absolute start-0 bottom-0 bg-accent" style="width: 40px; height: 2px;"></span>
+                    </h5>
+                    <ul class="footer-contact list-unstyled px-0">
+                        <li class="d-flex align-items-start gap-3 mb-4">
+                            <div class="contact-icon-box shadow-sm red-shadow">
+                                <i class="bi bi-geo-alt-fill"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h6 class="text-white fw-bold mb-1" style="font-size: 0.9rem;">Alamat</h6>
+                                <span class="text-gray small d-block text-start" style="line-height: 1.5;">Dusun Kulon, Desa Jatinagara, Kec. Jatinagara, Kab. Ciamis, Jawa Barat</span>
+                            </div>
                         </li>
-                        <li class="d-flex gap-3 mb-3">
-                            <i class="bi bi-telephone-fill text-accent fs-5"></i>
-                            <span class="text-gray small">(0341) 2345678</span>
+                        <li class="d-flex align-items-start gap-3 mb-4">
+                            <div class="contact-icon-box shadow-sm">
+                                <i class="bi bi-telephone-fill"></i>
+                            </div>
+                            <div class="flex-grow-1 text-start">
+                                <h6 class="text-white fw-bold mb-1" style="font-size: 0.9rem;">Telepon</h6>
+                                <a href="tel:03412345678" class="text-gray small text-decoration-none transition-all hover-accent d-block text-start">085861930794</a>
+                            </div>
                         </li>
-                        <li class="d-flex gap-3">
-                            <i class="bi bi-envelope-fill text-accent fs-5"></i>
-                            <span class="text-gray small">aryad@gmail.com</span>
+                        <li class="d-flex align-items-start gap-3">
+                            <div class="contact-icon-box shadow-sm">
+                                <i class="bi bi-envelope-fill"></i>
+                            </div>
+                            <div class="flex-grow-1 text-start">
+                                <h6 class="text-white fw-bold mb-1" style="font-size: 0.9rem;">Email</h6>
+                                <a href="mailto:smaerhajatinagara@gmail.com" class="text-gray small text-decoration-none transition-all hover-accent d-block text-start">smaerhajatinagara@gmail.com</a>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -214,8 +231,7 @@
             <!-- Bottom Footer -->
             <div class="footer-bottom mt-5 pt-4 border-top border-secondary border-opacity-25 text-center">
                 <p class="text-gray small mb-0">
-                    &copy; {{ date('Y') }} <strong>SMA ERHA JATINAGARA</strong>. All rights reserved. 
-                    <span class="d-none d-md-inline ms-2">| Development by Eight.</span>
+                    &copy; {{ date('Y') }} <strong>SMA ERHA JATINAGARA</strong>. 
                 </p>
             </div>
         </div>
@@ -227,6 +243,7 @@
             color: #b0b0b0;
         }
         .text-accent { color: #ffd700 !important; }
+        .bg-accent { background-color: #ffd700 !important; }
         .text-gray { color: #b0b0b0; }
         .footer-links li { margin-bottom: 12px; }
         .footer-links a {
@@ -239,6 +256,27 @@
             color: #ffd700;
             padding-left: 8px;
         }
+
+        /* Contact Section Styling */
+        .contact-icon-box {
+            width: 35px;
+            height: 35px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffd700;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+        .hover-accent:hover {
+            color: #ffd700 !important;
+        }
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+
         .social-icon {
             width: 38px;
             height: 38px;

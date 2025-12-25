@@ -134,10 +134,14 @@
     
     @media (max-width: 768px) {
         .news-image-box {
-            height: 200px;
+            height: 180px;
         }
         .news-title-limit {
-            font-size: 1.1rem;
+            font-size: 1rem;
+            height: 2.8rem;
+        }
+        .card-body.p-4 {
+            padding: 1.25rem !important;
         }
     }
 </style>

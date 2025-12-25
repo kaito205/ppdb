@@ -29,10 +29,7 @@ class AdminController extends Controller
         // Status Ditolak (Tidak Lulus)
         $ditolak = Pendaftaran::where('status_seleksi', 'Tidak Lulus')->count();
         
-        // Total Pesan Masuk
-        $pesanMasuk = \App\Models\Contact::count();
-
-        return view('admin.dashboard', compact('totalPendaftar', 'menungguValidasi', 'diterima', 'ditolak', 'pesanMasuk'));
+        return view('admin.dashboard', compact('totalPendaftar', 'menungguValidasi', 'diterima', 'ditolak'));
     }
     public function login()
     {
@@ -259,6 +256,13 @@ class AdminController extends Controller
     public function detailSiswa(string $id)
     {
         $data = Pendaftaran::findOrFail($id);
+        
+        // Logika real-time: tandai sudah dibaca saat dibuka
+        if (!$data->is_read) {
+            $data->is_read = true;
+            $data->save();
+        }
+
         return view('admin.detail', compact('data'));
     }
 
