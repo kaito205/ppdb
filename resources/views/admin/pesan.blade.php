@@ -6,15 +6,15 @@
 
 <div class="row animate__animated animate__fadeIn">
     <div class="col-12">
-        <div class="card border-0 shadow-sm rounded-4">
-            <div class="card-header bg-white py-3 border-0 rounded-top-4 d-flex justify-content-between align-items-center">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white py-3 border-0 d-flex justify-content-between align-items-center">
                 <div>
                     <h5 class="m-0 font-weight-bold text-primary">
                         <i class="bi bi-envelope-paper-fill me-2"></i>Inbox Pesan
                     </h5>
                     <small class="text-muted">Kelola semua pesan yang masuk dari formulir kontak website.</small>
                 </div>
-                <span id="unread-badge" class="badge bg-primary rounded-pill px-3 py-2 animate__animated {{ $messages->where('is_read', false)->count() > 0 ? 'animate__pulse animate__infinite' : '' }}">
+                <span id="unread-badge" class="badge bg-primary px-3 py-2 animate__animated {{ $messages->where('is_read', false)->count() > 0 ? 'animate__pulse animate__infinite' : '' }}">
                     <span id="unread-count">{{ $messages->where('is_read', false)->count() }}</span> Pesan Baru
                 </span>
             </div>
@@ -68,7 +68,7 @@
                                     </div>
                                 </td>
                                 <td class="text-center">
-                                    <div class="btn-group shadow-sm rounded-3 overflow-hidden">
+                                    <div class="btn-group shadow-sm overflow-hidden">
                                         <button type="button" class="btn btn-sm btn-white border-end btn-view-message" 
                                                 data-id="{{ $message->id }}"
                                                 data-bs-toggle="modal" 
@@ -109,7 +109,7 @@
 @foreach($messages as $message)
 <div class="modal fade" id="modalDetail{{ $message->id }}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content border-0 shadow-lg rounded-4">
+        <div class="modal-content border-0 shadow-lg">
             <div class="modal-header border-0 pb-0 px-4 pt-4">
                 <div class="d-flex align-items-center">
                     <div class="avatar-lg me-3 bg-primary-light text-primary fw-bold shadow-sm">
@@ -130,20 +130,20 @@
                         <span class="text-dark fw-bold"><i class="bi bi-calendar-event me-2 text-primary"></i>{{ $message->created_at->format('d F Y, H:i') }} WIB</span>
                     </div>
                     <div class="text-end">
-                        <span id="modal-badge-{{ $message->id }}" class="badge {{ $message->is_read ? 'bg-secondary' : 'bg-success' }} px-3 py-2 rounded-pill">
+                        <span id="modal-badge-{{ $message->id }}" class="badge {{ $message->is_read ? 'bg-secondary' : 'bg-success' }} px-3 py-2">
                             <i class="bi {{ $message->is_read ? 'bi-envelope-open' : 'bi-envelope-fill' }} me-1"></i>
                             {{ $message->is_read ? 'Read' : 'New Message' }}
                         </span>
                     </div>
                 </div>
-                <div class="message-content-box p-4 bg-white border rounded-4 shadow-sm">
+                <div class="message-content-box p-4 bg-white border">
                     <h6 class="text-primary fw-bold mb-3 border-bottom pb-2">Isi Pesan:</h6>
                     <p class="text-secondary lh-lg mb-0" style="white-space: pre-wrap;">{{ $message->message }}</p>
                 </div>
             </div>
             <div class="modal-footer border-0 px-4 py-4 mt-2">
-                <button type="button" class="btn btn-light px-4 rounded-3" data-bs-dismiss="modal">Tutup</button>
-                <a href="mailto:{{ $message->email }}?subject=Re: Pesan dari {{ $message->name }}" class="btn btn-primary px-4 rounded-3 shadow-sm">
+                <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Tutup</button>
+                <a href="mailto:{{ $message->email }}?subject=Re: Pesan dari {{ $message->name }}" class="btn btn-primary px-4 shadow-sm">
                     <i class="bi bi-reply-fill me-2"></i>Balas Pesan
                 </a>
             </div>

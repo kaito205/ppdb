@@ -68,6 +68,17 @@
     .bg-light-blue {
         background-color: rgba(14, 46, 114, 0.03) !important;
     }
+
+    /* Global Sharp Modern Border Radius */
+    .btn, 
+    .card, 
+    .form-control, 
+    .badge, 
+    .modal-content, 
+    .input-group-text,
+    .dropdown-menu {
+        border-radius: 5px !important;
+    }
 </style>
 
 <body id="page-top">

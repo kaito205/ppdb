@@ -18,10 +18,10 @@
                 <p class="text-muted small mb-0">Validasi berkas, kelola status kelulusan, dan unduh data pendaftar.</p>
             </div>
             <div class="d-flex gap-2">
-                <a href="{{ route('admin.export.excel') }}" class="btn btn-success rounded-pill px-4 shadow-sm">
+                <a href="{{ route('admin.export.excel') }}" class="btn btn-success px-4 shadow-sm">
                     <i class="bi bi-file-earmark-spreadsheet me-2"></i>Export Excel
                 </a>
-                <a href="{{ route('admin.export.pdf') }}" class="btn btn-danger rounded-pill px-4 shadow-sm">
+                <a href="{{ route('admin.export.pdf') }}" class="btn btn-danger px-4 shadow-sm">
                     <i class="bi bi-file-earmark-pdf me-2"></i>Export PDF
                 </a>
             </div>
@@ -85,7 +85,7 @@
     </div>
 
     <!-- Main Content Table -->
-    <div class="card border-0 shadow-sm rounded-4 overflow-hidden animate__animated animate__fadeInUp">
+    <div class="card border-0 shadow-sm overflow-hidden animate__animated animate__fadeInUp">
         <div class="card-header bg-white py-4 px-4 border-0">
             <div class="row align-items-center">
                 <div class="col-md-4">
@@ -95,7 +95,7 @@
                     <form action="{{ route('datasiswa') }}" method="GET">
                         <div class="input-group">
                             <input type="text" name="search" class="form-control bg-light border-0 py-2 ps-4" 
-                                placeholder="Cari Nama, NISN, atau Asal Sekolah..." value="{{ request('search') }}">
+                                placeholder="Cari Nama, NISN..." value="{{ request('search') }}">
                             <button class="btn btn-blue px-4" type="submit">
                                 <i class="bi bi-search me-2"></i>Cari Data
                             </button>
@@ -152,28 +152,28 @@
                             </td>
                             <td class="text-center">
                                 @if($siswa->status_seleksi == 'Lulus')
-                                    <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2 fw-bold">
+                                    <span class="badge bg-success bg-opacity-10 text-success px-3 py-2 fw-bold">
                                         <i class="bi bi-check-circle-fill me-1"></i> Terkonfirmasi
                                     </span>
                                 @elseif($siswa->status_seleksi == 'Tidak Lulus')
-                                    <span class="badge bg-danger bg-opacity-10 text-danger rounded-pill px-3 py-2 fw-bold">
+                                    <span class="badge bg-danger bg-opacity-10 text-danger px-3 py-2 fw-bold">
                                         <i class="bi bi-x-circle-fill me-1"></i> Ditolak
                                     </span>
                                 @else
-                                    <span class="badge bg-warning bg-opacity-10 text-warning rounded-pill px-3 py-2 fw-bold">
+                                    <span class="badge bg-warning bg-opacity-10 text-warning px-3 py-2 fw-bold">
                                         <i class="bi bi-hourglass-split me-1"></i> Pending
                                     </span>
                                 @endif
                             </td>
                             <td class="pe-4 text-end">
                                 <div class="d-flex justify-content-end gap-1">
-                                    <button type="button" class="btn btn-sm btn-light-success rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#modalTerima{{ $siswa->id }}">
+                                    <button type="button" class="btn btn-sm btn-light-success px-3" data-bs-toggle="modal" data-bs-target="#modalTerima{{ $siswa->id }}">
                                         Terima
                                     </button>
-                                    <button type="button" class="btn btn-sm btn-light-danger rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#modalTolak{{ $siswa->id }}">
+                                    <button type="button" class="btn btn-sm btn-light-danger px-3" data-bs-toggle="modal" data-bs-target="#modalTolak{{ $siswa->id }}">
                                         Tolak
                                     </button>
-                                    <a href="{{ route('admin.siswa.detail', $siswa->id) }}" class="btn btn-sm btn-light-info rounded-pill px-3">
+                                    <a href="{{ route('admin.siswa.detail', $siswa->id) }}" class="btn btn-sm btn-light-info px-3">
                                         Detail
                                     </a>
                                 </div>
@@ -240,8 +240,8 @@
                     </div>
                 </div>
                 <div class="modal-footer border-0 p-4 pt-0">
-                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-success rounded-pill px-4 shadow-sm w-100 mt-2">
+                    <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-success px-4 shadow-sm w-100 mt-2">
                         <i class="bi bi-send me-2"></i>Konfirmasi & Kirim Email
                     </button>
                 </div>
@@ -276,8 +276,8 @@
                     </div>
                 </div>
                 <div class="modal-footer border-0 p-4 pt-0">
-                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-danger rounded-pill px-4 shadow-sm w-100 mt-2">
+                    <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger px-4 shadow-sm w-100 mt-2">
                         <i class="bi bi-trash me-2"></i>Ya, Tolak Siswa Ini
                     </button>
                 </div>
