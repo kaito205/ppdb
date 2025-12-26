@@ -3,7 +3,7 @@
 
         <div class="text-center mb-5" data-aos="fade-up">
             <h2 class="fw-bold display-5">Informasi <span class="text-success">PPDB</span></h2>
-            <p class="text-muted">Prosedur pendaftaran santri baru tanpa tes seleksi akademik.</p>
+            <p class="text-muted">Prosedur pendaftaran siswa dan santri baru.</p>
             <div class="mx-auto" style="width: 80px; height: 4px; background: #28a745; border-radius: 10px;"></div>
         </div>
 
@@ -79,7 +79,7 @@
                 </h4>
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
                     <div class="bg-blue p-3 text-white">
-                        <h6 class="mb-0 fw-bold"><i class="bi bi-info-circle me-2"></i> Estimasi Biaya TA 2024/2025</h6>
+                        <h6 class="mb-0 fw-bold"><i class="bi bi-info-circle me-2"></i> Estimasi Biaya TA 2025/2026</h6>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
@@ -92,26 +92,27 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="px-4 py-3">Infaq Pendaftaran</td>
-                                        <td class="px-4 py-3 text-end fw-bold">Rp 25k</td>
+                                        <td class="px-4 py-3">Biaya Dokumen & Administrasi</td>
+                                        <td class="px-4 py-3 text-end fw-bold">
+                                            <span class="d-none d-sm-inline">Rp 1.000.000</span>
+                                            <span class="d-inline d-sm-none">Rp 1jt</span>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td class="px-4 py-3">Sarana & Gedung</td>
-                                        <td class="px-4 py-3 text-end fw-bold">Rp 3.5jt</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-3">Seragam Lengkap</td>
-                                        <td class="px-4 py-3 text-end fw-bold">Rp 1.2jt</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-3">Syahriah /Bln</td>
-                                        <td class="px-4 py-3 text-end fw-bold">Rp 25k</td>
+                                        <td class="px-4 py-3">Syahriah & Uang Makan /Bln</td>
+                                        <td class="px-4 py-3 text-end fw-bold">
+                                            <span class="d-none d-sm-inline">Rp 350.000</span>
+                                            <span class="d-inline d-sm-none">Rp 350rb</span>
+                                        </td>
                                     </tr>
                                 </tbody>
                                 <tfoot class="bg-light">
                                     <tr>
                                         <td class="px-4 py-3 fw-bold">Total Awal</td>
-                                        <td class="px-4 py-3 text-end fw-bold text-blue h5">Rp 4.75jt</td>
+                                        <td class="px-4 py-3 text-end fw-bold text-blue h5">
+                                            <span class="d-none d-sm-inline">Rp 1.350.000</span>
+                                            <span class="d-inline d-sm-none">Rp 1.35jt</span>
+                                        </td>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -133,7 +134,7 @@
                         <div>
                             <h6 class="fw-bold mb-1">Ada Pertanyaan?</h6>
                             <p class="small text-muted mb-2">Butuh bantuan pendaftaran? Hubungi Admin kami.</p>
-                            <a href="https://wa.me/6285861930794" class="fw-bold text-decoration-none small" style="color: #25D366;">
+                            <a href="https://wa.me/6281394060612" class="fw-bold text-decoration-none small" style="color: #25D366;">
                                 Chat WhatsApp Sekarang <i class="bi bi-arrow-right ms-1"></i>
                             </a>
                         </div>

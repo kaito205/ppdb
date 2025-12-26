@@ -1,115 +1,189 @@
-<section id="profil-sekolah" class="py-5 bg-light">
-    <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <h2 class="fw-bold display-5">Profil <span class="text-blue">Sekolah</span></h2>
-            <p class="text-muted">Mengenal lebih dekat visi, misi, dan identitas perjalanan pendidikan kami.</p>
-            <div class="mx-auto" style="width: 80px; height: 4px; background: #0e2e72; border-radius: 10px;"></div>
+<section id="profil-sekolah" class="py-5 bg-white overflow-hidden">
+    <div class="row align-items-center g-5">
+        <!-- Left Column: Content & Stats -->
+        <div class="col-lg-7" data-aos="fade-right">
+            <div class="mb-4">
+                <span class="badge bg-blue-light text-blue px-3 py-2 rounded-pill mb-3">Profil Lembaga</span>
+                <h2 class="fw-bold display-5 text-blue mb-4">Membangun Masa Depan <br><span class="text-success">Bersama Kami</span></h2>
+                <p class="text-muted fs-5 mb-4" style="line-height: 1.8; text-align: justify;">
+                    {{ $profil->deskripsi ?? 'SMA ERHA JATINAGARA adalah lembaga pendidikan yang berkomitmen mencetak generasi unggul, berakhlak mulia, dan berwawasan global. Kami memadukan kurikulum nasional dengan nilai-nilai karakter untuk membentuk siswa yang tangguh.' }}
+                </p>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="row g-4 mb-5">
+                <div class="col-6 col-md-4">
+                    <div class="stat-item">
+                        <h3 class="fw-bold text-blue mb-0 counter" data-target="1000">0</h3>
+                        <small class="text-muted text-uppercase ls-1">Siswa Aktif</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="stat-item">
+                        <h3 class="fw-bold text-success mb-0">Akreditasi B</h3>
+                        <small class="text-muted text-uppercase ls-1">Kualitas Terjamin</small>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="stat-item">
+                        <h3 class="fw-bold text-warning mb-0">PPDB Buka</h3>
+                        <small class="text-muted text-uppercase ls-1">Status Pendaftaran</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pesantren Features Mini -->
+            <div class="card border-0 bg-light rounded-4 p-4 shadow-sm">
+                <h6 class="fw-bold text-blue mb-3">Keunggulan Berbasis Pesantren</h6>
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-patch-check-fill text-success"></i>
+                            <span class="small fw-semibold">Tahfidz Al-Qur'an</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-patch-check-fill text-success"></i>
+                            <span class="small fw-semibold">Bahasa Arab & Inggris</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-patch-check-fill text-success"></i>
+                            <span class="small fw-semibold">Kitab Kuning</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-patch-check-fill text-success"></i>
+                            <span class="small fw-semibold">Asrama Modern</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-       
-
-        <div class="row g-4 mt-2">
-            <!-- Card 1: Sejarah -->
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                <a href="{{ route('profil') }}#tentang" class="text-decoration-none h-100">
-                    <div class="card border-0 profil-mini-card shadow-sm rounded-4 h-100 p-4 text-center">
-                        <div class="profil-icon-circle bg-blue-light mb-4 mx-auto">
-                            <i class="bi bi-clock-history text-blue fs-3"></i>
-                        </div>
-                        <h4 class="fw-bold text-dark mb-3">Tentang Sekolah</h4>
-                        <p class="text-muted small mb-3">Perjalanan panjang kami dalam membangun generasi bangsa yang berkarakter sejak berdiri hingga saat ini.</p>
-                        <span class="text-blue fw-bold small">Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i></span>
+        <!-- Right Column: Visual Identity -->
+        <div class="col-lg-5" data-aos="fade-left">
+            <div class="profil-image-wrapper position-relative">
+                <!-- Main Image Card -->
+                <div class="card border-0 shadow-lg rounded-5 overflow-hidden main-profile-card">
+                    <img src="{{ asset('img/sekolah.jpg') }}" class="card-img" alt="Gedung Sekolah" style="height: 500px; object-fit: cover; filter: brightness(0.9);">
+                    <div class="card-img-overlay d-flex flex-column justify-content-end p-4 p-lg-5 grad-overlay">
+                        <h4 class="text-white fw-bold mb-1">SMA ERHA Jatinagara</h4>
+                        <p class="text-white-50 small mb-0"><i class="bi bi-geo-alt-fill me-1"></i> Jatinagara, Ciamis, Jawa Barat</p>
                     </div>
-                </a>
-            </div>
+                </div>
 
-            <!-- Card 2: Visi -->
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                <a href="{{ route('profil') }}#visimisi" class="text-decoration-none h-100">
-                    <div class="card border-0 profil-mini-card shadow-sm rounded-4 h-100 p-4 text-center">
-                        <div class="profil-icon-circle bg-success-light mb-4 mx-auto">
-                            <i class="bi bi-eye text-success fs-3"></i>
+                <!-- Floating Badge 1 -->
+                <div class="floating-info-badge badge-top shadow-sm" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="icon-box bg-blue text-white rounded-circle">
+                            <i class="bi bi-award-fill"></i>
                         </div>
-                        <h4 class="fw-bold text-dark mb-3">Visi</h4>
-                        <p class="text-muted small mb-3">Menjadi lembaga pendidikan terdepan dalam membentuk generasi cerdas, mandiri, dan berakhlakul karimah.</p>
-                        <span class="text-success fw-bold small">Lihat Detail <i class="bi bi-arrow-right ms-1"></i></span>
+                        <div>
+                            <h6 class="mb-0 fw-bold">Sekolah Model</h6>
+                            <small class="text-muted">Karakter Islami</small>
+                        </div>
                     </div>
-                </a>
-            </div>
+                </div>
 
-            <!-- Card 3: Misi -->
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                <a href="{{ route('profil') }}#visimisi" class="text-decoration-none h-100">
-                    <div class="card border-0 profil-mini-card shadow-sm rounded-4 h-100 p-4 text-center">
-                        <div class="profil-icon-circle bg-warning-light mb-4 mx-auto">
-                            <i class="bi bi-bullseye text-warning fs-3"></i>
+                <!-- Floating Badge 2 -->
+                <div class="floating-info-badge badge-bottom shadow-sm" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="avatar-group d-flex align-items-center">
+                            <div class="avatar-mini bg-success text-white">S</div>
+                            <div class="avatar-mini bg-blue text-white">M</div>
+                            <div class="avatar-mini bg-warning text-white">A</div>
                         </div>
-                        <h4 class="fw-bold text-dark mb-3">Misi</h4>
-                        <p class="text-muted small mb-3">Langkah nyata kami melalui pendidikan berkualitas, pembiasaan karaker Islami, dan pengembangan bakat.</p>
-                        <span class="text-warning fw-bold small">Pelajari Misi <i class="bi bi-arrow-right ms-1"></i></span>
+                        <span class="small fw-bold">Teruji & Terpercaya</span>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <style>
-    .info-mini-card {
-        background: #fff;
-        border: 1px solid rgba(0,0,0,0.05);
-        transition: all 0.3s ease;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    }
-    .info-mini-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
-    }
-    .mini-icon-box {
-        width: 48px;
-        height: 48px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        flex-shrink: 0;
-    }
-    @media (max-width: 768px) {
-        .mini-icon-box {
-            width: 32px;
-            height: 32px;
-            font-size: 0.9rem;
-            border-radius: 8px;
-        }
-        .info-mini-card {
-            border-radius: 15px !important;
-        }
-    }
-
-    .profil-mini-card {
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        border: 1px solid rgba(0,0,0,0.05);
-    }
-    .profil-mini-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 40px rgba(14, 46, 114, 0.1) !important;
-        border-color: rgba(14, 46, 114, 0.2);
-    }
-    .profil-icon-circle {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-    }
-    .profil-mini-card:hover .profil-icon-circle {
-        transform: rotateY(180deg);
-    }
+    .text-blue { color: #0e2e72; }
+    .bg-blue { background-color: #0e2e72; }
     .bg-blue-light { background-color: rgba(14, 46, 114, 0.08); }
-    .bg-success-light { background-color: rgba(25, 135, 84, 0.08); }
-    .bg-warning-light { background-color: rgba(255, 193, 7, 0.08); }
-</style>
+    .ls-1 { letter-spacing: 1px; }
 
+    .stat-item {
+        border-left: 3px solid #dee2e6;
+        padding-left: 15px;
+        transition: all 0.3s ease;
+    }
+    .stat-item:hover {
+        border-left-color: #0e2e72;
+    }
+
+    .main-profile-card {
+        transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .main-profile-card:hover {
+        transform: scale(1.02);
+    }
+
+    .grad-overlay {
+        background: linear-gradient(to top, rgba(14, 46, 114, 0.9), transparent);
+    }
+
+    .floating-info-badge {
+        position: absolute;
+        background: white;
+        padding: 15px 20px;
+        border-radius: 20px;
+        z-index: 10;
+        min-width: 180px;
+    }
+
+    .badge-top {
+        top: 15%;
+        left: -40px;
+    }
+
+    .badge-bottom {
+        bottom: 10%;
+        right: -30px;
+    }
+
+    .icon-box {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .avatar-group .avatar-mini {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 2px solid white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        font-weight: bold;
+        margin-left: -10px;
+    }
+    .avatar-group .avatar-mini:first-child { margin-left: 0; }
+
+    @media (max-width: 991px) {
+        .badge-top, .badge-bottom {
+            position: relative;
+            top: auto;
+            left: auto;
+            right: auto;
+            bottom: auto;
+            margin-top: 15px;
+            display: inline-block;
+        }
+        .profil-image-wrapper {
+            margin-top: 50px;
+        }
+    }
+</style>

@@ -50,7 +50,7 @@
                             Profil
                         </a>
                         <ul class="dropdown-menu border-0 shadow-sm rounded-3" aria-labelledby="navbarProfil">
-                            <li><a class="dropdown-item" href="{{ route('profil') }}#tentang">Tentang Sekolah</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profil') }}">Tentang Sekolah</a></li>
                             <li><a class="dropdown-item" href="{{ route('profil') }}#visimisi">Visi Misi</a></li>
                             <li><a class="dropdown-item" href="{{ route('fasilitas') }}">Fasilitas</a></li>
                         </ul>
@@ -173,7 +173,7 @@
                     <div class="social-links d-flex gap-2 justify-content-start">
                         <a href="https://web.facebook.com/smaerhajatinagara" class="social-icon"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/smaerhajatinagara/" class="social-icon"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/6285861930794" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/6281394060612" class="social-icon"><i class="fab fa-whatsapp"></i></a>
                         <a href="https://www.youtube.com/@smaerhajatinagara" class="social-icon"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
@@ -212,7 +212,7 @@
                             </div>
                             <div class="flex-grow-1 text-start">
                                 <h6 class="text-white fw-bold mb-1" style="font-size: 0.9rem;">Telepon</h6>
-                                <a href="tel:03412345678" class="text-gray small text-decoration-none transition-all hover-accent d-block text-start">085861930794</a>
+                                <a href="tel:+62-81394060612" class="text-gray small text-decoration-none transition-all hover-accent d-block text-start">+62-81394060612</a>
                             </div>
                         </li>
                         <li class="d-flex align-items-start gap-3">
@@ -221,7 +221,7 @@
                             </div>
                             <div class="flex-grow-1 text-start">
                                 <h6 class="text-white fw-bold mb-1" style="font-size: 0.9rem;">Email</h6>
-                                <a href="mailto:smaerhajatinagara@gmail.com" class="text-gray small text-decoration-none transition-all hover-accent d-block text-start">smaerhajatinagara@gmail.com</a>
+                                <a href="mailto:erhajatinagarasma@gmail.com" class="text-gray small text-decoration-none transition-all hover-accent d-block text-start">erhajatinagarasma@gmail.com</a>
                             </div>
                         </li>
                     </ul>

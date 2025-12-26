@@ -49,7 +49,7 @@
 <div class="container mt-5 mb-4">
     <div class="card shadow border-0 mb-4">
         <div class="card-header bg-success text-white">
-            <h4><i class="bi bi-pencil-square me-2"></i> Formulir Pendaftaran Mahasiswa Baru</h4>
+            <h4><i class="bi bi-pencil-square me-2"></i> Formulir Pendaftaran Siswa Baru</h4>
             <p class="mb-0 small">Lengkapi semua data dengan benar dan lengkap ya bro.</p>
         </div>
     </div>

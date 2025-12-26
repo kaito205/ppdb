@@ -216,7 +216,7 @@
                             </h2>
                             <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body text-white">
-                                    Pendaftaran online melalui website adalah GRATIS. Orang tua/wali hanya perlu membayar Infaq Pendaftaran sebesar Rp 250.000 saat proses verifikasi berkas dan wawancara.
+                                    Pendaftaran online melalui website adalah GRATIS. Orang tua/wali hanya perlu membayar Biaya Dokumen & Administrasi sebesar Rp 1.000.000 saat proses verifikasi berkas dan wawancara.
                                 </div>
                             </div>
                         </div>

@@ -160,11 +160,11 @@
                                     </li>
                                     <li class="mb-3 d-flex align-items-center">
                                         <i class="bi bi-telephone-fill me-2 text-accent"></i>
-                                        <span>085861930794</span>
+                                        <span>+62-81394060612</span>
                                     </li>
                                     <li class="d-flex align-items-center">
                                         <i class="bi bi-envelope-fill me-2 text-accent"></i>
-                                        <span>smaerhajatinagara@gmail.com</span>
+                                        <span>erhajatinagarasma@gmail.com</span>
                                     </li>
                                 </ul>
                             </div>
@@ -177,7 +177,7 @@
                                     <a href="https://web.facebook.com/smaerhajatinagara" class="social-btn"><i class="bi bi-facebook"></i></a>
                                     <a href="https://www.instagram.com/smaerhajatinagara/" class="social-btn"><i class="bi bi-instagram"></i></a>
                                     <a href="https://www.youtube.com/@smaerhajatinagara" class="social-btn"><i class="bi bi-youtube"></i></a>
-                                    <a href="https://wa.me/6285861930794" class="social-btn"><i class="bi bi-whatsapp"></i></a>
+                                    <a href="https://wa.me/6281394060612" class="social-btn"><i class="bi bi-whatsapp"></i></a>
                                 </div>
                             </div>
                         </div>

@@ -60,39 +60,69 @@
                 @php
                     $staff = [
                         [
-                            'nama' => 'H. Ahmad Syarifuddin, M.Pd.',
+                            'nama' => 'Dr. Mohamad Aip Maptuh',
+                            'jabatan' => 'Ketua Yayasan',
+                            'spesialis' => 'Pembina Yayasan',
+                            'foto' => 'user.jpeg'
+                        ],
+                        [
+                            'nama' => 'Ai Nuraeni, S.Pd',
                             'jabatan' => 'Kepala Sekolah',
-                            'spesialis' => 'Manajemen Kurikulum',
+                            'spesialis' => 'Manajemen Sekolah',
                             'foto' => 'user.jpeg'
                         ],
                         [
-                            'nama' => 'Dra. Siti Hajar',
-                            'jabatan' => 'Guru Kimia',
-                            'spesialis' => 'Wakasek Kurikulum',
+                            'nama' => 'Afif Ismail S',
+                            'jabatan' => 'Ketua Komite',
+                            'spesialis' => 'Hubungan Masyarakat',
                             'foto' => 'user.jpeg'
                         ],
                         [
-                            'nama' => 'Budi Santoso, S.Kom',
-                            'jabatan' => 'Guru Informatika',
-                            'spesialis' => 'IT & Digital Literacy',
+                            'nama' => 'Edo Rosyada, S.Ag.',
+                            'jabatan' => 'Bendahara',
+                            'spesialis' => 'Keuangan & Administrasi',
                             'foto' => 'user.jpeg'
                         ],
                         [
-                            'nama' => 'Ust. Fauzan Azhari, Lc.',
-                            'jabatan' => 'Guru Bahasa Arab',
-                            'spesialis' => 'Tahfidz Al-Qur\'an',
+                            'nama' => 'Wuri Hartini, S.Pd.I',
+                            'jabatan' => 'Wakil Kepala Sekolah',
+                            'spesialis' => 'Bimbingan Konseling',
                             'foto' => 'user.jpeg'
                         ],
                         [
-                            'nama' => 'Rina Amalia, S.Pd.',
-                            'jabatan' => 'Guru Bahasa Inggris',
-                            'spesialis' => 'Linguistics & Debate',
+                            'nama' => 'Della Puspita',
+                            'jabatan' => 'Pembina Ekskul',
+                            'spesialis' => 'Kesiswaan',
                             'foto' => 'user.jpeg'
                         ],
                         [
-                            'nama' => 'Anwar Ibrahim, M.Si.',
-                            'jabatan' => 'Guru Matematika',
-                            'spesialis' => 'Olimpiade Sains',
+                            'nama' => 'Erjembari',
+                            'jabatan' => 'Pembina OSIS',
+                            'spesialis' => 'Organisasi Siswa',
+                            'foto' => 'user.jpeg'
+                        ],
+                        [
+                            'nama' => 'Iim Abdul Karim',
+                            'jabatan' => 'Laboran Komputer',
+                            'spesialis' => 'Teknologi Informasi',
+                            'foto' => 'user.jpeg'
+                        ],
+                        [
+                            'nama' => 'Reza Mulya Nugraha, S.Pd',
+                            'jabatan' => 'Wali Kelas X',
+                            'spesialis' => 'Guru Kelas',
+                            'foto' => 'user.jpeg'
+                        ],
+                        [
+                            'nama' => 'Nuraeni Hamidah, S.Pd',
+                            'jabatan' => 'Wali Kelas XI',
+                            'spesialis' => 'Guru Kelas',
+                            'foto' => 'user.jpeg'
+                        ],
+                        [
+                            'nama' => 'Irma Komala, S.Pd',
+                            'jabatan' => 'Wali Kelas XII',
+                            'spesialis' => 'Guru Kelas',
                             'foto' => 'user.jpeg'
                         ]
                     ];
