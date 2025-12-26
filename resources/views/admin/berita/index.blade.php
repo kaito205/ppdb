@@ -74,30 +74,6 @@
                                     <i class="bi bi-trash me-1"></i>Hapus
                                 </button>
                             </div>
-
-                            <!-- Delete Modal -->
-                            <div class="modal fade" id="deleteModal{{ $b->id }}" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered text-start">
-                                    <div class="modal-content border-0 shadow rounded-4">
-                                        <div class="modal-header border-0">
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body text-center p-4">
-                                            <i class="bi bi-exclamation-triangle-fill text-danger display-1 mb-3"></i>
-                                            <h4 class="fw-bold text-dark">Hapus Berita?</h4>
-                                            <p class="text-muted">Anda yakin ingin menghapus berita <strong>"{{ $b->judul }}"</strong>? Perubahan ini bersifat permanen.</p>
-                                        </div>
-                                        <div class="modal-footer border-0 p-4 pt-0 justify-content-center">
-                                            <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Batal</button>
-                                            <form action="{{ route('berita.delete', $b->id) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger rounded-pill px-4 shadow-sm">Ya, Hapus Permanen</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </td>
                     </tr>
                     @empty
@@ -125,6 +101,32 @@
         @endif
     </div>
 </div>
+
+<!-- Modals Outside Table -->
+@foreach ($berita as $b)
+<div class="modal fade" id="deleteModal{{ $b->id }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered text-start">
+        <div class="modal-content border-0 shadow rounded-4">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center p-4">
+                <i class="bi bi-exclamation-triangle-fill text-danger display-1 mb-3"></i>
+                <h4 class="fw-bold text-dark">Hapus Berita?</h4>
+                <p class="text-muted">Anda yakin ingin menghapus berita <strong>"{{ $b->judul }}"</strong>? Perubahan ini bersifat permanen.</p>
+            </div>
+            <div class="modal-footer border-0 p-4 pt-0 justify-content-center">
+                <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Batal</button>
+                <form action="{{ route('berita.delete', $b->id) }}" method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger rounded-pill px-4 shadow-sm">Ya, Hapus Permanen</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
 
 <style>
     .btn-blue { background-color: #0e2e72; color: white; border: none; }

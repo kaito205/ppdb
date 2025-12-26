@@ -68,26 +68,6 @@
                                     <i class="bi bi-trash me-1"></i>Hapus
                                 </button>
                             </div>
-
-                            <!-- Delete Modal -->
-                            <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content border-0 shadow rounded-4 text-start">
-                                        <div class="modal-header border-0">
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body text-center p-4">
-                                            <i class="bi bi-exclamation-triangle-fill text-danger display-1 mb-3"></i>
-                                            <h4 class="fw-bold">Hapus Prestasi?</h4>
-                                            <p class="text-muted">Anda akan menghapus data prestasi <strong>{{ $item->judul }}</strong>. Tindakan ini tidak dapat dibatalkan.</p>
-                                        </div>
-                                        <div class="modal-footer border-0 p-4 pt-0 justify-content-center">
-                                            <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Batal</button>
-                                            <a href="{{ route('admin.prestasi.hapus', $item->id) }}" class="btn btn-danger rounded-pill px-4 shadow-sm">Ya, Hapus</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </td>
                     </tr>
                     @empty
@@ -111,6 +91,32 @@
         @endif
     </div>
 </div>
+
+<!-- Modals Outside Table -->
+@foreach ($data as $item)
+<div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow rounded-4 text-start">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center p-4">
+                <i class="bi bi-exclamation-triangle-fill text-danger display-1 mb-3"></i>
+                <h4 class="fw-bold">Hapus Prestasi?</h4>
+                <p class="text-muted">Anda akan menghapus data prestasi <strong>{{ $item->judul }}</strong>. Tindakan ini tidak dapat dibatalkan.</p>
+            </div>
+            <div class="modal-footer border-0 p-4 pt-0 justify-content-center">
+                <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Batal</button>
+                <form action="{{ route('admin.prestasi.hapus', $item->id) }}" method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger rounded-pill px-4 shadow-sm">Ya, Hapus</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
 
 <style>
     .btn-blue { background-color: #0e2e72; color: white; border: none; }

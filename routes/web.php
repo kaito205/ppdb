@@ -109,7 +109,7 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
         Route::post('/store', [AdminController::class, 'ekskulStore'])->name('admin.ekskul.store');
         Route::get('/edit/{id}', [AdminController::class, 'ekskulEdit'])->name('admin.ekskul.edit');
         Route::post('/update/{id}', [AdminController::class, 'ekskulUpdate'])->name('admin.ekskul.update');
-        Route::get('/hapus/{id}', [AdminController::class, 'ekskulDelete'])->name('admin.ekskul.hapus');
+        Route::delete('/hapus/{id}', [AdminController::class, 'ekskulDelete'])->name('admin.ekskul.hapus');
     });
 
     // PRESTASI
@@ -119,7 +119,7 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
         Route::post('/store', [AdminController::class, 'prestasiStore'])->name('admin.prestasi.store');
         Route::get('/edit/{id}', [AdminController::class, 'prestasiEdit'])->name('admin.prestasi.edit');
         Route::post('/update/{id}', [AdminController::class, 'prestasiUpdate'])->name('admin.prestasi.update');
-        Route::get('/hapus/{id}', [AdminController::class, 'prestasiDelete'])->name('admin.prestasi.hapus');
+        Route::delete('/hapus/{id}', [AdminController::class, 'prestasiDelete'])->name('admin.prestasi.hapus');
     });
 
     // BERITA
