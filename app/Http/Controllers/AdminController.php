@@ -6,6 +6,7 @@ use App\Models\Berita;
 use App\Models\Ekstrakurikuler;
 use App\Models\Pendaftaran;
 use App\Models\ProfilSekolah;
+use App\Models\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,37 @@ class AdminController extends Controller
     public function login()
     {
         return view('admin.login');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login.admin')->with('success', 'Logout berhasil');
+    }
+
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            if (Auth::user()->role !== 'admin') {
+                Auth::logout();
+                return back()->with('error', 'Login khusus Admin!');
+            }
+
+            return redirect()->intended(route('dashboard.admin'));
+        }
+
+        return back()->withErrors([
+            'email' => 'Email atau password salah.',
+        ])->onlyInput('email');
     }
 
     public function ekskulIndex()
@@ -249,9 +281,18 @@ class AdminController extends Controller
     public function hapusSiswa($id)
     {
         $data = Pendaftaran::findOrFail($id);
+        
+        // Hapus file dari storage untuk menghemat ruang
+        $files = [$data->foto, $data->file_kk, $data->file_akte, $data->file_ijazah];
+        foreach ($files as $file) {
+            if ($file && \Illuminate\Support\Facades\Storage::disk('public')->exists($file)) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($file);
+            }
+        }
+
         $data->delete();
 
-        return redirect()->route('datasiswa')->with('success', 'Data siswa berhasil dihapus.');
+        return redirect()->route('datasiswa')->with('success', 'Data siswa dan berkas terkait berhasil dihapus.');
     }
     public function detailSiswa(string $id)
     {
@@ -380,6 +421,101 @@ class AdminController extends Controller
     }
 
     // ============================
+    // MANAJEMEN STAFF / GURU
+    // ============================
+    public function staffIndex()
+    {
+        $data = Staff::orderByRaw("
+            CASE 
+                WHEN jabatan LIKE '%Ketua Yayasan%' THEN 1
+                WHEN jabatan LIKE '%Kepala Sekolah%' THEN 2
+                WHEN jabatan LIKE '%Wakil%' THEN 3
+                WHEN jabatan LIKE '%Pembina%' THEN 4
+                WHEN jabatan LIKE '%Bendahara%' THEN 5
+                WHEN jabatan LIKE '%Sekretaris%' THEN 5
+                WHEN jabatan LIKE '%Guru%' OR jabatan LIKE '%Wali Kelas%' THEN 6
+                ELSE 99 
+            END ASC
+        ")->orderBy('nama', 'asc')->get();
+        return view('admin.staff.index', compact('data'));
+    }
+
+    public function staffCreate()
+    {
+        return view('admin.staff.create');
+    }
+
+    public function staffStore(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'jabatan' => 'required',
+            'foto' => 'image|max:2048'
+        ]);
+
+        $data = new Staff();
+        $data->nama = $request->nama;
+        $data->jabatan = $request->jabatan;
+        $data->spesialis = $request->spesialis;
+        
+        // Fields removed as per reversion
+        // $data->lulusan = $request->lulusan;
+        // $data->mapel = $request->mapel;
+        // $data->prestasi = $request->prestasi;
+
+        if ($request->hasFile('foto')) {
+            $data->foto = $this->uploadFile($request->file('foto'), 'uploads/staff');
+        }
+
+        $data->save();
+
+        return redirect()->route('admin.staff')->with('success', 'Staff berhasil ditambahkan');
+    }
+
+    public function staffEdit($id)
+    {
+        $data = Staff::findOrFail($id);
+        return view('admin.staff.edit', compact('data'));
+    }
+
+    public function staffUpdate(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'jabatan' => 'required',
+            'foto' => 'image|max:2048'
+        ]);
+
+        $data = Staff::findOrFail($id);
+        $data->nama = $request->nama;
+        $data->jabatan = $request->jabatan;
+        $data->spesialis = $request->spesialis;
+
+        // Fields removed as per reversion
+        // $data->lulusan = $request->lulusan;
+        // $data->mapel = $request->mapel;
+        // $data->prestasi = $request->prestasi;
+
+        if ($request->hasFile('foto')) {
+            $data->foto = $this->uploadFile($request->file('foto'), 'uploads/staff', $data->foto);
+        }
+
+        $data->save();
+
+        return redirect()->route('admin.staff')->with('success', 'Staff berhasil diperbarui');
+    }
+
+    public function staffDelete($id)
+    {
+        $data = Staff::findOrFail($id);
+        if ($data->foto) {
+            $this->deleteFile('uploads/staff', $data->foto);
+        }
+        $data->delete();
+        return back()->with('success', 'Staff berhasil dihapus');
+    }
+
+    // ============================
     // EXPORT & EMAIL FEATURES
     // ============================
 
@@ -460,21 +596,28 @@ class AdminController extends Controller
         $siswa->status_seleksi = 'Lulus';
         $siswa->save();
 
-        // Generate PDF
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('admin.surat_diterima', [
+        // Generate PDF Surat Kelulusan
+        $pdfSurat = \Barryvdh\DomPDF\Facade\Pdf::loadView('admin.surat_diterima', [
             'siswa' => $siswa,
             'tanggal' => $request->tanggal,
             'jam' => $request->jam,
             'tempat' => $request->tempat
         ]);
 
-        // Send Email
+        // Generate PDF Formulir Pendaftaran (Biodata)
+        $pdfFormulir = \Barryvdh\DomPDF\Facade\Pdf::loadView('pengguna.cetak', [
+            'data' => $siswa,
+            'is_pdf' => true
+        ]);
+
+        // Send Email with Both Attachments
         if ($siswa->email) {
             try {
-                \Illuminate\Support\Facades\Mail::send([], [], function ($message) use ($siswa, $pdf) {
+                \Illuminate\Support\Facades\Mail::send('emails.penerimaan', ['nama' => $siswa->nama], function ($message) use ($siswa, $pdfSurat, $pdfFormulir) {
                     $message->to($siswa->email)
-                        ->subject('Selamat! Anda Diterima di SMA ERHA')
-                        ->attachData($pdf->output(), 'Surat_Diterima.pdf');
+                        ->subject('Pemberitahuan Hasil Verifikasi PPDB SMA ERHA Jatinagara')
+                        ->attachData($pdfSurat->output(), 'Surat_Hasil_Verifikasi.pdf')
+                        ->attachData($pdfFormulir->output(), 'Formulir_Pendaftaran_Siswa.pdf');
                 });
             } catch (\Exception $e) {
                 return back()->with('warning', 'Siswa diterima, tetapi gagal mengirim email: ' . $e->getMessage());

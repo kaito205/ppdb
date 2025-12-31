@@ -86,32 +86,29 @@
                             <table class="table table-hover mb-0">
                                 <thead class="bg-light">
                                     <tr>
-                                        <th class="px-4 py-3 border-0">Keterangan</th>
-                                        <th class="px-4 py-3 border-0 text-end">Jumlah</th>
+                                        <th class="px-3 px-md-4 py-3 border-0">Keterangan</th>
+                                        <th class="px-3 px-md-4 py-3 border-0 text-end">Jumlah</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="px-4 py-3">Biaya Dokumen & Administrasi</td>
-                                        <td class="px-4 py-3 text-end fw-bold">
-                                            <span class="d-none d-sm-inline">Rp 1.000.000</span>
-                                            <span class="d-inline d-sm-none">Rp 1jt</span>
+                                        <td class="px-3 px-md-4 py-3 small">Biaya Dokumen & Administrasi</td>
+                                        <td class="px-3 px-md-4 py-3 text-end fw-bold small">
+                                            Rp 1.000.000
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="px-4 py-3">Syahriah & Uang Makan /Bln</td>
-                                        <td class="px-4 py-3 text-end fw-bold">
-                                            <span class="d-none d-sm-inline">Rp 350.000</span>
-                                            <span class="d-inline d-sm-none">Rp 350rb</span>
+                                        <td class="px-3 px-md-4 py-3 small">Syahriah & Makan /Bln</td>
+                                        <td class="px-3 px-md-4 py-3 text-end fw-bold small">
+                                            Rp 350.000
                                         </td>
                                     </tr>
                                 </tbody>
                                 <tfoot class="bg-light">
                                     <tr>
-                                        <td class="px-4 py-3 fw-bold">Total Awal</td>
-                                        <td class="px-4 py-3 text-end fw-bold text-blue h5">
-                                            <span class="d-none d-sm-inline">Rp 1.350.000</span>
-                                            <span class="d-inline d-sm-none">Rp 1.35jt</span>
+                                        <td class="px-3 px-md-4 py-3 fw-bold small">Total Awal</td>
+                                        <td class="px-3 px-md-4 py-3 text-end fw-bold text-blue">
+                                            Rp 1.350.000
                                         </td>
                                     </tr>
                                 </tfoot>
@@ -122,7 +119,7 @@
 
                 <!-- Action & Support -->
                 <div class="d-grid gap-3 d-md-flex mb-4">
-                    <a href="{{ route('register') }}" class="btn btn-warning btn-lg px-5 py-3 rounded-pill fw-bold shadow-sm flex-fill">
+                    <a href="{{ route('formulir.user') }}" class="btn btn-warning btn-lg px-5 py-3 rounded-pill fw-bold shadow-sm flex-fill">
                         Daftar Online
                     </a>
                 </div>
@@ -134,7 +131,7 @@
                         <div>
                             <h6 class="fw-bold mb-1">Ada Pertanyaan?</h6>
                             <p class="small text-muted mb-2">Butuh bantuan pendaftaran? Hubungi Admin kami.</p>
-                            <a href="https://wa.me/6281394060612" class="fw-bold text-decoration-none small" style="color: #25D366;">
+                            <a href="https://wa.me/6282119250323" class="fw-bold text-decoration-none small" style="color: #25D366;">
                                 Chat WhatsApp Sekarang <i class="bi bi-arrow-right ms-1"></i>
                             </a>
                         </div>

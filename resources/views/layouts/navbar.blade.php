@@ -6,7 +6,6 @@
     </button>
 
     <!-- Topbar Navbar -->
-    <!-- Topbar Navbar -->
     <ul class="navbar-nav ms-auto">
 
         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -137,12 +136,12 @@
 
                 <div class="dropdown-divider"></div>
 
-                <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <a href="{{ route('admin.logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>
                     Logout
                 </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
             </div>

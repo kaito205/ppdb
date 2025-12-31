@@ -148,13 +148,13 @@
     <table class="header-table">
         <tr>
             <td width="100">
-                <img src="{{ asset('img/logo.png') }}" class="logo" onerror="this.src='https://via.placeholder.com/80?text=LOGO'">
+                <img src="{{ public_path('img/logo.webp') }}" class="logo">
             </td>
             <td align="center">
                 <div class="school-name">SMA ERHA JATINAGARA</div>
                 <div class="school-address">
-                    Jl. Raya Jatinagara No. 123, Ciamis, Jawa Barat<br>
-                    Telp: (0265) 123456 | Email: info@smaerha.sch.id | Website: www.smaerha.sch.id
+                    Dusun Kulon, Desa Jatinagara, Kec. Jatinagara, Kab. Ciamis, Jawa Barat<br>
+                    Telp: 0821 1925 0323 | Email: erhajatinagarasma@gmail.com | Website: www.smaerha.sch.id
                 </div>
             </td>
             <td width="100"></td>
@@ -190,7 +190,7 @@
                 <td align="center">{{ $siswa->nisn }}</td>
                 <td align="center">{{ $siswa->no_kk ?? '-' }}</td>
                 <td align="center">{{ $siswa->jenis_kelamin }}</td>
-                <td>{{ $siswa->tempat_lahir }}, {{ \Carbon\Carbon::parse($siswa->tanggal_lahir)->format('d F Y') }}</td>
+                <td>{{ $siswa->tempat_lahir }}, {{ \Carbon\Carbon::parse($siswa->tanggal_lahir)->translatedFormat('d F Y') }}</td>
                 <td>{{ $siswa->alamat }}</td>
                 <td align="center">{{ $siswa->no_hp }}</td>
                 <td>
@@ -210,8 +210,8 @@
                 Ciamis, {{ date('d F Y') }}<br>
                 Kepala Sekolah SMA ERHA,<br>
                 <div class="signature-space"></div>
-                <strong>( ......................................... )</strong><br>
-                NIP. .....................................
+                <strong>( Ai Nuraeni, S.Pd )</strong><br>
+                NIP. -
             </td>
         </tr>
     </table>

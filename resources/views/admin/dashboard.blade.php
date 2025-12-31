@@ -6,12 +6,13 @@
 <!-- Welcome Section -->
 <div class="row mb-4">
     <div class="col-12">
-        <div class="card border-0 shadow-sm bg-blue-dark text-white rounded-4 overflow-hidden">
-            <div class="card-body p-4 position-relative">
-                <div class="row align-items-center">
+        <div class="card border-0 shadow-sm bg-blue-dark text-white rounded-4 overflow-hidden welcome-card">
+            <div class="card-body p-4 p-md-5 position-relative">
+                <div class="row align-items-center text-center text-md-start">
                     <div class="col-md-8">
-                        <h4 class="fw-bold mb-1">Selamat Datang, {{ Auth::user()->name }}! 👋</h4>
-                        <p class="mb-0 opacity-75">Sistem PPDB & Website Profil SMA ERHA berjalan dengan baik. Pantau statistik terbaru di bawah ini.</p>
+                        <h4 class="fw-bold mb-2">Selamat Datang, {{ Auth::user()->name }}! 👋</h4>
+                        <p class="mb-0 opacity-75 d-none d-sm-block">Sistem PPDB & Website Profil SMA ERHA berjalan dengan baik. Pantau statistik terbaru di bawah ini.</p>
+                        <p class="mb-0 opacity-75 d-block d-sm-none small">Pantau statistik terbaru PPDB SMA ERHA di bawah ini.</p>
                     </div>
                     <div class="col-md-4 text-end d-none d-md-block">
                         <i class="bi bi-speedometer2 display-1 opacity-25"></i>
@@ -23,60 +24,60 @@
 </div>
 
 <!-- Stats Cards -->
-<div class="row g-4 mb-4">
-    <div class="col-xl-3 col-md-6">
+<div class="row g-3 g-md-4 mb-4">
+    <div class="col-6 col-xl-3 col-md-6">
         <div class="card border-0 shadow-sm h-100 rounded-4 stat-card">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-start mb-3">
+            <div class="card-body p-3 p-md-4">
+                <div class="d-flex justify-content-between align-items-start mb-2 mb-md-3">
                     <div class="stat-icon bg-primary-soft text-primary">
                         <i class="bi bi-people-fill"></i>
                     </div>
-                    <span class="badge bg-primary-soft text-primary">{{ $totalPendaftar }} Total</span>
+                    <span class="badge bg-primary-soft text-primary d-none d-md-inline-block">{{ $totalPendaftar }} Total</span>
                 </div>
-                <h6 class="text-muted small text-uppercase fw-bold mb-1">Total Pendaftar</h6>
-                <h3 class="fw-bold mb-0 text-dark">{{ $totalPendaftar }}</h3>
+                <h6 class="text-muted small text-uppercase fw-bold mb-1" style="font-size: 0.65rem;">Pendaftar</h6>
+                <h3 class="fw-bold mb-0 text-dark counter">{{ $totalPendaftar }}</h3>
             </div>
         </div>
     </div>
-    <div class="col-xl-3 col-md-6">
+    <div class="col-6 col-xl-3 col-md-6">
         <div class="card border-0 shadow-sm h-100 rounded-4 stat-card">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-start mb-3">
+            <div class="card-body p-3 p-md-4">
+                <div class="d-flex justify-content-between align-items-start mb-2 mb-md-3">
                     <div class="stat-icon bg-warning-soft text-warning">
                         <i class="bi bi-hourglass-split"></i>
                     </div>
-                    <span class="badge bg-warning-soft text-warning">{{ $menungguValidasi }} Pending</span>
+                    <span class="badge bg-warning-soft text-warning d-none d-md-inline-block">{{ $menungguValidasi }} Pending</span>
                 </div>
-                <h6 class="text-muted small text-uppercase fw-bold mb-1">Menunggu Validasi</h6>
-                <h3 class="fw-bold mb-0 text-dark">{{ $menungguValidasi }}</h3>
+                <h6 class="text-muted small text-uppercase fw-bold mb-1" style="font-size: 0.65rem;">Pending</h6>
+                <h3 class="fw-bold mb-0 text-dark counter">{{ $menungguValidasi }}</h3>
             </div>
         </div>
     </div>
-    <div class="col-xl-3 col-md-6">
+    <div class="col-6 col-xl-3 col-md-6">
         <div class="card border-0 shadow-sm h-100 rounded-4 stat-card">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-start mb-3">
+            <div class="card-body p-3 p-md-4">
+                <div class="d-flex justify-content-between align-items-start mb-2 mb-md-3">
                     <div class="stat-icon bg-success-soft text-success">
                         <i class="bi bi-check-circle-fill"></i>
                     </div>
-                    <span class="badge bg-success-soft text-success">{{ $diterima }} Lulus</span>
+                    <span class="badge bg-success-soft text-success d-none d-md-inline-block">{{ $diterima }} Lulus</span>
                 </div>
-                <h6 class="text-muted small text-uppercase fw-bold mb-1">Total Diterima</h6>
-                <h3 class="fw-bold mb-0 text-dark">{{ $diterima }}</h3>
+                <h6 class="text-muted small text-uppercase fw-bold mb-1" style="font-size: 0.65rem;">Diterima</h6>
+                <h3 class="fw-bold mb-0 text-dark counter">{{ $diterima }}</h3>
             </div>
         </div>
     </div>
-    <div class="col-xl-3 col-md-6">
+    <div class="col-6 col-xl-3 col-md-6">
         <div class="card border-0 shadow-sm h-100 rounded-4 stat-card">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-start mb-3">
+            <div class="card-body p-3 p-md-4">
+                <div class="d-flex justify-content-between align-items-start mb-2 mb-md-3">
                     <div class="stat-icon bg-danger-soft text-danger">
                         <i class="bi bi-x-circle-fill"></i>
                     </div>
-                    <span class="badge bg-danger-soft text-danger">{{ $ditolak }} Ditolak</span>
+                    <span class="badge bg-danger-soft text-danger d-none d-md-inline-block">{{ $ditolak }} Ditolak</span>
                 </div>
-                <h6 class="text-muted small text-uppercase fw-bold mb-1">Total Ditolak</h6>
-                <h3 class="fw-bold mb-0 text-dark">{{ $ditolak }}</h3>
+                <h6 class="text-muted small text-uppercase fw-bold mb-1" style="font-size: 0.65rem;">Ditolak</h6>
+                <h3 class="fw-bold mb-0 text-dark counter">{{ $ditolak }}</h3>
             </div>
         </div>
     </div>
@@ -95,7 +96,9 @@
                 </div>
             </div>
             <div class="card-body">
-                <canvas id="ppdbChart" height="280"></canvas>
+                <div class="chart-container" style="position: relative; height: 350px;">
+                    <canvas id="ppdbChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
@@ -135,10 +138,11 @@
                             <div class="icon-box-sm bg-warning-soft text-warning me-3">
                                 <i class="bi bi-chat-dots"></i>
                             </div>
-                            <div>
+                            <div class="flex-grow-1">
                                 <h6 class="mb-0 fw-bold small text-dark">Pesan Masuk</h6>
                                 <small class="text-muted small">{{ $unreadMessagesCount }} Pesan belum dibaca</small>
                             </div>
+                            <i class="bi bi-chevron-right text-muted small"></i>
                         </div>
                     </a>
                     <a href="{{ route('admin.profil') }}" class="list-group-item list-group-item-action py-3 px-4 border-0">
@@ -160,8 +164,11 @@
 
 <style>
     .bg-blue-dark { background-color: #0e2e72; }
-    .stat-card { transition: transform 0.3s ease; }
-    .stat-card:hover { transform: translateY(-5px); }
+    .stat-card { 
+        transition: all 0.3s ease; 
+        border: 1px solid rgba(0,0,0,0.05) !important;
+    }
+    .stat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08) !important; }
     
     .stat-icon {
         width: 48px;
@@ -187,8 +194,31 @@
     .bg-success-soft { background-color: rgba(25, 135, 84, 0.1); }
     .bg-info-soft { background-color: rgba(13, 202, 240, 0.1); }
     .bg-warning-soft { background-color: rgba(255, 193, 7, 0.1); }
+    .bg-danger-soft { background-color: rgba(220, 53, 69, 0.1); }
     
     .text-blue { color: #0e2e72; }
+
+    @media (max-width: 576px) {
+        .stat-icon {
+            width: 35px;
+            height: 35px;
+            font-size: 1rem;
+            border-radius: 8px;
+        }
+        .stat-card h3 {
+            font-size: 1.2rem;
+        }
+        .welcome-card h4 {
+            font-size: 1rem;
+        }
+        .chart-container {
+            height: 250px !important;
+        }
+        .container-fluid {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+        }
+    }
 </style>
 
 @push('scripts')

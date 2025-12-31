@@ -95,5 +95,5 @@
     }
 </style>
 
-{{-- Inisialisasi ulang jika diperlukan atau pastikan script.js sudah terload --}}
 @endsection
+

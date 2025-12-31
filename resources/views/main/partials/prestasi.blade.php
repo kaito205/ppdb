@@ -183,18 +183,40 @@
         box-shadow: 0 20px 35px rgba(14, 46, 114, 0.3);
     }
 
+    .prestasi-scroll {
+        display: flex;
+        overflow-x: auto;
+        gap: 25px;
+        padding: 20px 5px 40px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none; /* Firefox */
+    }
+
+    .prestasi-scroll::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+
+    .prestasi-item {
+        flex: 0 0 350px;
+        scroll-snap-align: start;
+    }
+
     @media (max-width: 768px) {
         .prestasi-item {
-            min-width: 260px !important;
-            max-width: 260px !important;
+            flex: 0 0 280px;
         }
         
         .prestasi-img-wrapper img {
-            height: 180px !important;
+            height: 190px !important;
         }
 
         .prestasi-card-premium .card-body h5 {
-            font-size: 1rem !important;
+            font-size: 1.05rem !important;
+        }
+        
+        .badge-premium {
+            padding: 5px 12px;
+            font-size: 0.6rem;
         }
     }
 </style>

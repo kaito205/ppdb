@@ -7,11 +7,11 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6" data-aos="fade-right">
-                    <span class="badge bg-soft-success text-success px-3 py-2 rounded-pill mb-3">PPDB 2025/2026 Telah Dibuka</span>
+                    <span class="badge bg-soft-success text-success px-3 py-2 rounded-pill mb-3">PPDB 2026/2027 Telah Dibuka</span>
                     <h1 class="display-4 fw-bold mb-4 text-blue">Membangun Generasi <br><span class="text-gradient">Berakhlak & Berkarakter</span></h1>
                     <p class="lead text-muted mb-5">Bergabunglah bersama SMA ERHA Jatinagara. Tempat di mana potensi Anda diasah dengan fasilitas modern dan bimbingan pengajar berpengalaman.</p>
                     <div class="d-flex gap-3">
-                        <a href="{{ route('register') }}" class="btn btn-blue btn-lg px-4 rounded-pill shadow-blue">Daftar Sekarang <i class="bi bi-arrow-right ms-2"></i></a>
+                        <a href="{{ route('formulir.user') }}" class="btn btn-blue btn-lg px-4 rounded-pill shadow-blue">Daftar Sekarang <i class="bi bi-arrow-right ms-2"></i></a>
                         <a href="#alur" class="btn btn-outline-secondary btn-lg px-4 rounded-pill">Lihat Alur</a>
                     </div>
                 </div>
@@ -72,12 +72,78 @@
                             <i class="bi bi-mortarboard fs-1 text-warning"></i>
                         </div>
                         <h4 class="fw-bold mb-3">Selesai & Daftar Ulang</h4>
-                        <p class="text-muted">Dapatkan pengumuman hasil seleksi dan lakukan proses daftar ulang.</p>
+                        <p class="text-muted">Dapatkan pengumuman hasil verifikasi berkas dan lakukan proses daftar ulang.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Jadwal Pendaftaran Section -->
+    <section id="jadwal" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5" data-aos="fade-right">
+                    <h6 class="text-success text-uppercase fw-bold ls-2">Timeline</h6>
+                    <h2 class="fw-bold text-blue mb-4">Jadwal PPDB 2026/2027</h2>
+                    <p class="text-muted mb-4">Pastikan Anda tidak melewatkan tanggal-tanggal penting dalam rangkaian proses Penerimaan Peserta Didik Baru.</p>
+                    
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div class="icon-circle bg-warning-light text-warning" style="width: 50px; height: 50px; font-size: 1.5rem;">
+                            <i class="bi bi-calendar-check"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-0">Status Saat Ini</h6>
+                            <span class="badge bg-success rounded-pill mt-1">Gelombang 1 Dibuka</span>
+                        </div>
+                    </div>
+
+                    <a href="{{ route('formulir.user') }}" class="btn btn-outline-blue rounded-pill px-4">Lihat Syarat Pendaftaran</a>
+                </div>
+
+                <div class="col-lg-7" data-aos="fade-left">
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0 align-middle">
+                                <thead class="bg-light text-blue">
+                                    <tr>
+                                        <th class="py-3 ps-4 border-0">Kegiatan</th>
+                                        <th class="py-3 border-0">Gelombang 1</th>
+                                        <th class="py-3 border-0">Gelombang 2</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="ps-4 fw-medium text-dark py-3">Pendaftaran & Penyerahan Berkas</td>
+                                        <td class="text-muted">1 Jan - 31 Mar 2026</td>
+                                        <td class="text-muted">1 Apr - 30 Jun 2026</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4 fw-medium text-dark py-3">Tes Seleksi Akademik & Mengaji</td>
+                                        <td class="text-muted">Minggu ke-1 April 2026</td>
+                                        <td class="text-muted">Minggu ke-1 Juli 2026</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4 fw-medium text-dark py-3">Pengumuman Hasil Seleksi</td>
+                                        <td class="text-muted">Minggu ke-2 April 2026</td>
+                                        <td class="text-muted">Minggu ke-2 Juli 2026</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4 fw-medium text-dark py-3">Daftar Ulang</td>
+                                        <td class="text-muted">April - Mei 2026</td>
+                                        <td class="text-muted">Juli 2026</td>
+                                    </tr>
+                                    <tr class="bg-soft-success">
+                                        <td class="ps-4 fw-bold text-success py-3">Awal Masuk Sekolah</td>
+                                        <td colspan="2" class="text-center fw-bold text-success">15 Juli 2026</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <!-- Fitur Unggulan -->
     <section class="bg-light py-5">
@@ -258,17 +324,24 @@
         <div class="container py-5" data-aos="zoom-in">
             <h2 class="fw-bold text-blue mb-3">Siap Menjadi Bagian dari Kami?</h2>
             <p class="text-muted mb-4">Jangan lewatkan kesempatan untuk mendapatkan pendidikan terbaik.</p>
-            <a href="{{ route('register') }}" class="btn btn-blue btn-lg px-5 rounded-pill shadow-blue">Daftar Sekarang</a>
+            <a href="{{ route('formulir.user') }}" class="btn btn-blue btn-lg px-5 rounded-pill shadow-blue">Daftar Sekarang</a>
         </div>
     </section>
 </div>
 
 <style>
     /* Custom Styles for PPDB Landing */
+    .ppdb-landing {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+    }
     .hero-minimalist {
-        min-height: 90vh;
-        padding: 50px 0;
+        min-height: 80vh;
+        padding: 60px 0;
         background: radial-gradient(circle at top right, rgba(14, 46, 114, 0.05), transparent);
+        display: flex;
+        align-items: center;
     }
     .bg-soft-success { background-color: rgba(25, 135, 84, 0.1); }
     .text-gradient {
@@ -387,9 +460,30 @@
     
     /* Responsive Fixes */
     @media (max-width: 768px) {
-        .hero-minimalist { text-align: center; height: auto; padding-top: 100px; }
+        .hero-minimalist { 
+            text-align: center; 
+            min-height: auto; 
+            padding-top: 100px; 
+            padding-bottom: 50px; 
+        }
         .hero-minimalist .d-flex { justify-content: center; }
-        .display-4 { font-size: 2.2rem; }
+        .display-4 { font-size: 1.8rem; line-height: 1.3; }
+        .lead { font-size: 1rem; margin-bottom: 2rem !important; }
+        .py-5 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+        .mb-5 { margin-bottom: 1.5rem !important; }
+        .feature-box { padding: 1.25rem !important; }
+        .btn-lg { padding: 0.6rem 1.2rem !important; font-size: 0.95rem !important; }
+        .hero-minimalist .d-flex.gap-3 { 
+            flex-direction: column; 
+            width: 100%; 
+            max-width: 280px; 
+            margin: 0 auto; 
+            gap: 12px !important;
+        }
+        .hero-minimalist .d-flex.gap-3 .btn { width: 100%; margin: 0; }
+        
+        .row.g-5 { --bs-gutter-x: 1.5rem; }
     }
 </style>
+
 @endsection

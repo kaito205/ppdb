@@ -40,35 +40,31 @@ Route::get('/fasilitas', [MainController::class, 'fasilitas'])->name('fasilitas'
 
 
 
-// auth user
-
-Route::get('/login', [PenggunaController::class, 'loginForm'])->name('login');
-Route::post('/login', [PenggunaController::class, 'login']);
-Route::get('/register', [PenggunaController::class, 'index'])->name('register.form'); // hanya view
-Route::post('/register', [PenggunaController::class, 'simpanRegistrasi'])->name('register'); // simpan data
-Route::post('/logout', [PenggunaController::class, 'logout'])->name('logout');
+// auth user - REMOVED per request
+// Login removed. Student access is via email only.
 
 
 
-// user dashboard
-Route::prefix('user')->middleware('auth')->group(function () {
-    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard.user');
-    Route::get('/profile', [UserController::class, 'profile'])->name('profile.user');
-    Route::get('/formulir', [UserController::class, 'formulir'])->name('formulir.user');
-    Route::post('/formulir', [UserController::class, 'simpanFormulir'])->name('formulir.simpan');
-    Route::get('/seleksi', [UserController::class, 'seleksi'])->name('seleksi.user');
-    Route::get('/status', [UserController::class, 'status'])->name('status.user');
-    Route::get('/daftar', [UserController::class, 'daftar'])->name('daftar.user');
-});
+// user pendaftaran (Public)
+Route::get('/pendaftaran', [UserController::class, 'formulir'])->name('formulir.user');
+Route::post('/pendaftaran', [UserController::class, 'simpanFormulir'])->name('formulir.simpan');
+Route::post('/pendaftaran', [UserController::class, 'simpanFormulir'])->name('formulir.simpan');
 
 
 // admin area
 // ============================
 // Admin Area
 // ============================
+// admin area
+// ============================
+// Admin Area
+// ============================
+Route::get('/admin/login', [AdminController::class, 'login'])->name('login.admin');
+Route::post('/admin/login', [AdminController::class, 'authenticate'])->name('login.admin.submit');
+Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
 Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
     
-    Route::get('/login', [AdminController::class, 'login'])->name('login.admin');
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard.admin');
 
     // ============================
@@ -94,6 +90,16 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
         Route::post('/tolak/{id}', [AdminController::class, 'tolakSiswa'])->name('admin.siswa.tolak');
         Route::get('/export/excel', [AdminController::class, 'exportExcel'])->name('admin.export.excel');
         Route::get('/export/pdf', [AdminController::class, 'exportPdf'])->name('admin.export.pdf');
+    });
+
+    // MANAJEMEN STAFF
+    Route::prefix('staff')->group(function () {
+        Route::get('/', [AdminController::class, 'staffIndex'])->name('admin.staff');
+        Route::get('/tambah', [AdminController::class, 'staffCreate'])->name('admin.staff.tambah');
+        Route::post('/store', [AdminController::class, 'staffStore'])->name('admin.staff.store');
+        Route::get('/edit/{id}', [AdminController::class, 'staffEdit'])->name('admin.staff.edit');
+        Route::post('/update/{id}', [AdminController::class, 'staffUpdate'])->name('admin.staff.update');
+        Route::delete('/hapus/{id}', [AdminController::class, 'staffDelete'])->name('admin.staff.hapus');
     });
 
     // PROFIL SEKOLAH

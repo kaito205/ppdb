@@ -53,20 +53,24 @@
         overflow-y: auto;
     }
 
-    .sticky-top {
-        z-index: 999;
-    }
-
-    /* Custom Scrollbar for Sidebar */
-    #accordionSidebar::-webkit-scrollbar {
-        width: 5px;
-    }
-    #accordionSidebar::-webkit-scrollbar-thumb {
-        background: rgba(0,0,0,0.1);
-        border-radius: 10px;
-    }
-    .bg-light-blue {
-        background-color: rgba(14, 46, 114, 0.03) !important;
+    @media (max-width: 768px) {
+        #wrapper #accordionSidebar {
+            position: fixed;
+            z-index: 1050;
+            left: -100%;
+            transition: all 0.3s ease;
+            height: 100vh;
+        }
+        #wrapper #accordionSidebar.toggled {
+            left: 0;
+            width: 14rem !important;
+        }
+        #content-wrapper {
+            margin-left: 0 !important;
+        }
+        .topbar {
+            padding: 0 0.5rem;
+        }
     }
 
     /* Global Sharp Modern Border Radius */
@@ -77,7 +81,35 @@
     .modal-content, 
     .input-group-text,
     .dropdown-menu {
-        border-radius: 5px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Modern Scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #999;
+    }
+
+    /* Force Sticky Navbar Aggressively */
+    #wrapper, #content-wrapper {
+        overflow: visible !important;
+    }
+
+    .topbar {
+        position: -webkit-sticky !important; /* Safari */
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 1040 !important;
+        box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15) !important; /* Restore shadow if lost */
     }
 </style>
 

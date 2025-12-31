@@ -74,7 +74,20 @@
 
     @media (max-width: 768px) {
         .carousel-caption {
-            padding-bottom: 40px;
+            padding-bottom: 30px;
+        }
+        .hero-title {
+            font-size: 1.8rem !important;
+            line-height: 1.3;
+        }
+        .hero-subtitle {
+            font-size: 0.9rem !important;
+            margin-top: 10px;
+            display: block !important;
+            opacity: 0.8;
+        }
+        .hero-content {
+            padding: 0 15px;
         }
     }
 </style>

@@ -1,5 +1,5 @@
 <section id="testimoni" class="py-5 bg-white overflow-hidden">
-    <div class="container mb-5">
+    <div class="container mb-md-5 mb-4">
         <div class="text-center" data-aos="fade-up">
             <h2 class="fw-bold display-5">Jejak <span class="text-blue">Alumni</span></h2>
             <p class="text-muted">Kisah sukses dan inspirasi dari mereka yang pernah menimba ilmu di {{ $profil->nama_sekolah ?? 'SMA ERHA Jatinagara' }}.</p>
@@ -13,12 +13,12 @@
             @php
                 $alumni = [
                     [
-                        'nama' => 'Muhammad Jaja Maulana',
+                        'nama' => 'Dida Nurwahidah Zakiyah ',
                         'role' => 'Mahasiswa UIN Bandung',
                         'sub' => 'Ketua OSIS 2018',
                         'quote' => 'Senang rasanya bisa tumbuh dan berproses di sini. Pengalaman organisasi menjadi bekal utama saya di dunia perkuliahan.',
                         'foto' => 'user.jpeg'
-                    ],
+                        ],
                     [
                         'nama' => 'Anita Rahmawati',
                         'role' => 'Staff Administrasi',

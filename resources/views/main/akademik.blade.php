@@ -56,98 +56,40 @@
                 <p class="text-muted mt-3">Dibimbing oleh tenaga pengajar profesional dan berdedikasi tinggi.</p>
             </div>
 
-            <div class="row g-4">
-                @php
-                    $staff = [
-                        [
-                            'nama' => 'Dr. Mohamad Aip Maptuh',
-                            'jabatan' => 'Ketua Yayasan',
-                            'spesialis' => 'Pembina Yayasan',
-                            'foto' => 'user.jpeg'
-                        ],
-                        [
-                            'nama' => 'Ai Nuraeni, S.Pd',
-                            'jabatan' => 'Kepala Sekolah',
-                            'spesialis' => 'Manajemen Sekolah',
-                            'foto' => 'user.jpeg'
-                        ],
-                        [
-                            'nama' => 'Afif Ismail S',
-                            'jabatan' => 'Ketua Komite',
-                            'spesialis' => 'Hubungan Masyarakat',
-                            'foto' => 'user.jpeg'
-                        ],
-                        [
-                            'nama' => 'Edo Rosyada, S.Ag.',
-                            'jabatan' => 'Bendahara',
-                            'spesialis' => 'Keuangan & Administrasi',
-                            'foto' => 'user.jpeg'
-                        ],
-                        [
-                            'nama' => 'Wuri Hartini, S.Pd.I',
-                            'jabatan' => 'Wakil Kepala Sekolah',
-                            'spesialis' => 'Bimbingan Konseling',
-                            'foto' => 'user.jpeg'
-                        ],
-                        [
-                            'nama' => 'Della Puspita',
-                            'jabatan' => 'Pembina Ekskul',
-                            'spesialis' => 'Kesiswaan',
-                            'foto' => 'user.jpeg'
-                        ],
-                        [
-                            'nama' => 'Erjembari',
-                            'jabatan' => 'Pembina OSIS',
-                            'spesialis' => 'Organisasi Siswa',
-                            'foto' => 'user.jpeg'
-                        ],
-                        [
-                            'nama' => 'Iim Abdul Karim',
-                            'jabatan' => 'Laboran Komputer',
-                            'spesialis' => 'Teknologi Informasi',
-                            'foto' => 'user.jpeg'
-                        ],
-                        [
-                            'nama' => 'Reza Mulya Nugraha, S.Pd',
-                            'jabatan' => 'Wali Kelas X',
-                            'spesialis' => 'Guru Kelas',
-                            'foto' => 'user.jpeg'
-                        ],
-                        [
-                            'nama' => 'Nuraeni Hamidah, S.Pd',
-                            'jabatan' => 'Wali Kelas XI',
-                            'spesialis' => 'Guru Kelas',
-                            'foto' => 'user.jpeg'
-                        ],
-                        [
-                            'nama' => 'Irma Komala, S.Pd',
-                            'jabatan' => 'Wali Kelas XII',
-                            'spesialis' => 'Guru Kelas',
-                            'foto' => 'user.jpeg'
-                        ]
-                    ];
-                @endphp
-
-                @foreach($staff as $s)
+            <div class="row g-4 justify-content-center" id="staff-container">
+                @forelse($staffs as $s)
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 50 }}">
                     <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 staff-card">
                         <div class="d-flex align-items-center p-4">
                             <div class="staff-img-box me-3">
-                                <img src="{{ asset('img/' . $s['foto']) }}" class="rounded-circle shadow-sm" alt="{{ $s['nama'] }}">
+                                @if($s->foto)
+                                    <img src="{{ asset('uploads/staff/' . $s->foto) }}" class="rounded-circle shadow-sm" alt="{{ $s->nama }}">
+                                @else
+                                    <img src="{{ asset('img/user.jpeg') }}" class="rounded-circle shadow-sm" alt="{{ $s->nama }}">
+                                @endif
                             </div>
                             <div>
-                                <h6 class="fw-bold mb-1 text-blue">{{ $s['nama'] }}</h6>
-                                <p class="text-success small fw-bold mb-1">{{ $s['jabatan'] }}</p>
-                                <span class="badge bg-light text-muted border fw-normal" style="font-size: 0.75rem;">{{ $s['spesialis'] }}</span>
+                                <h6 class="fw-bold mb-1 text-blue">{{ $s->nama }}</h6>
+                                <p class="text-success small fw-bold mb-1">{{ $s->jabatan }}</p>
+                                <span class="badge bg-light text-muted border fw-normal" style="font-size: 0.75rem;">{{ $s->spesialis ?? '-' }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                @endforeach
+
+                @empty
+                <div class="col-12 text-center py-5">
+                    <p class="text-muted">Data tenaga pendidik belum tersedia.</p>
+                </div>
+                @endforelse
             </div>
         </div>
     </div>
 </section>
+
+<!-- Staff Detail Modals -->
+
+
 
 <style>
     .text-blue { color: #0e2e72; }
@@ -169,6 +111,15 @@
         height: 70px;
         object-fit: cover;
         border: 3px solid #f8f9fa;
+    }
+
+    @media (max-width: 768px) {
+        .py-5 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+        .mb-5 { margin-bottom: 1.5rem !important; }
+        .display-4 { font-size: 2.2rem !important; }
+        .p-4 { padding: 1.25rem !important; }
+        .mt-5 { margin-top: 2rem !important; }
+        .pt-5 { padding-top: 2rem !important; }
     }
 </style>
 @endsection

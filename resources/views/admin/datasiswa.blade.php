@@ -234,7 +234,7 @@
                             <label class="form-label fw-bold small text-muted text-uppercase">Tempat Pelaksanaan</label>
                             <div class="input-group">
                                 <span class="input-group-text bg-light border-0"><i class="bi bi-geo-alt"></i></span>
-                                <input type="text" class="form-control bg-light border-0 py-2" name="tempat" value="Kampus SMA ERHA" required>
+                                <input type="text" class="form-control bg-light border-0 py-2" name="tempat" value="SMA ERHA Jatinagara, Dusun Kulon, Desa Jatinagara, Kec. Jatinagara, Kab. Ciamis, Jawa Barat" required>
                             </div>
                         </div>
                     </div>

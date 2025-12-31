@@ -36,6 +36,13 @@
     </li>
 
     <li class="nav-item">
+        <a class="nav-link {{ request()->is('admin/staff*') ? 'active fw-bold' : '' }}" href="{{ route('admin.staff') }}">
+            <i class="bi bi-people-fill text-primary"></i>
+            <span>Kelola Staff / Guru</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
         <a class="nav-link {{ request()->is('admin/ekskul*') ? 'active fw-bold' : '' }}" href="{{ route('admin.ekskul') }}">
             <i class="bi bi-collection text-success"></i>
             <span>Ekstrakurikuler</span>

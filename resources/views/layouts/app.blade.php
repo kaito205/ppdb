@@ -25,23 +25,45 @@
 <body class="{{ Request::is('/') ? 'is-home' : '' }}">
 
 
+
+
+    <!-- High Performance Preloader -->
+    <div id="preloader">
+        <div class="loader-wrapper">
+            <img src="{{ asset('img/logo.webp') }}" alt="SMA ERHA" class="main-logo">
+            <h2 class="loader-title">SMA ERHA JATINAGARA</h2>
+            
+            <div class="loading-bar-container">
+                <div class="loading-bar-fill" id="load-fill"></div>
+            </div>
+            
+            <div class="loading-status">
+                <span>Loading</span>
+                <span id="load-perc">0%</span>
+            </div>
+        </div>
+    </div>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid px-3 px-md-5">
             <a class="navbar-brand d-flex align-items-center" href="/">
-                <img src="{{ asset('img/logo.webp') }}" alt="Logo" width="80" class="me-2">
-                <span>SMA ERHA JATINAGARA</span>
+                <img src="{{ asset('img/logo.webp') }}" alt="Logo" width="55" class="me-2 brand-logo-img">
+                <span class="brand-text">SMA ERHA JATINAGARA</span>
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <div class="hamburger-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </button>
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-lg-center mt-3 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
+                        <a class="nav-link {{ request()->is('/') && !request()->has('kontak') ? 'active' : '' }}" id="nav-home" href="{{ route('home') }}">Home</a>
                     </li>
                     
                     <!-- Profil Dropdown -->
@@ -85,7 +107,6 @@
                         </a>
                         <ul class="dropdown-menu border-0 shadow-sm rounded-3" aria-labelledby="navbarPPDB">
                             <li><a class="dropdown-item" href="{{ route('ppdb.info') }}#alur">Alur Pendaftaran</a></li>
-                            <li><a class="dropdown-item" href="{{ route('ppdb.info') }}#biaya">Biaya</a></li>
                             <li><a class="dropdown-item" href="{{ route('ppdb.info') }}#jadwal">Jadwal</a></li>
                         </ul>
                     </li>
@@ -99,19 +120,19 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ Request::is('/') ? '#kontak' : url('/#kontak') }}">Kontak</a>
+                        <a class="nav-link" id="nav-kontak" href="{{ Request::is('/') ? '#kontak' : url('/#kontak') }}">Kontak</a>
                     </li>
-
-                    <li class="nav-item ms-lg-3">
-                        <a class="btn btn-blue px-4 shadow-sm" href="{{ route('register') }}">Daftar Sekarang</a>
-                    </li>
+                        <li class="nav-item ms-lg-3">
+                            <a class="btn btn-blue px-4 shadow-sm" href="{{ route('formulir.user') }}">Daftar Sekarang</a>
+                        </li>
+                    
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- Konten -->
-    <main class="container">
+    <main>
         @yield('containt')
     </main>
 
@@ -157,7 +178,7 @@
 
     <!-- Footer -->
     <!-- Footer -->
-    <footer class="footer py-5 mt-5">
+    <footer class="footer py-5 mt-md-5 mt-4">
         <div class="container">
             <div class="row g-5">
                 <!-- Identitas Sekolah -->
@@ -173,7 +194,7 @@
                     <div class="social-links d-flex gap-2 justify-content-start">
                         <a href="https://web.facebook.com/smaerhajatinagara" class="social-icon"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/smaerhajatinagara/" class="social-icon"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/6281394060612" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/6282119250323" class="social-icon"><i class="fab fa-whatsapp"></i></a>
                         <a href="https://www.youtube.com/@smaerhajatinagara" class="social-icon"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
@@ -212,7 +233,7 @@
                             </div>
                             <div class="flex-grow-1 text-start">
                                 <h6 class="text-white fw-bold mb-1" style="font-size: 0.9rem;">Telepon</h6>
-                                <a href="tel:+62-81394060612" class="text-gray small text-decoration-none transition-all hover-accent d-block text-start">+62-81394060612</a>
+                                <a href="tel:+6282119250323" class="text-gray small text-decoration-none transition-all hover-accent d-block text-start">+62 82119250323</a>
                             </div>
                         </li>
                         <li class="d-flex align-items-start gap-3">
@@ -241,10 +262,107 @@
         .footer {
             background-color: #3C3D37;
             color: #b0b0b0;
+            overflow-x: hidden;
         }
         .text-accent { color: #ffd700 !important; }
         .bg-accent { background-color: #ffd700 !important; }
         .text-gray { color: #b0b0b0; }
+        
+        /* Global Brand Colors */
+        .text-blue { color: #0E2E72 !important; }
+        .bg-blue { background-color: #0E2E72 !important; }
+
+        .btn-blue {
+            background-color: #0E2E72 !important;
+            color: white !important;
+            border: none !important;
+            outline: none !important;
+            transition: background-color 0.3s ease;
+            transform: none !important; /* Ensure no movement */
+        }
+
+        .btn-blue:hover, .btn-blue:active, .btn-blue:focus {
+            background-color: #091d4a !important;
+            color: white !important;
+            box-shadow: none !important;
+            transform: none !important;
+            outline: none !important;
+        }
+
+        .btn-outline-blue {
+            color: #0E2E72;
+            border-color: #0E2E72;
+            transition: all 0.3s ease;
+        }
+        .btn-outline-blue:hover {
+            background-color: #0E2E72;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Navbar Styling */
+        .navbar-nav .nav-link {
+            color: #444 !important;
+            font-weight: 500;
+            padding: 8px 12px !important;
+            transition: color 0.3s ease;
+            position: relative;
+            font-size: 0.95rem;
+        }
+        
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: #0E2E72 !important;
+        }
+
+        /* Prevent dropdown items and buttons from getting any artifacts */
+        .dropdown-item::after,
+        .nav-item .btn-blue::after {
+            display: none !important;
+            content: none !important;
+        }
+
+        /* Elegant Dropdown */
+        .dropdown-menu {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 10px;
+            margin-top: 10px !important; /* Spacing from navbar */
+            animation: fadeInUp 0.3s ease forwards;
+            display: none; /* Bootstrap handles block, but good for reset */
+        }
+        
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: #555;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-item:hover, .dropdown-item:focus {
+            background-color: rgba(14, 46, 114, 0.05); /* Very light blue */
+            color: #0E2E72;
+            transform: translateX(5px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 10px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
         .footer-links li { margin-bottom: 12px; }
         .footer-links a {
             color: #b0b0b0;
@@ -300,8 +418,113 @@
             width: 70px;
             height: auto;
         }
-    </style>
 
+        /* --- HIGH PERFORMANCE PRELOADER --- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 999999;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            will-change: opacity, transform;
+            transition: opacity 0.6s cubic-bezier(0.65, 0, 0.35, 1), 
+                        visibility 0.6s cubic-bezier(0.65, 0, 0.35, 1),
+                        transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .loader-wrapper {
+            text-align: center;
+            width: 85%;
+            max-width: 320px;
+            transform: translate3d(0,0,0);
+        }
+
+        .main-logo {
+            width: 80px;
+            height: auto;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: pulse-loader 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 10px 20px rgba(14, 46, 114, 0.15));
+        }
+
+        @keyframes pulse-loader {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .loader-title {
+            color: #0e2e72;
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .loading-bar-container {
+            width: 100%;
+            height: 4px;
+            background: #f0f2f5;
+            border-radius: 100px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loading-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #0e2e72, #1d4ed8);
+            border-radius: 100px;
+            transition: width 0.3s cubic-bezier(0.1, 0.7, 1, 0.1);
+        }
+
+        .loading-status {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #64748b;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        #preloader.completed {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(1.05) translate3d(0,0,0);
+        }
+
+        /* --- MOBILE OPTIMIZATIONS --- */
+        @media (max-width: 991.98px) {
+            .navbar-brand img { width: 45px !important; }
+            .brand-text { font-size: 0.9rem !important; }
+            .navbar-toggler {
+                width: 40px;
+                height: 40px;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .hamburger-icon span {
+                display: block;
+                width: 22px;
+                height: 2px;
+                background: #0e2e72;
+                margin: 5px auto;
+                transition: 0.3s;
+                border-radius: 10px;
+            }
+        }
+    </style>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -313,20 +536,77 @@
             offset: 100,
         });
 
+        // Simple ScrollSpy for Home & Kontak
+        window.addEventListener('scroll', function() {
+            const navHome = document.getElementById('nav-home');
+            const navKontak = document.getElementById('nav-kontak');
+            const kontakSection = document.getElementById('kontak');
+            
+            if (navHome && navKontak && kontakSection) {
+                const rect = kontakSection.getBoundingClientRect();
+                const isInKontak = rect.top <= 200 && rect.bottom >= 200;
+                
+                if (isInKontak) {
+                    navHome.classList.remove('active');
+                    navKontak.classList.add('active');
+                } else if (window.scrollY < 400) {
+                    navKontak.classList.remove('active');
+                    navHome.classList.add('active');
+                } else {
+                    navKontak.classList.remove('active');
+                    // Keep navHome active only if not on other main pages
+                }
+            }
+        });
+
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('navbar-scrolled');
-            } else {
-                navbar.classList.remove('navbar-scrolled');
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('navbar-scrolled');
+                } else {
+                    navbar.classList.remove('navbar-scrolled');
+                }
             }
         });
+
+        // Enhanced Mobile Preloader Logic
+        (function() {
+            const preloader = document.getElementById('preloader');
+            const fill = document.getElementById('load-fill');
+            const perc = document.getElementById('load-perc');
+            
+            if (!preloader) return;
+
+            let count = 0;
+            const finishLoading = () => {
+                count = 100;
+                fill.style.width = '100%';
+                perc.innerText = '100%';
+                setTimeout(() => {
+                    preloader.classList.add('completed');
+                    setTimeout(() => preloader.style.display = 'none', 600);
+                }, 300);
+            };
+
+            const interval = setInterval(() => {
+                count += Math.floor(Math.random() * 10) + 2;
+                if (count >= 90) {
+                    clearInterval(interval);
+                    // Wait for window load but max 3 seconds
+                    if (document.readyState === 'complete') {
+                        finishLoading();
+                    } else {
+                        window.addEventListener('load', finishLoading);
+                        setTimeout(finishLoading, 3000); // Failsafe
+                    }
+                } else {
+                    fill.style.width = count + '%';
+                    perc.innerText = count + '%';
+                }
+            }, 50);
+        })();
     </script>
-
-
-
-
 </body>
-
 </html>

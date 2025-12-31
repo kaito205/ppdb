@@ -33,6 +33,7 @@ class Pendaftaran extends Model
         'file_ijazah',
         'status_seleksi',
         'verifikasi_dokumen',
+        'is_read',
     ];
 
     // Relasi ke tabel users

@@ -48,10 +48,8 @@ return new class extends Migration
      * Reverse the migrations.
      */
     
-    public function down()
+    public function down(): void
     {
-        Schema::table('pendaftarans', function (Blueprint $table) {
-            $table->dropColumn(['asal_sekolah',  'tahun_lulus']);
-        });
+        Schema::dropIfExists('pendaftarans');
     }
 };

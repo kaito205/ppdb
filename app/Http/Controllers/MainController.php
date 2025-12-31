@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Berita; // <-- tambahkan
 use App\Models\Ekstrakurikuler;
+use App\Models\Staff;
 use App\Models\ProfilSekolah;
 use Illuminate\Http\Request;
 
@@ -54,7 +55,21 @@ class MainController extends Controller
     public function akademik()
     {
         $profil = ProfilSekolah::first() ?? new ProfilSekolah();
-        return view('main.akademik', compact('profil'));
+        // Automatic ordering based on Jabatan
+        $staffs = Staff::orderByRaw("
+            CASE 
+                WHEN jabatan LIKE '%Ketua Yayasan%' THEN 1
+                WHEN jabatan LIKE '%Kepala Sekolah%' THEN 2
+                WHEN jabatan LIKE '%Wakil%' THEN 3
+                WHEN jabatan LIKE '%Pembina%' THEN 4
+                WHEN jabatan LIKE '%Bendahara%' THEN 5
+                WHEN jabatan LIKE '%Sekretaris%' THEN 5
+                WHEN jabatan LIKE '%Guru%' OR jabatan LIKE '%Wali Kelas%' THEN 6
+                ELSE 99 
+            END ASC
+        ")->orderBy('nama', 'asc')->get();
+        
+        return view('main.akademik', compact('profil', 'staffs'));
     }
 
     public function ekskul()
