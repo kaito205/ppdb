@@ -23,10 +23,23 @@
                     <form action="{{ route('admin.ekskul.update', $data->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
+                        @if ($errors->any())
+                            <div class="alert alert-danger border-0 rounded-4 mb-4">
+                                <ul class="mb-0 small">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                         <div class="mb-4">
                             <label class="form-label fw-bold small text-muted text-uppercase">Nama Ekstrakurikuler</label>
-                            <input type="text" class="form-control bg-light border-0 py-2" name="nama" 
-                                value="{{ $data->nama }}" placeholder="Contoh: Basket, Pramuka..." required>
+                            <input type="text" class="form-control bg-light border-0 py-2 @error('nama') is-invalid @enderror" name="nama" 
+                                value="{{ old('nama', $data->nama) }}" placeholder="Contoh: Basket, Pramuka..." required>
+                            @error('nama')
+                                <div class="invalid-feedback small">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mb-4 text-center">
@@ -43,7 +56,10 @@
                                     @endif
                                 </div>
                             </div>
-                            <input type="file" class="form-control bg-light border-0 py-2" name="foto" id="fotoInput" accept="image/*">
+                            <input type="file" class="form-control bg-light border-0 py-2 @error('foto') is-invalid @enderror" name="foto" id="fotoInput" accept="image/*">
+                            @error('foto')
+                                <div class="invalid-feedback small">{{ $message }}</div>
+                            @enderror
                             <div class="form-text mt-2 small text-muted italic text-start">Kosongkan jika tidak ingin mengganti foto.</div>
                         </div>
 

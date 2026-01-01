@@ -102,12 +102,13 @@
 
                     <!-- PPDB Dropdown -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ request()->is('informasi-ppdb') ? 'active' : '' }}" href="#" id="navbarPPDB" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle {{ request()->routeIs('ppdb.info', 'formulir.user') ? 'active' : '' }}" href="#" id="navbarPPDB" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             PPDB
                         </a>
                         <ul class="dropdown-menu border-0 shadow-sm rounded-3" aria-labelledby="navbarPPDB">
-                            <li><a class="dropdown-item" href="{{ route('ppdb.info') }}#alur">Alur Pendaftaran</a></li>
+                            <li><a class="dropdown-item" href="{{ route('ppdb.info') }}">Alur Pendaftaran</a></li>
                             <li><a class="dropdown-item" href="{{ route('ppdb.info') }}#jadwal">Jadwal</a></li>
+                            <li><a class="dropdown-item" href="{{ route('formulir.user') }}">Daftar Online</a></li>
                         </ul>
                     </li>
 
@@ -536,15 +537,18 @@
             offset: 100,
         });
 
-        // Simple ScrollSpy for Home & Kontak
+        // Simple ScrollSpy for Home & Kontak - ONLY runs on Home page
         window.addEventListener('scroll', function() {
+            // Only run this logic if we are on the homepage
+            if (!document.body.classList.contains('is-home')) return;
+
             const navHome = document.getElementById('nav-home');
             const navKontak = document.getElementById('nav-kontak');
             const kontakSection = document.getElementById('kontak');
             
             if (navHome && navKontak && kontakSection) {
                 const rect = kontakSection.getBoundingClientRect();
-                const isInKontak = rect.top <= 200 && rect.bottom >= 200;
+                const isInKontak = rect.top <= window.innerHeight / 2 && rect.bottom >= 0;
                 
                 if (isInKontak) {
                     navHome.classList.remove('active');
@@ -554,7 +558,7 @@
                     navHome.classList.add('active');
                 } else {
                     navKontak.classList.remove('active');
-                    // Keep navHome active only if not on other main pages
+                    navHome.classList.remove('active');
                 }
             }
         });

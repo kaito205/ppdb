@@ -10,6 +10,6 @@ class Ekstrakurikuler extends Model
     use HasFactory;
     protected $table = 'ekstrakurikulers';
     protected $fillable = [
-        'nama_ekskul', 'deskripsi', 'foto'
+        'nama', 'foto'
     ];
 }

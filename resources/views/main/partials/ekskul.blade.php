@@ -1,53 +1,84 @@
-<section id="ekskul" class="py-5 bg-white">
+<section id="ekskul" class="py-5 bg-white overflow-hidden">
     <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <h2 class="fw-bold display-5">Ekstra<span class="text-primary">kurikuler</span></h2>
-            <p class="text-muted">Mengembangkan bakat dan minat siswa melalui berbagai kegiatan positif.</p>
-            <div class="mx-auto" style="width: 80px; height: 4px; background: #007bff; border-radius: 10px;"></div>
+        <!-- Section Header -->
+        <div class="d-flex justify-content-between align-items-end mb-5" data-aos="fade-up">
+            <div>
+                <span class="badge bg-soft-blue text-blue px-3 py-2 rounded-pill mb-2">Program Unggulan</span>
+                <h2 class="fw-bold mb-0">Ekstra<span class="text-gradient">kurikuler</span></h2>
+                <p class="text-muted mb-0 mt-2">Wadahi kreativitas dan bangun karakter juara.</p>
+            </div>
+            <a href="{{ route('ekskul') }}" class="btn btn-outline-blue rounded-pill px-4 d-none d-md-block">Lihat Semua <i class="bi bi-arrow-right ms-2"></i></a>
         </div>
 
+        <!-- Horizontal Scroll or Grid for Desktop -->
         <div class="row g-4 justify-content-center">
-            @foreach ($ekskul as $item)
-            <div class="col-lg-3 col-md-4 col-6" data-aos="zoom-in" data-aos-delay="{{ $loop->iteration * 50 }}">
-                <div class="ekskul-icon-card p-4 rounded-4 shadow-sm text-center border h-100 transition-all">
-                    <div class="icon-wrapper mb-3 mx-auto d-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10" style="width: 80px; height: 80px;">
-                        @php
-                            $icon = 'bi-star-fill';
-                            $name = strtolower($item->nama);
-                            if(str_contains($name, 'basket')) $icon = 'bi-basketball';
-                            elseif(str_contains($name, 'futsal') || str_contains($name, 'bola')) $icon = 'bi-dribbble';
-                            elseif(str_contains($name, 'komputer') || str_contains($name, 'it')) $icon = 'bi-laptop';
-                            elseif(str_contains($name, 'musik') || str_contains($name, 'seni')) $icon = 'bi-music-note-beamed';
-                            elseif(str_contains($name, 'pramuka')) $icon = 'bi-shield-shaded';
-                            elseif(str_contains($name, 'paskibra')) $icon = 'bi-flag-fill';
-                            elseif(str_contains($name, 'pencak silat') || str_contains($name, 'bela diri')) $icon = 'bi-person-arms-up';
-                            elseif(str_contains($name, 'jurnalistik')) $icon = 'bi-newspaper';
-                        @endphp
-                        <i class="bi {{ $icon }} fs-1 text-primary"></i>
+            @foreach ($ekskul->take(4) as $item)
+            <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
+                <div class="ekskul-mini-card rounded-4 overflow-hidden position-relative shadow border-0">
+                    <div class="ekskul-mini-img">
+                        <img src="{{ asset('uploads/ekskul/' . $item->foto) }}" class="w-100 h-100 object-fit-cover d-block" alt="{{ $item->nama }}">
+                        <div class="img-overlay-elegant"></div>
                     </div>
-                    <h5 class="fw-bold mb-0">{{ $item->nama }}</h5>
                 </div>
             </div>
             @endforeach
+        </div>
+
+        <!-- Mobile Button -->
+        <div class="text-center mt-5 d-md-none">
+            <a href="{{ route('ekskul') }}" class="btn btn-blue rounded-pill px-5">Lihat Semua Ekskul</a>
         </div>
     </div>
 </section>
 
 <style>
-    .ekskul-icon-card {
+    .bg-soft-blue { background-color: rgba(14, 46, 114, 0.08); }
+    .text-blue { color: #0e2e72; }
+    .text-blue-deep { color: #091d4a; }
+    .btn-outline-blue {
+        color: #0e2e72;
+        border-color: #0e2e72;
+        transition: all 0.3s ease;
+    }
+    .btn-outline-blue:hover {
+        background-color: #0e2e72;
+        color: white;
+    }
+    .btn-blue {
+        background-color: #0e2e72;
+        color: white;
+    }
+
+    .text-gradient {
+        background: linear-gradient(90deg, #0e2e72, #25D366);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .ekskul-mini-card {
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         background: #fff;
-        cursor: pointer;
     }
-    .ekskul-icon-card:hover {
-        background: #007bff;
-        border-color: #007bff !important;
-        transform: translateY(-10px);
+    .ekskul-mini-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
     }
-    .ekskul-icon-card:hover h5, 
-    .ekskul-icon-card:hover .icon-wrapper i {
-        color: #fff !important;
+
+    .ekskul-mini-img {
+        height: 180px;
+        position: relative;
     }
-    .ekskul-icon-card:hover .icon-wrapper {
-        background: rgba(255, 255, 255, 0.2) !important;
+
+    .img-overlay-elegant {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, transparent 60%, rgba(14, 46, 114, 0.1));
+    }
+
+    @media (max-width: 768px) {
+        .ekskul-mini-img { height: 140px; }
     }
 </style>

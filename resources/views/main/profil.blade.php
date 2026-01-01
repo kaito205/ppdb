@@ -28,43 +28,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Quick Stats (Moved from Hero) -->
-                        <div class="row g-3 mb-4">
-                            <div class="col-4">
-                                <div class="card border-0 shadow-sm rounded-4 h-100 bg-white">
-                                    <div class="card-body p-2 p-md-3 text-center">
-                                        <div class="mini-icon-box bg-warning-light text-warning mb-2 mx-auto">
-                                            <i class="bi bi-megaphone"></i>
-                                        </div>
-                                        <small class="text-muted d-block text-uppercase" style="font-size: 0.6rem; font-weight: 700;">Status</small>
-                                        <h6 class="fw-bold mb-0" style="font-size: 0.8rem;">PPDB Buka</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="card border-0 shadow-sm rounded-4 h-100 bg-white">
-                                    <div class="card-body p-2 p-md-3 text-center">
-                                        <div class="mini-icon-box bg-blue-light text-blue mb-2 mx-auto">
-                                            <i class="bi bi-people"></i>
-                                        </div>
-                                        <small class="text-muted d-block text-uppercase" style="font-size: 0.6rem; font-weight: 700;">Siswa</small>
-                                        <h6 class="fw-bold mb-0" style="font-size: 0.8rem;">1000+</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="card border-0 shadow-sm rounded-4 h-100 bg-white">
-                                    <div class="card-body p-2 p-md-3 text-center">
-                                        <div class="mini-icon-box bg-success-light text-success mb-2 mx-auto">
-                                            <i class="bi bi-patch-check"></i>
-                                        </div>
-                                        <small class="text-muted d-block text-uppercase" style="font-size: 0.6rem; font-weight: 700;">Akreditasi</small>
-                                        <h6 class="fw-bold mb-0" style="font-size: 0.8rem;">B (Baik)</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <!-- Pendidikan Berbasis Pesantren (Merged Content) -->
                         <div class="card border-0 shadow-sm rounded-4 mb-4 bg-white">
                             <div class="card-body p-4 p-lg-5">

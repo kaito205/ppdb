@@ -21,7 +21,7 @@
                         </div>
                         <div class="timeline-content p-4 bg-white rounded-4 shadow-sm border-start border-4 border-success flex-grow-1">
                             <h5 class="fw-bold">Pendaftaran Langsung</h5>
-                            <p class="text-muted small mb-0">Tanpa tes seleksi. Orang tua/wali mengisi formulir dan menyerahkan berkas administrasi pendukung.</p>
+                            <p class="text-muted small mb-0">Tanpa tes masuk. Orang tua/wali mengisi formulir dan menyerahkan berkas administrasi pendukung.</p>
                         </div>
                     </div>
                     <div class="timeline-item-modern mb-4 d-flex" data-aos="fade-left" data-aos-delay="200">
@@ -49,7 +49,7 @@
                 <!-- Rules Notification -->
                 <div class="card border-0 bg-blue text-white rounded-4 shadow-sm overflow-hidden" data-aos="zoom-in">
                     <div class="card-body p-4">
-                        <h5 class="fw-bold mb-3 d-flex align-items-center"><i class="bi bi-exclamation-triangle-fill text-warning me-2"></i> Ketentuan Santri</h5>
+                        <h5 class="fw-bold mb-3 d-flex align-items-center"><i class="bi bi-exclamation-triangle-fill text-warning me-2"></i> Ketentuan Siswa</h5>
                         <div class="d-flex align-items-start mb-3">
                             <div class="bg-white bg-opacity-10 p-2 rounded-3 me-3">
                                 <i class="bi bi-house-door-fill text-warning"></i>

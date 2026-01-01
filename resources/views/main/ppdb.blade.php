@@ -118,16 +118,7 @@
                                         <td class="text-muted">1 Jan - 31 Mar 2026</td>
                                         <td class="text-muted">1 Apr - 30 Jun 2026</td>
                                     </tr>
-                                    <tr>
-                                        <td class="ps-4 fw-medium text-dark py-3">Tes Seleksi Akademik & Mengaji</td>
-                                        <td class="text-muted">Minggu ke-1 April 2026</td>
-                                        <td class="text-muted">Minggu ke-1 Juli 2026</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="ps-4 fw-medium text-dark py-3">Pengumuman Hasil Seleksi</td>
-                                        <td class="text-muted">Minggu ke-2 April 2026</td>
-                                        <td class="text-muted">Minggu ke-2 Juli 2026</td>
-                                    </tr>
+
                                     <tr>
                                         <td class="ps-4 fw-medium text-dark py-3">Daftar Ulang</td>
                                         <td class="text-muted">April - Mei 2026</td>
