@@ -7,14 +7,14 @@
 <div class="row animate__animated animate__fadeIn">
     <div class="col-12">
         <div class="card border-0 shadow-sm">
-            <div class="card-header bg-white py-3 border-0 d-flex justify-content-between align-items-center">
+            <div class="card-header bg-white py-3 border-0 d-flex flex-column flex-sm-row justify-content-between align-items-sm-center align-items-start gap-3">
                 <div>
                     <h5 class="m-0 font-weight-bold text-primary">
                         <i class="bi bi-envelope-paper-fill me-2"></i>Inbox Pesan
                     </h5>
                     <small class="text-muted">Kelola semua pesan yang masuk dari formulir kontak website.</small>
                 </div>
-                <span id="unread-badge" class="badge bg-primary px-3 py-2 animate__animated {{ $messages->where('is_read', false)->count() > 0 ? 'animate__pulse animate__infinite' : '' }}">
+                <span id="unread-badge" class="badge bg-primary px-3 py-2 animate__animated {{ $messages->where('is_read', false)->count() > 0 ? 'animate__pulse animate__infinite' : '' }} w-100 w-sm-auto text-center">
                     <span id="unread-count">{{ $messages->where('is_read', false)->count() }}</span> Pesan Baru
                 </span>
             </div>

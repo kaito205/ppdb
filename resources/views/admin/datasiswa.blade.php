@@ -6,7 +6,7 @@
 <div class="container-fluid py-4">
     <!-- Header Page -->
     <div class="row mb-4 animate__animated animate__fadeIn">
-        <div class="col-12 d-flex justify-content-between align-items-center">
+        <div class="col-12 d-flex flex-column flex-md-row justify-content-between align-items-md-center align-items-start gap-3">
             <div>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent p-0 mb-1">
@@ -17,187 +17,270 @@
                 <h3 class="fw-bold text-dark">Manajemen Calon Siswa</h3>
                 <p class="text-muted small mb-0">Validasi berkas, kelola status kelulusan, dan unduh data pendaftar.</p>
             </div>
-            <div class="d-flex gap-2">
-                <a href="{{ route('admin.export.excel') }}" class="btn btn-success px-4 shadow-sm">
+            <div class="d-flex gap-2 w-100 w-md-auto justify-content-start justify-content-md-end">
+                <a href="{{ route('admin.export.excel', request()->all()) }}" class="btn btn-success px-3 px-md-4 shadow-sm text-nowrap">
                     <i class="bi bi-file-earmark-spreadsheet me-2"></i>Export Excel
                 </a>
-                <a href="{{ route('admin.export.pdf') }}" class="btn btn-danger px-4 shadow-sm">
+                <a href="{{ route('admin.export.pdf', request()->all()) }}" class="btn btn-danger px-3 px-md-4 shadow-sm text-nowrap">
                     <i class="bi bi-file-earmark-pdf me-2"></i>Export PDF
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- Stats Summary Section -->
-    <div class="row g-3 mb-4 animate__animated animate__fadeInUp">
-        <div class="col-md-3">
-            <div class="card border-0 shadow-sm rounded-4 p-3 bg-white h-100 border-start border-primary border-4">
-                <div class="d-flex align-items-center">
-                    <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-3 me-3">
-                        <i class="bi bi-people fs-4"></i>
-                    </div>
-                    <div>
-                        <h6 class="text-muted small text-uppercase fw-bold mb-1">Total Pendaftar</h6>
-                        <h4 class="fw-bold mb-0 text-dark">{{ $stats['total'] }}</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card border-0 shadow-sm rounded-4 p-3 bg-white h-100 border-start border-warning border-4">
-                <div class="d-flex align-items-center">
-                    <div class="bg-warning bg-opacity-10 text-warning p-3 rounded-3 me-3">
-                        <i class="bi bi-hourglass-split fs-4"></i>
-                    </div>
-                    <div>
-                        <h6 class="text-muted small text-uppercase fw-bold mb-1">Pending</h6>
-                        <h4 class="fw-bold mb-0 text-dark">{{ $stats['pending'] }}</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card border-0 shadow-sm rounded-4 p-3 bg-white h-100 border-start border-success border-4">
-                <div class="d-flex align-items-center">
-                    <div class="bg-success bg-opacity-10 text-success p-3 rounded-3 me-3">
-                        <i class="bi bi-check-circle fs-4"></i>
-                    </div>
-                    <div>
-                        <h6 class="text-muted small text-uppercase fw-bold mb-1">Diterima</h6>
-                        <h4 class="fw-bold mb-0 text-dark">{{ $stats['lulus'] }}</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card border-0 shadow-sm rounded-4 p-3 bg-white h-100 border-start border-danger border-4">
-                <div class="d-flex align-items-center">
-                    <div class="bg-danger bg-opacity-10 text-danger p-3 rounded-3 me-3">
-                        <i class="bi bi-x-circle fs-4"></i>
-                    </div>
-                    <div>
-                        <h6 class="text-muted small text-uppercase fw-bold mb-1">Ditolak</h6>
-                        <h4 class="fw-bold mb-0 text-dark">{{ $stats['ditolak'] }}</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Main Content Table -->
-    <div class="card border-0 shadow-sm overflow-hidden animate__animated animate__fadeInUp">
-        <div class="card-header bg-white py-4 px-4 border-0">
-            <div class="row align-items-center">
-                <div class="col-md-4">
-                    <h5 class="fw-bold text-blue mb-0"><i class="bi bi-table me-2"></i>Daftar Calon Siswa</h5>
-                </div>
-                <div class="col-md-8">
-                    <form action="{{ route('datasiswa') }}" method="GET">
-                        <div class="input-group">
-                            <input type="text" name="search" class="form-control bg-light border-0 py-2 ps-4" 
-                                placeholder="Cari Nama, NISN..." value="{{ request('search') }}">
-                            <button class="btn btn-blue px-4" type="submit">
-                                <i class="bi bi-search me-2"></i>Cari Data
-                            </button>
+<div id="admin-siswa-wrapper">
+    <!-- SKELETON LOADER -->
+    <div class="skeleton-container">
+        <!-- Stats Skeleton -->
+        <div class="row g-3 mb-4">
+            @for($i = 0; $i < 4; $i++)
+            <div class="col-md-3">
+                <div class="card border-0 shadow-sm rounded-4 p-3 bg-white h-100">
+                    <div class="d-flex align-items-center">
+                        <div class="skeleton skeleton-img me-3"></div>
+                        <div class="flex-grow-1">
+                            <div class="skeleton skeleton-text" style="width: 50%;"></div>
+                            <div class="skeleton skeleton-title" style="width: 30%; height: 25px;"></div>
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-body p-0">
-            @if(session('success'))
-                <div class="alert alert-success border-0 rounded-0 mb-0 py-3 animate__animated animate__fadeIn">
-                    <div class="container-fluid d-flex align-items-center">
-                        <i class="bi bi-check-circle-fill me-3 fs-5"></i>
-                        <span>{{ session('success') }}</span>
                     </div>
                 </div>
-            @endif
+            </div>
+            @endfor
+        </div>
+        <!-- Table Skeleton -->
+        <div class="card border-0 shadow-sm p-4">
+            <div class="skeleton skeleton-title mb-4"></div>
+            @for($i = 0; $i < 5; $i++)
+            <div class="d-flex mb-3 align-items-center">
+                <div class="skeleton skeleton-img me-3"></div>
+                <div class="flex-grow-1">
+                    <div class="skeleton skeleton-text"></div>
+                </div>
+            </div>
+            @endfor
+        </div>
+    </div>
 
-            <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0">
-                    <thead class="bg-light">
-                        <tr>
-                            <th class="ps-4 border-0 text-uppercase small fw-bold text-muted py-3">No</th>
-                            <th class="border-0 text-uppercase small fw-bold text-muted py-3">Data Siswa</th>
-                            <th class="border-0 text-uppercase small fw-bold text-muted py-3">Informasi Kontak</th>
-                            <th class="border-0 text-uppercase small fw-bold text-muted py-3">Asal Sekolah</th>
-                            <th class="border-0 text-uppercase small fw-bold text-muted py-3 text-center">Status Pendaftaran</th>
-                            <th class="pe-4 border-0 text-uppercase small fw-bold text-muted py-3 text-end">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($data as $siswa)
-                        <tr>
-                            <td class="ps-4 fw-bold text-muted">{{ $loop->iteration + ($data->firstItem() - 1) }}</td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="avatar-sm rounded-circle bg-blue text-white d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
-                                        {{ strtoupper(substr($siswa->nama, 0, 1)) }}
-                                    </div>
-                                    <div>
-                                        <div class="fw-bold text-dark">{{ $siswa->nama }}</div>
-                                        <small class="text-muted">NISN: {{ $siswa->nisn }}</small>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="small fw-bold">{{ $siswa->email }}</div>
-                                <div class="small text-muted">{{ $siswa->no_hp }}</div>
-                            </td>
-                            <td>
-                                <div class="small fw-bold">{{ $siswa->asal_sekolah }}</div>
-                                <div class="small text-muted text-truncate" style="max-width: 150px;">{{ $siswa->alamat }}</div>
-                            </td>
-                            <td class="text-center">
-                                @if($siswa->status_seleksi == 'Lulus')
-                                    <span class="badge bg-success bg-opacity-10 text-success px-3 py-2 fw-bold">
-                                        <i class="bi bi-check-circle-fill me-1"></i> Terkonfirmasi
-                                    </span>
-                                @elseif($siswa->status_seleksi == 'Tidak Lulus')
-                                    <span class="badge bg-danger bg-opacity-10 text-danger px-3 py-2 fw-bold">
-                                        <i class="bi bi-x-circle-fill me-1"></i> Ditolak
-                                    </span>
-                                @else
-                                    <span class="badge bg-warning bg-opacity-10 text-warning px-3 py-2 fw-bold">
-                                        <i class="bi bi-hourglass-split me-1"></i> Pending
-                                    </span>
-                                @endif
-                            </td>
-                            <td class="pe-4 text-end">
-                                <div class="d-flex justify-content-end gap-1">
-                                    <button type="button" class="btn btn-sm btn-light-success px-3" data-bs-toggle="modal" data-bs-target="#modalTerima{{ $siswa->id }}">
-                                        Terima
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-light-danger px-3" data-bs-toggle="modal" data-bs-target="#modalTolak{{ $siswa->id }}">
-                                        Tolak
-                                    </button>
-                                    <a href="{{ route('admin.siswa.detail', $siswa->id) }}" class="btn btn-sm btn-light-info px-3">
-                                        Detail
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="6" class="text-center py-5">
-                                <i class="bi bi-people fs-1 opacity-25 d-block mb-3"></i>
-                                <p class="text-muted mb-0">Tidak ada data calon siswa ditemukan.</p>
-                            </td>
-                        </tr>
-                        @endforelse
-                    </tbody>
-                </table>
+    <!-- REAL CONTENT -->
+    <div class="real-content">
+        <!-- Stats Summary Section -->
+        <div class="row g-2 g-md-3 mb-4 animate__animated animate__fadeInUp">
+            <div class="col-6 col-md-3">
+                <div class="card border-0 shadow-sm rounded-4 p-2 p-md-3 bg-white h-100 border-start border-primary border-4">
+                    <div class="d-flex align-items-center text-start">
+                        <div class="bg-primary bg-opacity-10 text-primary p-2 p-md-3 rounded-3 me-2 me-md-3">
+                            <i class="bi bi-people fs-5 fs-md-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-muted small text-uppercase fw-bold mb-1" style="font-size: 0.6rem; letter-spacing: 0.5px;">Total Pendaftar</h6>
+                            <h4 class="fw-bold mb-0 text-dark fs-5 fs-md-4">{{ $stats['total'] }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-0 shadow-sm rounded-4 p-2 p-md-3 bg-white h-100 border-start border-warning border-4">
+                    <div class="d-flex align-items-center text-start">
+                        <div class="bg-warning bg-opacity-10 text-warning p-2 p-md-3 rounded-3 me-2 me-md-3">
+                            <i class="bi bi-hourglass-split fs-5 fs-md-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-muted small text-uppercase fw-bold mb-1" style="font-size: 0.6rem; letter-spacing: 0.5px;">Pending</h6>
+                            <h4 class="fw-bold mb-0 text-dark fs-5 fs-md-4">{{ $stats['pending'] }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-0 shadow-sm rounded-4 p-2 p-md-3 bg-white h-100 border-start border-success border-4">
+                    <div class="d-flex align-items-center text-start">
+                        <div class="bg-success bg-opacity-10 text-success p-2 p-md-3 rounded-3 me-2 me-md-3">
+                            <i class="bi bi-check-circle fs-5 fs-md-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-muted small text-uppercase fw-bold mb-1" style="font-size: 0.6rem; letter-spacing: 0.5px;">Diterima</h6>
+                            <h4 class="fw-bold mb-0 text-dark fs-5 fs-md-4">{{ $stats['lulus'] }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-0 shadow-sm rounded-4 p-2 p-md-3 bg-white h-100 border-start border-danger border-4">
+                    <div class="d-flex align-items-center text-start">
+                        <div class="bg-danger bg-opacity-10 text-danger p-2 p-md-3 rounded-3 me-2 me-md-3">
+                            <i class="bi bi-x-circle fs-5 fs-md-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-muted small text-uppercase fw-bold mb-1" style="font-size: 0.6rem; letter-spacing: 0.5px;">Ditolak</h6>
+                            <h4 class="fw-bold mb-0 text-dark fs-5 fs-md-4">{{ $stats['ditolak'] }}</h4>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="card-footer bg-white py-3 border-0">
-            <div class="d-flex justify-content-between align-items-center">
-                <small class="text-muted">Menampilkan {{ $data->firstItem() }} - {{ $data->lastItem() }} dari {{ $data->total() }} pendaftar</small>
-                {{ $data->links() }}
+
+        <!-- Main Content Table -->
+        <div class="card border-0 shadow-sm overflow-hidden animate__animated animate__fadeInUp">
+            <div class="card-header bg-white py-4 px-4 border-0">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <h5 class="fw-bold text-blue mb-0"><i class="bi bi-table me-2"></i>Daftar Calon Siswa</h5>
+                    </div>
+                    <div class="col-md-8">
+                        <form action="{{ route('datasiswa') }}" method="GET">
+                            <div class="row g-2">
+                                <div class="col-md-4">
+                                    <select name="status" class="form-select bg-light border-0 py-2" onchange="this.form.submit()">
+                                        <option value="">Semua Status</option>
+                                        <option value="Diproses" {{ request('status') == 'Diproses' ? 'selected' : '' }}>Pending (Proses)</option>
+                                        <option value="Lulus" {{ request('status') == 'Lulus' ? 'selected' : '' }}>Diterima (Lulus)</option>
+                                        <option value="Tidak Lulus" {{ request('status') == 'Tidak Lulus' ? 'selected' : '' }}>Ditolak</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <input type="text" name="search" class="form-control bg-light border-0 py-2 ps-4" 
+                                            placeholder="Cari Nama, NISN..." value="{{ request('search') }}">
+                                        <button class="btn btn-blue px-4" type="submit">
+                                            <i class="bi bi-search me-2"></i>Filter
+                                        </button>
+                                        @if(request()->has('search') || request()->has('status'))
+                                            <a href="{{ route('datasiswa') }}" class="btn btn-light"><i class="bi bi-arrow-counterclockwise"></i></a>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body p-0">
+                @if(session('success'))
+                    <div class="alert alert-success border-0 rounded-0 mb-0 py-3 animate__animated animate__fadeIn">
+                        <div class="container-fluid d-flex align-items-center">
+                            <i class="bi bi-check-circle-fill me-3 fs-5"></i>
+                            <span>{{ session('success') }}</span>
+                        </div>
+                    </div>
+                @endif
+
+                <div class="table-responsive text-start">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="ps-4 border-0 text-uppercase small fw-bold text-muted py-3">No</th>
+                                <th class="border-0 text-uppercase small fw-bold text-muted py-3">Data Siswa</th>
+                                <th class="border-0 text-uppercase small fw-bold text-muted py-3">Informasi Kontak</th>
+                                <th class="border-0 text-uppercase small fw-bold text-muted py-3">Asal Sekolah</th>
+                                <th class="border-0 text-uppercase small fw-bold text-muted py-3 text-center">Status Pendaftaran</th>
+                                <th class="pe-4 border-0 text-uppercase small fw-bold text-muted py-3 text-end">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($data as $siswa)
+                            <tr>
+                                <td class="ps-4 fw-bold text-muted">{{ $loop->iteration + ($data->firstItem() - 1) }}</td>
+                                <td>
+                                    <div class="d-flex align-items-center text-start">
+                                        <div class="me-3">
+                                            @if($siswa->foto && file_exists(public_path('storage/' . $siswa->foto)))
+                                                <img src="{{ asset('storage/' . $siswa->foto) }}" alt="Avatar" class="rounded-circle object-fit-cover" style="width: 40px; height: 40px;">
+                                            @else
+                                                <img src="{{ asset('img/user.jpeg') }}" alt="Default Avatar" class="rounded-circle object-fit-cover" style="width: 40px; height: 40px;">
+                                            @endif
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold text-dark">{{ $siswa->nama }}</div>
+                                            <small class="text-muted">NISN: {{ $siswa->nisn }}</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-start">
+                                    <div class="small fw-bold">{{ $siswa->email }}</div>
+                                    <div class="small text-muted">{{ $siswa->no_hp }}</div>
+                                </td>
+                                <td class="text-start">
+                                    <div class="small fw-bold">{{ $siswa->asal_sekolah }}</div>
+                                    <div class="small text-muted text-truncate" style="max-width: 150px;">{{ $siswa->alamat }}</div>
+                                </td>
+                                <td class="text-center">
+                                    @if($siswa->status_seleksi == 'Lulus')
+                                        <span class="badge bg-success bg-opacity-10 text-success px-3 py-2 fw-bold">
+                                            <i class="bi bi-check-circle-fill me-1"></i> Terkonfirmasi
+                                        </span>
+                                    @elseif($siswa->status_seleksi == 'Tidak Lulus')
+                                        <span class="badge bg-danger bg-opacity-10 text-danger px-3 py-2 fw-bold">
+                                            <i class="bi bi-x-circle-fill me-1"></i> Ditolak
+                                        </span>
+                                    @else
+                                        <span class="badge bg-warning bg-opacity-10 text-warning px-3 py-2 fw-bold">
+                                            <i class="bi bi-hourglass-split me-1"></i> Pending
+                                        </span>
+                                    @endif
+                                </td>
+                                <td class="pe-4 text-end">
+                                    <div class="d-flex justify-content-end gap-1">
+                                        <button type="button" class="btn btn-sm btn-light-success px-3" data-bs-toggle="modal" data-bs-target="#modalTerima{{ $siswa->id }}">
+                                            Terima
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-light-danger px-3" data-bs-toggle="modal" data-bs-target="#modalTolak{{ $siswa->id }}">
+                                            Tolak
+                                        </button>
+                                        <a href="{{ route('admin.siswa.detail', $siswa->id) }}" class="btn btn-sm btn-light-info px-3">
+                                            Detail
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="6" class="text-center py-5">
+                                    <i class="bi bi-people fs-1 opacity-25 d-block mb-3"></i>
+                                    <p class="text-muted mb-0">Tidak ada data calon siswa ditemukan.</p>
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer bg-white py-3 border-0">
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">Menampilkan {{ $data->firstItem() }} - {{ $data->lastItem() }} dari {{ $data->total() }} pendaftar</small>
+                    {{ $data->links() }}
+                </div>
             </div>
         </div>
     </div>
+</div>
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const wrapper = document.getElementById('admin-siswa-wrapper');
+        const minLoadingTime = 500;
+        const startTime = Date.now();
+
+        const finishLoading = () => {
+            const elapsedTime = Date.now() - startTime;
+            const remainingTime = Math.max(0, minLoadingTime - elapsedTime);
+            setTimeout(() => {
+                wrapper.classList.add('content-loaded');
+            }, remainingTime);
+        };
+
+        if (document.readyState === 'complete') {
+            finishLoading();
+        } else {
+            window.addEventListener('load', finishLoading);
+            // Failsafe
+            setTimeout(finishLoading, 2000);
+        }
+    });
+</script>
+@endpush
 </div>
 
 <!-- Modals Loop -->

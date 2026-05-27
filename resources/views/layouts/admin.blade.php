@@ -53,6 +53,19 @@
         overflow-y: auto;
     }
 
+    #sidebar-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(9, 29, 74, 0.45); /* Matching text-blue-deep */
+        z-index: 1045;
+        display: none;
+        backdrop-filter: blur(4px); /* Premium overlay blur */
+        transition: all 0.3s ease;
+    }
+
     @media (max-width: 768px) {
         #wrapper #accordionSidebar {
             position: fixed;
@@ -70,6 +83,9 @@
         }
         .topbar {
             padding: 0 0.5rem;
+        }
+        body.sidebar-toggled #sidebar-backdrop {
+            display: block !important;
         }
     }
 
@@ -111,9 +127,31 @@
         z-index: 1040 !important;
         box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15) !important; /* Restore shadow if lost */
     }
+
+    /* SKELETON LOADING */
+    .skeleton {
+        background: #e2e8f0;
+        background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+        border-radius: 5px;
+        background-size: 200% 100%;
+        animation: 2.3s shine linear infinite;
+    }
+    @keyframes shine { to { background-position-x: -200%; } }
+    .skeleton-text { width: 100%; height: 12px; margin-bottom: 10px; }
+    .skeleton-title { width: 60%; height: 20px; margin-bottom: 15px; }
+    .skeleton-img { width: 40px; height: 40px; border-radius: 50%; }
+    .skeleton-container { display: block; }
+    .content-loaded .skeleton-container { display: none; }
+    .real-content { display: none; }
+    .content-loaded .real-content { display: block; animation: fadeIn 0.8s ease-out forwards; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 
+
 <body id="page-top">
+
+    <!-- Mobile Sidebar Backdrop -->
+    <div id="sidebar-backdrop"></div>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -166,23 +204,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('asset/vendor/jquery/jquery.min.js') }}"></script>
@@ -245,6 +267,12 @@
                 }
             });
         }
+
+        // Dismiss sidebar on mobile when clicking backdrop
+        $('#sidebar-backdrop').on('click', function() {
+            $("body").removeClass("sidebar-toggled");
+            $("#accordionSidebar").removeClass("toggled");
+        });
 
         setInterval(checkNewMessages, 10000);
         $(document).ready(checkNewMessages);

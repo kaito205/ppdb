@@ -25,11 +25,17 @@ trait UploadTrait
             }
         }
 
+        // Ensure destination directory exists
+        $destinationPath = public_path($path);
+        if (!File::exists($destinationPath)) {
+            File::makeDirectory($destinationPath, 0755, true, true);
+        }
+
         // Generate new filename
         $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
 
         // Move file to destination
-        $file->move(public_path($path), $filename);
+        $file->move($destinationPath, $filename);
 
         return $filename;
     }

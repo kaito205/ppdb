@@ -20,16 +20,16 @@ class AdminController extends Controller
     {
         // Hitung total pendaftar dari tabel Pendaftaran
         $totalPendaftar = Pendaftaran::count();
-        
+
         // Status Menunggu Validasi (Pendaftar yang belum dikonfirmasi)
         $menungguValidasi = Pendaftaran::where('status_seleksi', 'Diproses')->count();
-        
+
         // Status Diterima (Lulus)
         $diterima = Pendaftaran::where('status_seleksi', 'Lulus')->count();
-        
+
         // Status Ditolak (Tidak Lulus)
         $ditolak = Pendaftaran::where('status_seleksi', 'Tidak Lulus')->count();
-        
+
         return view('admin.dashboard', compact('totalPendaftar', 'menungguValidasi', 'diterima', 'ditolak'));
     }
     public function login()
@@ -132,13 +132,7 @@ class AdminController extends Controller
         $data->delete();
         return back()->with('success', 'Ekskul dihapus');
     }
-
-
-
-
-    // ============================
     // PROFIL SEKOLAH
-    // ============================
     public function profilIndex()
     {
         $profil = ProfilSekolah::first();
@@ -162,11 +156,6 @@ class AdminController extends Controller
 
         return back()->with('success', 'Profil diperbarui');
     }
-
-    // ===========================
-    // CRUD BERITA
-    // ===========================
-
     public function beritaIndex()
     {
         $berita = Berita::orderBy('id', 'DESC')->paginate(10);
@@ -218,7 +207,7 @@ class AdminController extends Controller
         $berita = Berita::findOrFail($id);
 
         $berita->judul = $request->judul;
-        
+
         // Generate unique slug
         $slug = Str::slug($request->judul);
         $count = Berita::where('slug', $slug)->where('id', '!=', $id)->count();
@@ -264,24 +253,28 @@ class AdminController extends Controller
             });
         }
 
+        if ($request->has('status') && $request->status != '') {
+            $query->where('status_seleksi', $request->status);
+        }
+
         $data = $query->paginate(10);
-    $data->appends(['search' => $request->search]);
+        $data->appends($request->all());
 
-    // Summary Stats
-    $stats = [
-        'total' => Pendaftaran::count(),
-        'pending' => Pendaftaran::where('status_seleksi', 'Diproses')->count(),
-        'lulus' => Pendaftaran::where('status_seleksi', 'Lulus')->count(),
-        'ditolak' => Pendaftaran::where('status_seleksi', 'Tidak Lulus')->count(),
-    ];
+        // Summary Stats
+        $stats = [
+            'total' => Pendaftaran::count(),
+            'pending' => Pendaftaran::where('status_seleksi', 'Diproses')->count(),
+            'lulus' => Pendaftaran::where('status_seleksi', 'Lulus')->count(),
+            'ditolak' => Pendaftaran::where('status_seleksi', 'Tidak Lulus')->count(),
+        ];
 
-    return view('admin.datasiswa', compact('data', 'stats'));
+        return view('admin.datasiswa', compact('data', 'stats'));
     }
 
     public function hapusSiswa($id)
     {
         $data = Pendaftaran::findOrFail($id);
-        
+
         // Hapus file dari storage untuk menghemat ruang
         $files = [$data->foto, $data->file_kk, $data->file_akte, $data->file_ijazah];
         foreach ($files as $file) {
@@ -297,7 +290,7 @@ class AdminController extends Controller
     public function detailSiswa(string $id)
     {
         $data = Pendaftaran::findOrFail($id);
-        
+
         // Logika real-time: tandai sudah dibaca saat dibuka
         if (!$data->is_read) {
             $data->is_read = true;
@@ -426,7 +419,7 @@ class AdminController extends Controller
     public function staffIndex()
     {
         $data = Staff::orderByRaw("
-            CASE 
+            CASE
                 WHEN jabatan LIKE '%Ketua Yayasan%' THEN 1
                 WHEN jabatan LIKE '%Kepala Sekolah%' THEN 2
                 WHEN jabatan LIKE '%Wakil%' THEN 3
@@ -434,7 +427,7 @@ class AdminController extends Controller
                 WHEN jabatan LIKE '%Bendahara%' THEN 5
                 WHEN jabatan LIKE '%Sekretaris%' THEN 5
                 WHEN jabatan LIKE '%Guru%' OR jabatan LIKE '%Wali Kelas%' THEN 6
-                ELSE 99 
+                ELSE 99
             END ASC
         ")->orderBy('nama', 'asc')->get();
         return view('admin.staff.index', compact('data'));
@@ -457,7 +450,7 @@ class AdminController extends Controller
         $data->nama = $request->nama;
         $data->jabatan = $request->jabatan;
         $data->spesialis = $request->spesialis;
-        
+
         // Fields removed as per reversion
         // $data->lulusan = $request->lulusan;
         // $data->mapel = $request->mapel;
@@ -519,11 +512,17 @@ class AdminController extends Controller
     // EXPORT & EMAIL FEATURES
     // ============================
 
-    public function exportExcel()
+    public function exportExcel(Request $request)
 {
-    $data = Pendaftaran::all();
-    $filename = "Laporan_Pendaftar_PPDB_" . date('Y-m-d') . ".xls";
-    
+    $query = Pendaftaran::query();
+
+    if ($request->status) {
+        $query->where('status_seleksi', $request->status);
+    }
+
+    $data = $query->get();
+    $filename = "Laporan_Pendaftar_PPDB_" . ($request->status ?? 'Semua') . "_" . date('Y-m-d') . ".xls";
+
     // Header for Excel Download
     header("Content-Type: application/vnd.ms-excel");
     header("Content-Disposition: attachment; filename=\"$filename\"");
@@ -584,10 +583,33 @@ class AdminController extends Controller
     exit();
 }
 
-    public function exportPdf()
+    public function exportPdf(Request $request)
     {
-        $data = Pendaftaran::all();
-        return view('admin.pdf_view', compact('data'));
+        $query = Pendaftaran::query();
+
+        if ($request->status) {
+            $query->where('status_seleksi', $request->status);
+        }
+
+        $data = $query->get();
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('admin.pdf_view', compact('data'))->setPaper('a4', 'landscape');
+
+        return $pdf->stream('Laporan_PPDB_' . date('Y-m-d') . '.pdf');
+    }
+
+    public function exportSummary()
+    {
+        $stats = [
+            'total' => Pendaftaran::count(),
+            'pending' => Pendaftaran::where('status_seleksi', 'Diproses')->count(),
+            'lulus' => Pendaftaran::where('status_seleksi', 'Lulus')->count(),
+            'ditolak' => Pendaftaran::where('status_seleksi', 'Tidak Lulus')->count(),
+            'laki' => Pendaftaran::where('jenis_kelamin', 'Laki-laki')->count(),
+            'perempuan' => Pendaftaran::where('jenis_kelamin', 'Perempuan')->count(),
+        ];
+
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('admin.pdf_summary', compact('stats'));
+        return $pdf->stream('Ringkasan_Statistik_PPDB_' . date('Y-m-d') . '.pdf');
     }
 
     public function terimaSiswa(Request $request, $id)

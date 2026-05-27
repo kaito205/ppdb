@@ -17,10 +17,10 @@
         .email-body { width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         
         /* Header */
-        .email-header { background: linear-gradient(135deg, #0E2E72 0%, #1d4ed8 100%); padding: 30px 40px; text-align: center; }
-        .email-logo { max-width: 80px; margin-bottom: 15px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-        .email-title { color: #ffffff; margin: 0; font-size: 24px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-        .email-subtitle { color: #ffd700; margin: 5px 0 0; font-size: 14px; font-weight: 500; letter-spacing: 2px; }
+        .email-header { background-color: #ffffff; padding: 40px 40px 20px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+        .email-logo { max-width: 90px; margin-bottom: 15px; border-radius: 50%; }
+        .email-title { color: #0E2E72; margin: 0; font-size: 22px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; }
+        .email-subtitle { color: #64748b; margin: 5px 0 0; font-size: 13px; font-weight: 600; letter-spacing: 1px; }
 
         /* Content */
         .content-cell { padding: 40px; color: #333333; line-height: 1.6; font-size: 16px; }
@@ -55,7 +55,7 @@
                     <!-- Header -->
                     <tr>
                         <td class="email-header">
-                            <!-- Optional: Add Logo IMG tag here if available online, e.g. <img src="URL" class="email-logo"> -->
+                            <img src="{{ $message->embed(public_path('img/favicon.png')) }}" class="email-logo" alt="Logo SMA ERHA">
                             <h1 class="email-title">SMA ERHA JATINAGARA</h1>
                             <p class="email-subtitle">UNGGUL DALAM PRESTASI</p>
                         </td>

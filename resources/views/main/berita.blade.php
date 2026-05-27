@@ -4,7 +4,7 @@
 <div class="news-main-list overflow-hidden">
     <section class="py-4 py-md-5">
         <div class="container">
-            
+
             <!-- Header Section -->
             <div class="text-center mb-4 mb-md-5" data-aos="fade-up">
                 <h1 class="fw-bold fs-2 fs-md-1 text-gradient">Berita & Artikel</h1>
@@ -16,27 +16,28 @@
 
                 <!-- KONTEN UTAMA -->
                 <div class="col-lg-8">
-                    
+
                     @if(isset($query) && $query)
                         <div class="alert alert-info py-2 px-3 mb-4 rounded-4 small" role="alert">
                             <i class="bi bi-search me-2"></i> Hasil: <strong>"{{ $query }}"</strong>
                         </div>
                     @endif
 
+
                     <div class="row g-3 g-md-4">
                         @forelse($berita as $item)
                         <div class="col-md-6" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
                             <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden hover-card">
                                 <div class="position-relative">
-                                    <img src="{{ asset('uploads/berita/'.$item->gambar) }}" 
-                                         class="card-img-top object-fit-cover" 
-                                         alt="{{ $item->judul }}"
-                                         style="height: 180px;">
+                                    <img src="{{ asset('uploads/berita/'.$item->gambar) }}"
+                                        class="card-img-top object-fit-cover"
+                                        alt="{{ $item->judul }}"
+                                        style="height: 180px;">
                                     <div class="position-absolute top-0 start-0 bg-blue text-white px-3 py-1 m-3 rounded-pill extra-small shadow-sm">
                                         {{ $item->created_at->format('d M Y') }}
                                     </div>
                                 </div>
-                                <div class="card-body p-3 p-md-4 d-flex flex-column">
+                                <div class="card-body p-3 p-md-4 d-flex flex-column text-start">
                                     <h6 class="card-title fw-bold mb-2">
                                         <a href="{{ route('berita.detail', $item->slug) }}" class="text-decoration-none text-dark stretched-link lh-base">
                                             {{ Str::limit($item->judul, 60) }}
@@ -72,7 +73,7 @@
                 <!-- SIDEBAR -->
                 <div class="col-lg-4">
                     <div class="sticky-top-sidebar">
-                        
+
                         <!-- Search Widget -->
                         <div class="card border-0 shadow-sm rounded-4 mb-4" data-aos="fade-left">
                             <div class="card-body p-4">
@@ -90,12 +91,12 @@
                         <div class="card border-0 shadow-sm rounded-4" data-aos="fade-left" data-aos-delay="100">
                             <div class="card-body p-4">
                                 <h6 class="fw-bold mb-3">Berita Terbaru</h6>
-                                
+
                                 @foreach($beritaLain as $item)
                                 <div class="d-flex align-items-center mb-3 pb-3 border-bottom last-no-border position-relative hvr-right">
-                                    <img src="{{ asset('uploads/berita/'.$item->gambar) }}" 
-                                         class="rounded-3 object-fit-cover" 
-                                         width="60" height="60" 
+                                    <img src="{{ asset('uploads/berita/'.$item->gambar) }}"
+                                         class="rounded-3 object-fit-cover"
+                                         width="60" height="60"
                                          alt="{{ $item->judul }}">
                                     <div class="ms-3">
                                         <h6 class="mb-1 small">
@@ -124,7 +125,7 @@
 <style>
     .extra-small { font-size: 0.75rem; }
     .sticky-top-sidebar { top: 100px; position: sticky; }
-    
+
     .last-no-border:last-child {
         border-bottom: none !important;
         margin-bottom: 0 !important;
@@ -146,7 +147,7 @@
     /* Custom Theme Colors */
     .bg-blue { background-color: #0E2E72 !important; }
     .text-blue { color: #0E2E72 !important; }
-    
+
     .btn-blue {
         background-color: #0E2E72;
         color: white;
@@ -176,4 +177,6 @@
         .row.g-3 { --bs-gutter-x: 0.75rem; --bs-gutter-y: 1rem; }
     }
 </style>
+
 @endsection
+

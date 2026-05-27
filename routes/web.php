@@ -30,58 +30,24 @@ Route::get('/galeri', [MainController::class, 'galeri'])->name('galeri');
 Route::get('/informasi-ppdb', [MainController::class, 'ppdb'])->name('ppdb.info');
 Route::get('/fasilitas', [MainController::class, 'fasilitas'])->name('fasilitas');
 
-
-
-
-
-
-
-
-
-
-
-// auth user - REMOVED per request
-// Login removed. Student access is via email only.
-
-
-
 // user pendaftaran (Public)
 Route::get('/pendaftaran', [UserController::class, 'formulir'])->name('formulir.user');
 Route::post('/pendaftaran', [UserController::class, 'simpanFormulir'])->name('formulir.simpan');
-Route::post('/pendaftaran', [UserController::class, 'simpanFormulir'])->name('formulir.simpan');
+Route::get('/pendaftaran/sukses', [UserController::class, 'sukses'])->name('pendaftaran.sukses');
+Route::get('/pendaftaran/cetak/{id}', [UserController::class, 'cetakKartu'])->name('pendaftaran.cetak');
 
-
-// admin area
-// ============================
-// Admin Area
-// ============================
-// admin area
-// ============================
-// Admin Area
-// ============================
-Route::get('/admin/login', [AdminController::class, 'login'])->name('login.admin');
-Route::post('/admin/login', [AdminController::class, 'authenticate'])->name('login.admin.submit');
+Route::get('/masuk-erha-jatinagara', [AdminController::class, 'login'])->name('login.admin');
+Route::post('/masuk-erha-jatinagara', [AdminController::class, 'authenticate'])->middleware('throttle:5,1')->name('login.admin.submit');
 Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
 Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
-    
+
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard.admin');
 
-    // ============================
-    // DATA SISWA
-    // ============================
     Route::prefix('datasiswa')->name('admin.siswa.')->group(function () {
-        Route::get('/', [AdminController::class, 'dataSiswa'])->name('index'); // name: admin.siswa.index (was datasiswa) -> alias manually if needed or stick to new naming
-        // Keeping old names for compatibility where possible, but grouping makes it cleaner.
-        // Actually, to avoid breaking `route('datasiswa')`, I should be careful.
-        // The old name was 'datasiswa'. New name would be 'admin.siswa.index' if I use name prefix.
-        // Let's NOT use name prefix if it breaks existing views, or I must update views.
-        // User asked for "Code cleanup", but breaking changes should be avoided if I can't check all views.
-        // I will keep the names explicit or use the same names.
+        Route::get('/', [AdminController::class, 'dataSiswa'])->name('index');
     });
 
-    // Re-writing with explicit grouping but same names to be safe.
-    
     Route::prefix('datasiswa')->group(function () {
         Route::get('/', [AdminController::class, 'dataSiswa'])->name('datasiswa');
         Route::post('/hapus/{id}', [AdminController::class, 'hapusSiswa'])->name('admin.siswa.hapus');
@@ -90,6 +56,7 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
         Route::post('/tolak/{id}', [AdminController::class, 'tolakSiswa'])->name('admin.siswa.tolak');
         Route::get('/export/excel', [AdminController::class, 'exportExcel'])->name('admin.export.excel');
         Route::get('/export/pdf', [AdminController::class, 'exportPdf'])->name('admin.export.pdf');
+        Route::get('/export/summary', [AdminController::class, 'exportSummary'])->name('admin.export.summary');
     });
 
     // MANAJEMEN STAFF

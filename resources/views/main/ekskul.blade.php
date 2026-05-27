@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('containt')
-<section class="ekskul-hero-section overflow-hidden">
+@section('containt')
+<section class="ekskul-hero-section overflow-hidden text-start">
     <div class="container py-lg-5 py-4">
         <div class="row align-items-center g-5">
             <!-- Left Side: Text Content -->
@@ -80,6 +81,7 @@
 </section>
 
 <style>
+
     .ekskul-hero-section {
         background: #f8fbff; /* Light background */
         background-image: radial-gradient(#0e2e7208 2px, transparent 2px);

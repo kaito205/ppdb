@@ -6,7 +6,7 @@
 <div class="container-fluid py-4">
     <!-- Breadcrumb & Header -->
     <div class="row mb-4 animate__animated animate__fadeIn">
-        <div class="col-12 d-flex justify-content-between align-items-center">
+        <div class="col-12 d-flex flex-column flex-md-row justify-content-between align-items-md-center align-items-start gap-3">
             <div>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent p-0 mb-1">
@@ -16,8 +16,11 @@
                 </nav>
                 <h3 class="fw-bold text-dark mb-0">Profil Lengkap Calon Siswa</h3>
             </div>
-            <div class="d-flex gap-2">
-                <a href="{{ route('datasiswa') }}" class="btn btn-light rounded-pill px-4 shadow-sm border">
+            <div class="d-flex gap-2 w-100 w-md-auto justify-content-start justify-content-md-end">
+                <a href="{{ route('pendaftaran.cetak', $data->id) }}" target="_blank" class="btn btn-danger rounded-pill px-4 shadow-sm border-0 w-100 w-md-auto text-center text-nowrap">
+                    <i class="bi bi-printer me-2"></i>Cetak Biodata
+                </a>
+                <a href="{{ route('datasiswa') }}" class="btn btn-light rounded-pill px-4 shadow-sm border w-100 w-md-auto text-center text-nowrap">
                     <i class="bi bi-arrow-left me-2"></i>Kembali
                 </a>
             </div>
@@ -32,7 +35,7 @@
                 <div class="card-header bg-blue border-0 py-5"></div>
                 <div class="card-body text-center pt-0" style="margin-top: -50px;">
                     <div class="position-relative d-inline-block mb-3">
-                        <img src="{{ $data->foto ? asset('storage/' . $data->foto) : asset('img/user.jpeg') }}"
+                        <img src="{{ ($data->foto && file_exists(public_path('storage/' . $data->foto))) ? asset('storage/' . $data->foto) : asset('img/user.jpeg') }}"
                             alt="Foto Siswa" class="rounded-circle border border-4 border-white shadow shadow-sm object-fit-cover" 
                             style="width: 120px; height: 120px; background-color: white;">
                         

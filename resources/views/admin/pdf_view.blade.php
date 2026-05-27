@@ -5,7 +5,7 @@
     <title>Laporan Data Pendaftar PPDB - {{ date('Y') }}</title>
     <style>
         @page {
-            size: landscape;
+            size: a4 landscape;
             margin: 1cm;
         }
         body {
@@ -14,6 +14,7 @@
             line-height: 1.4;
             margin: 0;
             padding: 0;
+            font-size: 10px;
         }
         /* Kop Surat */
         .header-table {
@@ -25,178 +26,140 @@
         .header-table td {
             border: none;
             padding: 0;
+            vertical-align: middle;
         }
         .logo {
-            width: 80px;
+            width: 70px;
+        }
+        .school-info {
+            text-align: center;
         }
         .school-name {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
             color: #0e2e72;
             text-transform: uppercase;
             margin: 0;
         }
         .school-address {
-            font-size: 11px;
+            font-size: 10px;
             color: #555;
-            margin: 5px 0 0 0;
+            margin-top: 5px;
         }
 
         /* Title */
         .report-title {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .report-title h2 {
             margin: 0;
             color: #333;
             text-transform: uppercase;
-            font-size: 18px;
+            font-size: 16px;
         }
         .report-title p {
             margin: 5px 0;
-            font-size: 12px;
+            font-size: 11px;
             color: #666;
         }
 
         /* Table Style */
-        table {
+        .data-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 10px;
         }
-        th {
+        .data-table th {
             background-color: #0e2e72;
             color: white;
             text-transform: uppercase;
-            padding: 10px 5px;
+            padding: 8px 4px;
             border: 1px solid #0c2761;
-        }
-        td {
-            border: 1px solid #dee2e6;
-            padding: 8px 5px;
-            vertical-align: top;
-        }
-        tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
-
-        /* Badge Style */
-        .badge {
-            padding: 3px 8px;
-            border-radius: 10px;
-            font-weight: bold;
-            text-align: center;
-            display: inline-block;
             font-size: 9px;
         }
-        .bg-success { background-color: #d1e7dd; color: #0f5132; }
-        .bg-danger { background-color: #f8d7da; color: #842029; }
-        .bg-warning { background-color: #fff3cd; color: #664d03; }
-
+        .data-table td {
+            border: 1px solid #dee2e6;
+            padding: 6px 4px;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+        .text-center { text-align: center; }
+        
         /* Footer */
         .footer-table {
             width: 100%;
             margin-top: 30px;
-            font-size: 11px;
         }
         .footer-table td {
             border: none;
             text-align: center;
             width: 33%;
+            font-size: 11px;
         }
         .signature-space {
-            height: 60px;
-        }
-
-        /* Print Controls */
-        .controls {
-            background: #f1f1f1;
-            padding: 15px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 20px;
-        }
-        .btn {
-            padding: 8px 20px;
-            border-radius: 20px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-block;
-            margin: 0 5px;
-            font-size: 13px;
-        }
-        .btn-print { background: #0e2e72; color: white; }
-        .btn-close { background: #6c757d; color: white; }
-
-        @media print {
-            .controls { display: none; }
-            body { margin: 0; }
-            @page { margin: 0.5cm; }
+            height: 50px;
         }
     </style>
 </head>
 <body>
-    <div class="controls">
-        <button onclick="window.print()" class="btn btn-print">Cetak Sekarang</button>
-        <button onclick="window.close()" class="btn btn-close">Tutup Halaman</button>
-        <p style="font-size: 11px; color: #666; margin-top: 10px;">* Gunakan mode Landscape untuk hasil optimal</p>
-    </div>
-
     <table class="header-table">
         <tr>
-            <td width="100">
-                <img src="{{ public_path('img/logo.webp') }}" class="logo">
+            <td width="80">
+                @php
+                    $logoPath = public_path('img/logo.webp');
+                    if (!file_exists($logoPath)) {
+                        $logoPath = public_path('img/logo.png'); // Fallback
+                    }
+                @endphp
+                @if(file_exists($logoPath))
+                    <img src="data:image/webp;base64,{{ base64_encode(file_get_contents($logoPath)) }}" class="logo">
+                @endif
             </td>
-            <td align="center">
+            <td class="school-info">
                 <div class="school-name">SMA ERHA JATINAGARA</div>
                 <div class="school-address">
                     Dusun Kulon, Desa Jatinagara, Kec. Jatinagara, Kab. Ciamis, Jawa Barat<br>
                     Telp: 0821 1925 0323 | Email: erhajatinagarasma@gmail.com | Website: www.smaerha.sch.id
                 </div>
             </td>
-            <td width="100"></td>
+            <td width="80"></td>
         </tr>
     </table>
 
     <div class="report-title">
         <h2>LAPORAN DATA PENDAFTAR SISWA BARU (PPDB)</h2>
-        <p>Tahun Ajaran {{ date('Y') }}/{{ date('Y')+1 }} | Per Tanggal: {{ date('d F Y') }}</p>
+        <p>Tahun Ajaran {{ date('Y') }}/{{ date('Y')+1 }} | Status: {{ request('status') ?? 'Semua' }}</p>
+        <p style="font-size: 9px;">Dicetak pada: {{ date('d F Y H:i:s') }}</p>
     </div>
 
-    <table>
+    <table class="data-table">
         <thead>
             <tr>
-                <th width="25">Nomor</th>
+                <th width="20">No</th>
                 <th>Nama Lengkap</th>
-                <th width="80">NIK</th>
-                <th width="80">NISN</th>
-                <th width="80">Nomor KK</th>
-                <th width="80">Jenis Kelamin</th>
+                <th width="70">NIK</th>
+                <th width="70">NISN</th>
+                <th width="50">L/P</th>
                 <th>Tempat, Tanggal Lahir</th>
-                <th width="150">Alamat Lengkap</th>
-                <th width="90">Telepon / WhatsApp</th>
-                <th width="110">Orang Tua</th>
+                <th>Asal Sekolah</th>
+                <th width="120">Alamat</th>
+                <th width="80">No. HP</th>
+                <th width="60">Status</th>
             </tr>
         </thead>
         <tbody>
             @foreach($data as $siswa)
             <tr>
-                <td align="center">{{ $loop->iteration }}</td>
+                <td class="text-center">{{ $loop->iteration }}</td>
                 <td style="font-weight: bold;">{{ $siswa->nama }}</td>
-                <td align="center">{{ $siswa->nik ?? '-' }}</td>
-                <td align="center">{{ $siswa->nisn }}</td>
-                <td align="center">{{ $siswa->no_kk ?? '-' }}</td>
-                <td align="center">{{ $siswa->jenis_kelamin }}</td>
+                <td class="text-center">{{ $siswa->nik ?? '-' }}</td>
+                <td class="text-center">{{ $siswa->nisn }}</td>
+                <td class="text-center">{{ $siswa->jenis_kelamin == 'Laki-laki' ? 'L' : 'P' }}</td>
                 <td>{{ $siswa->tempat_lahir }}, {{ \Carbon\Carbon::parse($siswa->tanggal_lahir)->translatedFormat('d F Y') }}</td>
+                <td>{{ $siswa->asal_sekolah }}</td>
                 <td>{{ $siswa->alamat }}</td>
-                <td align="center">{{ $siswa->no_hp }}</td>
-                <td>
-                    Ayah: {{ $siswa->nama_ayah }}<br>
-                    Ibu: {{ $siswa->nama_ibu }}
-                </td>
+                <td class="text-center text-nowrap">{{ $siswa->no_hp }}</td>
+                <td class="text-center">{{ $siswa->status_seleksi }}</td>
             </tr>
             @endforeach
         </tbody>

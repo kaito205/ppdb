@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pendaftaran;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
     public function formulir()
     {
-        // ambil data formulir jika ada (berdasarkan email di session atau query jika diperlukan)
-        // namun untuk saat ini kita biarkan kosong/baru untuk guest
         return view('pengguna.formulir');
     }
 
@@ -44,45 +44,44 @@ class UserController extends Controller
             'file_ijazah' => 'nullable|mimes:pdf|max:2048',
         ]);
 
-        // Find or Create User background (Student role)
-        $user = \App\Models\User::where('email', $request->email)->first();
+        // Find or Create User
+        $user = User::where('email', $request->email)->first();
         if (!$user) {
-            $user = \App\Models\User::create([
+            $user = User::create([
                 'name' => $request->nama,
                 'email' => $request->email,
-                'password' => \Illuminate\Support\Facades\Hash::make(\Illuminate\Support\Str::random(12)),
+                'password' => Hash::make(Str::random(12)),
                 'role' => 'user'
             ]);
         }
 
         $pendaftaran = Pendaftaran::where('email', $request->email)->first();
 
-        // Logika Re-upload: Hapus file lama jika ada upload baru
+        // Handle File Uploads
         $foto = $pendaftaran ? $pendaftaran->foto : null;
         if ($request->hasFile('foto')) {
-            if ($foto) \Illuminate\Support\Facades\Storage::disk('public')->delete($foto);
+            if ($foto) Storage::disk('public')->delete($foto);
             $foto = $request->file('foto')->store('foto', 'public');
         }
 
         $kk = $pendaftaran ? $pendaftaran->file_kk : null;
         if ($request->hasFile('file_kk')) {
-            if ($kk) \Illuminate\Support\Facades\Storage::disk('public')->delete($kk);
+            if ($kk) Storage::disk('public')->delete($kk);
             $kk = $request->file('file_kk')->store('dokumen/kk', 'public');
         }
 
         $akte = $pendaftaran ? $pendaftaran->file_akte : null;
         if ($request->hasFile('file_akte')) {
-            if ($akte) \Illuminate\Support\Facades\Storage::disk('public')->delete($akte);
+            if ($akte) Storage::disk('public')->delete($akte);
             $akte = $request->file('file_akte')->store('dokumen/akte', 'public');
         }
 
         $ijazah = $pendaftaran ? $pendaftaran->file_ijazah : null;
         if ($request->hasFile('file_ijazah')) {
-            if ($ijazah) \Illuminate\Support\Facades\Storage::disk('public')->delete($ijazah);
+            if ($ijazah) Storage::disk('public')->delete($ijazah);
             $ijazah = $request->file('file_ijazah')->store('dokumen/ijazah', 'public');
         }
 
-        // Simpan ke database
         try {
             $data = Pendaftaran::updateOrCreate(
                 ['email' => $request->email],
@@ -99,42 +98,47 @@ class UserController extends Controller
                     'alamat' => $request->alamat,
                     'email' => $request->email,
                     'foto' => $foto,
-
                     'asal_sekolah' => $request->asal_sekolah,
                     'tahun_lulus' => $request->tahun_lulus,
-
                     'nama_ayah' => $request->nama_ayah,
                     'nama_ibu' => $request->nama_ibu,
                     'no_kk' => $request->no_kk,
                     'file_kk' => $kk,
                     'file_akte' => $akte,
                     'file_ijazah' => $ijazah,
-
                     'status_seleksi' => $pendaftaran ? $pendaftaran->status_seleksi : 'Diproses',
                     'verifikasi_dokumen' => $pendaftaran ? $pendaftaran->verifikasi_dokumen : 'Pending',
                 ]
             );
 
-            // Generate PDF
+            // Send Email
             try {
-                $pdf = Pdf::loadView('pengguna.cetak', ['data' => $data, 'is_pdf' => true]);
-                $pdfPath = storage_path('app/public/Bukti-Pendaftaran-' . $data->nisn . '.pdf');
-                $pdf->save($pdfPath);
-                
-                // Kirim Email Notifikasi dengan Lampiran PDF
-                \Illuminate\Support\Facades\Mail::to($request->email)->send(new \App\Mail\NotificationMail(
-                    'Bukti Pendaftaran - SMA ERHA',
-                    "Halo {$request->nama},\n\nSelamat, pendaftaran Anda telah berhasil!\n\nBerikut kami lampirkan Bukti Pendaftaran dalam bentuk PDF.\nSimpan bukti ini sebagai syarat daftar ulang.\n\nStatus verifikasi berkas akan kami informasikan selanjutnya melalui email ini.\n\nSalam,\nPanitia PPDB SMA ERHA Jatinagara",
-                    $pdfPath
+                Mail::to($request->email)->send(new \App\Mail\NotificationMail(
+                    'Pendaftaran Berhasil - SMA ERHA',
+                    "Halo {$request->nama},\n\nSelamat, pendaftaran Anda telah berhasil kami terima!\n\nID Pendaftaran Anda: #PPDB-".str_pad($data->id, 4, '0', STR_PAD_LEFT)."\n\nSilakan cetak kartu pendaftaran Anda melalui link berikut: ".route('pendaftaran.cetak', $data->id)."\n\nTerima kasih."
                 ));
             } catch (\Exception $e) {
-                logger('Gagal generate PDF atau kirim email: ' . $e->getMessage());
+                logger('Gagal kirim email: ' . $e->getMessage());
             }
 
-            return redirect()->route('home')->with('success', 'Pendaftaran Berhasil! Bukti pendaftaran telah dikirim ke email Anda. Silakan cek Inbox/Spam.');
+            return redirect()->route('pendaftaran.sukses', ['id' => $data->id]);
 
         } catch (\Exception $e) {
-            return back()->with('error', 'Gagal memproses pendaftaran: ' . $e->getMessage())->withInput();
+            return back()->with('error', 'Gagal: ' . $e->getMessage())->withInput();
         }
+    }
+
+    public function sukses(Request $request)
+    {
+        $id = $request->query('id');
+        $data = Pendaftaran::findOrFail($id);
+        return view('pengguna.sukses', compact('data'));
+    }
+
+    public function cetakKartu($id)
+    {
+        $data = Pendaftaran::findOrFail($id);
+        $pdf = Pdf::loadView('pengguna.kartu_pdf', compact('data'));
+        return $pdf->download('Kartu_Pendaftaran_'.$data->nisn.'.pdf');
     }
 }

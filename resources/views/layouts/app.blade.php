@@ -24,19 +24,16 @@
 
 <body class="{{ Request::is('/') ? 'is-home' : '' }}">
 
-
-
-
     <!-- High Performance Preloader -->
     <div id="preloader">
         <div class="loader-wrapper">
             <img src="{{ asset('img/logo.webp') }}" alt="SMA ERHA" class="main-logo">
             <h2 class="loader-title">SMA ERHA JATINAGARA</h2>
-            
+
             <div class="loading-bar-container">
                 <div class="loading-bar-fill" id="load-fill"></div>
             </div>
-            
+
             <div class="loading-status">
                 <span>Loading</span>
                 <span id="load-perc">0%</span>
@@ -65,7 +62,7 @@
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('/') && !request()->has('kontak') ? 'active' : '' }}" id="nav-home" href="{{ route('home') }}">Home</a>
                     </li>
-                    
+
                     <!-- Profil Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle {{ request()->is('profil') ? 'active' : '' }}" href="#" id="navbarProfil" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -115,7 +112,7 @@
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('berita*') ? 'active' : '' }}" href="{{ route('berita.list') }}">Berita</a>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('galeri') ? 'active' : '' }}" href="{{ route('galeri') }}">Galeri</a>
                     </li>
@@ -126,7 +123,7 @@
                         <li class="nav-item ms-lg-3">
                             <a class="btn btn-blue px-4 shadow-sm" href="{{ route('formulir.user') }}">Daftar Sekarang</a>
                         </li>
-                    
+
                 </ul>
             </div>
         </div>
@@ -253,7 +250,7 @@
             <!-- Bottom Footer -->
             <div class="footer-bottom mt-5 pt-4 border-top border-secondary border-opacity-25 text-center">
                 <p class="text-gray small mb-0">
-                    &copy; {{ date('Y') }} <strong>SMA ERHA JATINAGARA</strong>. 
+                    &copy; {{ date('Y') }} <strong>SMA ERHA JATINAGARA</strong>.
                 </p>
             </div>
         </div>
@@ -268,7 +265,7 @@
         .text-accent { color: #ffd700 !important; }
         .bg-accent { background-color: #ffd700 !important; }
         .text-gray { color: #b0b0b0; }
-        
+
         /* Global Brand Colors */
         .text-blue { color: #0E2E72 !important; }
         .bg-blue { background-color: #0E2E72 !important; }
@@ -310,7 +307,7 @@
             position: relative;
             font-size: 0.95rem;
         }
-        
+
         .navbar-nav .nav-link:hover,
         .navbar-nav .nav-link.active {
             color: #0E2E72 !important;
@@ -333,7 +330,7 @@
             animation: fadeInUp 0.3s ease forwards;
             display: none; /* Bootstrap handles block, but good for reset */
         }
-        
+
         .dropdown-menu.show {
             display: block;
         }
@@ -433,7 +430,7 @@
             justify-content: center;
             align-items: center;
             will-change: opacity, transform;
-            transition: opacity 0.6s cubic-bezier(0.65, 0, 0.35, 1), 
+            transition: opacity 0.6s cubic-bezier(0.65, 0, 0.35, 1),
                         visibility 0.6s cubic-bezier(0.65, 0, 0.35, 1),
                         transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
         }
@@ -545,11 +542,11 @@
             const navHome = document.getElementById('nav-home');
             const navKontak = document.getElementById('nav-kontak');
             const kontakSection = document.getElementById('kontak');
-            
+
             if (navHome && navKontak && kontakSection) {
                 const rect = kontakSection.getBoundingClientRect();
                 const isInKontak = rect.top <= window.innerHeight / 2 && rect.bottom >= 0;
-                
+
                 if (isInKontak) {
                     navHome.classList.remove('active');
                     navKontak.classList.add('active');
@@ -580,7 +577,7 @@
             const preloader = document.getElementById('preloader');
             const fill = document.getElementById('load-fill');
             const perc = document.getElementById('load-perc');
-            
+
             if (!preloader) return;
 
             let count = 0;
@@ -612,5 +609,8 @@
             }, 50);
         })();
     </script>
+
+    @stack('scripts')
 </body>
+
 </html>

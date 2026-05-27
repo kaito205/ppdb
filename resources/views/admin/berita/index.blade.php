@@ -6,12 +6,12 @@
 <div class="container-fluid py-4">
     <!-- Header Section -->
     <div class="row mb-4 animate__animated animate__fadeIn">
-        <div class="col-12 d-flex justify-content-between align-items-center">
+        <div class="col-12 d-flex flex-column flex-sm-row justify-content-between align-items-sm-center align-items-start gap-3">
             <div>
                 <h3 class="fw-bold text-dark mb-1">Kelola Berita & Informasi</h3>
                 <p class="text-muted small mb-0">Publikasikan berita terbaru, pengumuman, dan artikel seputar sekolah.</p>
             </div>
-            <a href="{{ route('berita.create') }}" class="btn btn-blue px-4 rounded-pill shadow-sm">
+            <a href="{{ route('berita.create') }}" class="btn btn-blue px-4 rounded-pill shadow-sm w-100 w-sm-auto text-center text-nowrap">
                 <i class="bi bi-plus-lg me-2"></i>Tulis Berita
             </a>
         </div>

@@ -316,7 +316,13 @@
                 <tr>
                     <td width="30%">
                         <div style="margin-bottom: 10px;">FOTO 3x3</div>
-                        <div class="photo-box" style="width: 3cm; height: 3cm; line-height: 3cm;">FOTO</div>
+                        <div class="photo-box" style="width: 3cm; height: 3cm; line-height: 3cm; overflow: hidden;">
+                            @if($data->foto && file_exists(public_path('storage/' . $data->foto)))
+                                <img src="{{ public_path('storage/' . $data->foto) }}" class="photo-img" style="width: 100%; height: 100%;">
+                            @else
+                                <img src="{{ public_path('img/user.jpeg') }}" class="photo-img" style="width: 100%; height: 100%;">
+                            @endif
+                        </div>
                     </td>
                     <td width="35%">
                         Mengetahui,<br>
